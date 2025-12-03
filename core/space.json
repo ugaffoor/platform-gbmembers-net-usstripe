@@ -1,0 +1,532 @@
+{
+  "afterLogoutPath": "",
+  "attributes": [
+    {
+      "name": "About Us Choices",
+      "values": [
+        "Facebook; Family; Friend; Google; Google Ad; Instagram; Other; Word of Mouth;"
+      ]
+    },
+    {
+      "name": "Additional Gender Options",
+      "values": [
+        "YES"
+      ]
+    },
+    {
+      "name": "Admin Fee Charge",
+      "values": [
+        "1.33%"
+      ]
+    },
+    {
+      "name": "Admin Fee Label",
+      "values": [
+        "Admin Fee 1.33%"
+      ]
+    },
+    {
+      "name": "Admin Kapp Slug",
+      "values": [
+        "admin"
+      ]
+    },
+    {
+      "name": "Advance Class Booking Cutoff",
+      "values": [
+        "2"
+      ]
+    },
+    {
+      "name": "Alerts Form Slug",
+      "values": [
+        "alerts"
+      ]
+    },
+    {
+      "name": "Allow Cash Payments",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Approval Form Slug",
+      "values": [
+        "approval"
+      ]
+    },
+    {
+      "name": "AWS GBShop Bucket",
+      "values": [
+        "us-gbmembers-gbshop"
+      ]
+    },
+    {
+      "name": "AWS Photos Bucket",
+      "values": [
+        "us-gbmembers-photos"
+      ]
+    },
+    {
+      "name": "AWS Region",
+      "values": [
+        "us-east-2"
+      ]
+    },
+    {
+      "name": "Billing Company",
+      "values": [
+        "Stripe"
+      ]
+    },
+    {
+      "name": "Calendar Time Slots",
+      "values": [
+        "10"
+      ]
+    },
+    {
+      "name": "Cancellation Duration",
+      "values": [
+        "60"
+      ]
+    },
+    {
+      "name": "Catalog Kapp Slug",
+      "values": [
+        "services"
+      ]
+    },
+    {
+      "name": "Company Logo",
+      "values": [
+        "/app/datastore/submissions/617f9165-c2cb-11e8-aff8-15815e938e2a/files/Image%20File/0/Logo-GB-Sydney1.png"
+      ]
+    },
+    {
+      "name": "Currency",
+      "values": [
+        "USD"
+      ]
+    },
+    {
+      "name": "Default Kapp Display",
+      "values": [
+        "gbmembers"
+      ]
+    },
+    {
+      "name": "Email Header URL",
+      "values": [
+        "https://s3.amazonaws.com/unroll-images-production/projects%2F0%2F1635275187745-Untitled+design.png"
+      ]
+    },
+    {
+      "name": "Feedback Form Slug",
+      "values": [
+        "feedback"
+      ]
+    },
+    {
+      "name": "Footer Bundle Path",
+      "values": [
+        "space"
+      ]
+    },
+    {
+      "name": "Footer Email URL",
+      "values": [
+        "https://s3.amazonaws.com/unroll-images-production/projects%2F0%2F1635274285322-Mei-Lein+Preston-2.png"
+      ]
+    },
+    {
+      "name": "Form Workflow",
+      "values": [
+        "Created - True",
+        "Deleted - True",
+        "Updated - True",
+        "Updated - Update Discussion META"
+      ]
+    },
+    {
+      "name": "Header Bundle Path",
+      "values": [
+        "space"
+      ]
+    },
+    {
+      "name": "Help Form Slug",
+      "values": [
+        "help"
+      ]
+    },
+    {
+      "name": "Hidden Users Regex",
+      "values": [
+        ".*@kinops.io$"
+      ]
+    },
+    {
+      "name": "Hide Class Spots Remaining",
+      "values": [
+        "NO"
+      ]
+    },
+    {
+      "name": "Interested In Choices",
+      "values": [
+        "Women's Self Defense Classes; Kids Classes; Men's Classes; Women's Classes;"
+      ]
+    },
+    {
+      "name": "Invite Others Form Slug",
+      "values": [
+        "kinops-invite-others"
+      ]
+    },
+    {
+      "name": "Kinetic Billing Server URL",
+      "values": [
+        "https://services.gbmembers.net/billingservice"
+      ]
+    },
+    {
+      "name": "Libraries Bundle Path",
+      "values": [
+        "space"
+      ]
+    },
+    {
+      "name": "LiveChat License",
+      "values": [
+        "14790045"
+      ]
+    },
+    {
+      "name": "Member Belt Size",
+      "values": [
+        "A0,A1,A1L,A2,A2L,A3,A3L,A4,A5,A5W,A6,A7,Y0,Y1,Y2,Y3,Y4,Y5,Y6"
+      ]
+    },
+    {
+      "name": "Member Discounts",
+      "values": [
+        "[]"
+      ]
+    },
+    {
+      "name": "Meta JSON Location",
+      "values": [
+        "https://us-gbmembers.s3.us-east-2.amazonaws.com"
+      ]
+    },
+    {
+      "name": "Payment Frequencies",
+      "values": [
+        "Weekly,Fortnightly,Monthly,Quarterly,6 Months,Yearly"
+      ]
+    },
+    {
+      "name": "PhoneNumber Format",
+      "values": [
+        "###-###-####"
+      ]
+    },
+    {
+      "name": "POS Accepted Cards",
+      "values": [
+        "[]"
+      ]
+    },
+    {
+      "name": "POS Service URL",
+      "values": [
+        "https://services.gbmembers.net/billingservice/processPOS"
+      ]
+    },
+    {
+      "name": "POS Stripe Publishable Key",
+      "values": [
+        "pk_test_51REYsSJNMgn5Lm5BmEJo25SCUy7kM7mE0B4lVqVza51AbNc4amfIDFfCUPyOBYXajF6pAtuKcsypUVqwWXVXMLCN00qLV6C0xz"
+      ]
+    },
+    {
+      "name": "POS System",
+      "values": [
+        "Stripe"
+      ]
+    },
+    {
+      "name": "Postcode Format",
+      "values": [
+        "#####"
+      ]
+    },
+    {
+      "name": "Queue Kapp Slug",
+      "values": [
+        "queue"
+      ]
+    },
+    {
+      "name": "School Address",
+      "values": [
+        "123 Somewhere St"
+      ]
+    },
+    {
+      "name": "School City",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "School Country Code",
+      "values": [
+        "US"
+      ]
+    },
+    {
+      "name": "School Email",
+      "values": [
+        "gracie.barra@uniqconsulting.com.au"
+      ]
+    },
+    {
+      "name": "School Freeze Charge",
+      "values": [
+        "25"
+      ]
+    },
+    {
+      "name": "School From Alias",
+      "values": [
+        "Gracie Barra US Stripe Beta"
+      ]
+    },
+    {
+      "name": "School Legal Name",
+      "values": [
+        "Not Applicable"
+      ]
+    },
+    {
+      "name": "School Name",
+      "values": [
+        "Gracie Barra US Stripe Beta"
+      ]
+    },
+    {
+      "name": "School Postcode",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "School Start Date",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "School States",
+      "values": [
+        "AL,AK,AZ,AR,CA,CO,CT,DE,FL,GA,HI,ID,IL,IN,IA,KS,KY,LA,ME,MD,MA,MI,MN,MS,MO,MT,NE,NV,NH,NJ,NM,NY,NC,ND,OH,OK,OR,PA,RI,SC,SD,TN,TX,UT,VT,VA,WA,WV,WI,WY"
+      ]
+    },
+    {
+      "name": "School Telephone",
+      "values": [
+        "0415481360"
+      ]
+    },
+    {
+      "name": "School Timetable URL",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "School Website",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "Self Checkin PIN",
+      "values": [
+        "0000"
+      ]
+    },
+    {
+      "name": "Service Days Due",
+      "values": [
+        "7"
+      ]
+    },
+    {
+      "name": "Services Slugs",
+      "values": [
+        "stripe-submit-billing-changes,stripe-member-registration,stripe-member-cancellation,stripe-change-payment-type,stripe-extend-membership-freeze,stripe-membership-freeze,stripe-payments-reschedule,stripe-resume-frozen-member,cash-member-registration,incident-report,kids-registration,mens-registration"
+      ]
+    },
+    {
+      "name": "Shared Workflow Engine",
+      "values": [
+        "False"
+      ]
+    },
+    {
+      "name": "Show Class Spots Remaining",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "Stripe Account ID",
+      "values": [
+        "acct_1SPDLiJQrG7OjWz2"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Closed - False",
+        "Created - False",
+        "Deleted - False",
+        "Saved - False",
+        "Submitted - False",
+        "Updated - False"
+      ]
+    },
+    {
+      "name": "Suggest a Service Form Slug",
+      "values": [
+        "kinops-suggest-a-service"
+      ]
+    },
+    {
+      "name": "Task Assignee Team",
+      "values": [
+        "Default"
+      ]
+    },
+    {
+      "name": "Task Form Slug",
+      "values": [
+        "work-order"
+      ]
+    },
+    {
+      "name": "Task Server Host",
+      "values": [
+        "gbusstripebeta.gbmembers.net"
+      ]
+    },
+    {
+      "name": "Task Server Scheme",
+      "values": [
+        "https"
+      ]
+    },
+    {
+      "name": "Task Server Space Slug",
+      "values": [
+        "gbusstripebeta"
+      ]
+    },
+    {
+      "name": "Task Server Url",
+      "values": [
+        "https://gbusstripebeta.gbmembers.net/kinetic-task"
+      ]
+    },
+    {
+      "name": "Task Source Name",
+      "values": [
+        "Kinetic Request CE"
+      ]
+    },
+    {
+      "name": "Trial Booking Cut Off",
+      "values": [
+        "1"
+      ]
+    },
+    {
+      "name": "Trial Booking Thank you URL",
+      "values": [
+        ""
+      ]
+    },
+    {
+      "name": "Trial Calendar Name",
+      "values": [
+        "Intro Classes"
+      ]
+    },
+    {
+      "name": "Web Server Url",
+      "values": [
+        "https://gbusstripebeta.gbmembers.net"
+      ]
+    }
+  ],
+  "bundlePath": "",
+  "customTranslationContexts": [
+
+  ],
+  "defaultDatastoreFormConfirmationPage": null,
+  "defaultDatastoreFormDisplayPage": null,
+  "defaultLocale": "en-US",
+  "defaultTimezone": "Australian Eastern Standard Time (New South Wales) (Australia/Sydney)",
+  "displayType": "Single Page App",
+  "displayValue": "https://s3.us-east-2.amazonaws.com/us-gbmembers-v2/index.html",
+  "enabledLocales": [
+    "en-AU",
+    "en-US"
+  ],
+  "loginPage": null,
+  "name": "GB US Stripe Beta",
+  "platformComponents": {
+    "agents": [
+
+    ]
+  },
+  "resetPasswordPage": null,
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Teams Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Team Membership Modification",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Users Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "User Creation",
+      "name": "Program Managers"
+    },
+    {
+      "endpoint": "User Modification",
+      "name": "Program Managers"
+    }
+  ],
+  "sessionInactiveLimitInSeconds": null,
+  "sharedBundleBase": "hydrogen-v1",
+  "slug": "gbusstripebeta",
+  "trustedFrameDomains": [
+    "https://services.gbmembers.net"
+  ],
+  "trustedResourceDomains": [
+
+  ]
+}

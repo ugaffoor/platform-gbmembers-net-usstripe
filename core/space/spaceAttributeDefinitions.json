@@ -1,0 +1,537 @@
+[
+  {
+    "allowsMultiple": false,
+    "description": "Semi colon separated list of values that will populate Access Request menus",
+    "name": "About Us Choices"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Set as YES to include\nInclude additional agenda options:\nOther\nPrefer not to answer",
+    "name": "Additional Gender Options"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Admin Charge used by US, initially set as 1.33%",
+    "name": "Admin Fee Charge"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "If provided this will be displayed instead of the default \"Admin Fee\".",
+    "name": "Admin Fee Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Admin Kapp (typically admin)",
+    "name": "Admin Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Number of days that a school allows a Class Booking to me made in advance.",
+    "name": "Advance Class Booking Cutoff"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of the Admin Kapp form that is used for managing system alerts (typically 'alerts').",
+    "name": "Alerts Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Enable Cash Payment capture",
+    "name": "Allow Cash Payments"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Set to YES to allow a Coach profile to Promote students.",
+    "name": "Allow Coach Promotions"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Queue kapp form which approvals should be created in (Overridden by Kapp and Form Attributes)",
+    "name": "Approval Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "Australia School States"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "gbmembers-gbshop, us-gbmembers-gbshop",
+    "name": "AWS GBShop Bucket"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "gbmembers-photos, us-gbmembers-photos",
+    "name": "AWS Photos Bucket"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Region name for AWS file storage",
+    "name": "AWS Region"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Enter \"YES\" to allow the form to show an capture the Member Signature.",
+    "name": "Bambora Freeze Show Signature"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The company identifier for the Billing Service used by School",
+    "name": "Billing Company"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "A value for Calendar time slots, such as 15, 10, 5 etc",
+    "name": "Calendar Time Slots"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Number of days before a Cancellation date.\nUsed as part of the cancellation form.",
+    "name": "Cancellation Duration"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Region of Cards used (leave empty to default, US)",
+    "name": "Card Region"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Catalog Kapp (typically catalog)",
+    "name": "Catalog Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used by users to request their manager be changed.",
+    "name": "Change Manager Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "Company Logo"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Used for Franchise application, to identify the Countries within the Region ",
+    "name": "Countries"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Currency value for Billing POS (AUD, USD ....)",
+    "name": "Currency"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Allows Space Administrators to set a default Kapp that will display for Users in their Space. This can be overridden by a User Profile Attribute.",
+    "name": "Default Kapp Display"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "If set to true, users won't be able to request their own accounts. Only system administrators will be able to grant them access.",
+    "name": "Disable Self Sign Up"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Discussion Id related to this space",
+    "name": "Discussion Id"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Url of this spaces response server",
+    "name": "Discussion Server Url"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used for collecting feedback about the kinops portal.",
+    "name": "Feedback Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the Space Bundle which allows for sharing of headers and footers",
+    "name": "Footer Bundle Path"
+  },
+  {
+    "allowsMultiple": true,
+    "description": null,
+    "name": "Form Workflow"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "\"YES' if this school is an Affiliate of GB Online.\nThis value is used to send an email to GB Online when a new member is created.",
+    "name": "GB Online Affiliate"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the Space Bundle which allows for sharing of headers and footers",
+    "name": "Header Bundle Path"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used by users to get help within the kinops portal.",
+    "name": "Help Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Any users whose usernames match this regular expression, will not be shown in the Kapp.",
+    "name": "Hidden Users Regex"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "YES to not apply a Admin fee percentage",
+    "name": "Ignore Admin Fee"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Semi colon separated list of values that will populate Access Request menus",
+    "name": "Interested In Choices"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used by Admins to mass invite others to kinops",
+    "name": "Invite Others Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Billing WS URL for Members billing",
+    "name": "Kinetic Billing Server URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the Space Bundle which allows for sharing of libraries between bundles.",
+    "name": "Libraries Bundle Path"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "LiveChat License key",
+    "name": "LiveChat License"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Current Belt of Member",
+    "name": "Member Belt Size"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Discounts for family members",
+    "name": "Member Discounts"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "This date indicates the date which all members should have completed a waiver as a Lead or a Member.\nIf a new waiver is generate and all members are required to complete, this date is used to ensure a member has completed their waiver.\nIndications in the application will identify members not compliant.",
+    "name": "Member Waiver Compliance Date"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Membership email, may be different to School email",
+    "name": "Membership Email"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Location of the Meta JSON file to work with ReactCacheBuster.\nThis is to ensure code releases are automatically picked up.",
+    "name": "Meta JSON Location"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Migration Mode used to onboard billing information for a school.",
+    "name": "Migration Mode"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Weekly,Fortnightly,Monthly,Quarterly",
+    "name": "Payment Frequencies"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Specify the Phone Number format for the school country.\nAU ####-###-###\nUS ###-###-####",
+    "name": "PhoneNumber Format"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Accepted cards ['visa', 'mastercard', 'discover', 'amex', 'jcb', 'dinersclub', 'maestro', 'laser', 'unionpay', 'elo', 'hipercard']",
+    "name": "POS Accepted Cards"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Percentage sales tax value to be applied on top of sub-total",
+    "name": "POS Sales Tax"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Percentage sales tax value to be applied on top of sub-total",
+    "name": "POS Sales Tax 2"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Surcharge, Sales Tax, GST, VAT etc..",
+    "name": "POS Sales Tax Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Surcharge, Sales Tax, GST, VAT etc..",
+    "name": "POS Sales Tax Label 2"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "POS Sales Total Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "URL for processing POS credit card",
+    "name": "POS Service URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Publishable key used for API access",
+    "name": "POS Stripe Publishable Key"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "System name for process POS transactions",
+    "name": "POS System"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Specify the Postcode format for the school country.\nAU ####\nUS ######",
+    "name": "Postcode Format"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "A URL to open the schools Private Policy (a document or web page)",
+    "name": "Privacy Policy"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Queue Kapp (typically queue)",
+    "name": "Queue Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used for requesting an alert be displayed in the kinops portal.",
+    "name": "Request Alert Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Address"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Stripe Terminal",
+    "name": "School City"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "A list of dates that the school will be closed.\nMainly used for the website trial booking feature.\nUse YYYY-MM-DD format, comma seperated.",
+    "name": "School Closed Dates"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "ISO 3166-1 country code for School (US-United States, CA-Canada)",
+    "name": "School Country Code"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Email"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Additional school email addresses that can be applied to Email campaigns",
+    "name": "School Email Alias"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Charge to be applied when an account is Frozen, such as 25 ($25 per month).\nFor Fortnightly, this will be divided by 2.",
+    "name": "School Freeze Charge"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "From Alias name for school",
+    "name": "School From Alias"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Legal name used for Billing terms",
+    "name": "School Legal Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Stripe Terminal",
+    "name": "School Postcode"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Date when a school will start accepting Trial Bookings via the GB Calendar widget",
+    "name": "School Start Date"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Stripe Terminal",
+    "name": "School State"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "State code used for Calendar Public holidays.\nBased on values used with api:\nhttps://date.nager.at/api/v3/NextPublicHolidays/",
+    "name": "School State Code"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "States for country the school is based in",
+    "name": "School States"
+  },
+  {
+    "allowsMultiple": false,
+    "description": null,
+    "name": "School Telephone"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Full timetable website URL",
+    "name": "School Timetable URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "",
+    "name": "School Website"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Set as \"YES\" to disallow the Select Member dropdown in the Self Checkin mode.\nWhen set the Scanning option will be the only available option to check in.",
+    "name": "Self Checkin Scan Only"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Number of days until service is expected to be fulfilled - Overridden by Form / Kapp Attribute",
+    "name": "Service Days Due"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slugs needed to appears in the Services Report",
+    "name": "Services Slugs"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Use a shared workflow engine (true/false)?",
+    "name": "Shared Workflow Engine"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "NO if you want to only show \"Available\" instead of \"Open Spots: X\"",
+    "name": "Show Class Spots Remaining"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Account ID for the school, such as, acct_1KndiLPh1yLRrgic",
+    "name": "Stripe Account ID"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Defines which workflow type should be executed for each type of action. All values should be prefixed with an action (Submitted, Created, Updated, Deleted) Workflow type options are (True, False, or a custom process name) This attribute can be overridden by a kapp or form's attribute Ex (Submitted - False | Submitted - True | Submitted - My Custom Process)",
+    "name": "Submission Workflow"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Form used to request a new service be added to the catalog.",
+    "name": "Suggest a Service Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "YES to switch to Select class first then provide name details.\nThe default is to provide name details first then select a class.",
+    "name": "Switch Trial Class Booking Order"
+  },
+  {
+    "allowsMultiple": true,
+    "description": "Email Address of the System Administrator who should receive emails about system issues",
+    "name": "System Administrator Email"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Username of user to assign tasks to if not defined in a form or kapp.",
+    "name": "Task Assignee Individual"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Team to assign tasks to if not defined in a form or kapp.",
+    "name": "Task Assignee Team"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "The Queue kapp form to use when creating a task item (Overridden by Kapp and Form Attributes)",
+    "name": "Task Form Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of the space the task engine is routed",
+    "name": "Task Server Space Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of the source for this space in the workflow engine",
+    "name": "Task Source Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Example, GST VAT",
+    "name": "TAX 1 Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "5% GST for Canada",
+    "name": "TAX 1 Value"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Canada, HSP, PST or QST",
+    "name": "TAX 2 Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Canada, HSP PST or QST",
+    "name": "TAX 2 Value"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Canada, HSP PST or QST",
+    "name": "TAX 3 Label"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "For Canada, HSP PST or QST",
+    "name": "TAX 3 Value"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Slug of this spaces Tech Bar Kapp (typically tech-bar)",
+    "name": "Tech Bar Kapp Slug"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Use with the website Trial Booking widget.\nThe default without this setting is 2 for 2 hours prior.",
+    "name": "Trial Booking Cut Off"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Return URL after a lead completes the Calendar widget Contact Us, Book a Trial or Self Signup",
+    "name": "Trial Booking Thank you URL"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Name of google calendar that will be used for all Intro/Free class appointments.",
+    "name": "Trial Calendar Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Items if selected will be hidden on the Adult/Womens/Kids waiver forms.",
+    "name": "Waiver Hidden Items"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Url of the request web server that this space exists",
+    "name": "Web Server Url"
+  }
+]

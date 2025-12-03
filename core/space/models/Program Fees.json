@@ -1,0 +1,121 @@
+{
+  "activeMappingName": "Program Fees",
+  "attributes": [
+    {
+      "name": "Charge Timing"
+    },
+    {
+      "name": "Display Info Text"
+    },
+    {
+      "name": "Fee"
+    },
+    {
+      "name": "Frequency"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "Info"
+    },
+    {
+      "name": "Program"
+    },
+    {
+      "name": "Registration Fee"
+    },
+    {
+      "name": "Registration Fee Include"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "Fee",
+          "structureField": "${fields('values[Fee]')}"
+        },
+        {
+          "name": "Frequency",
+          "structureField": "${fields('values[Frequency]')}"
+        },
+        {
+          "name": "Info",
+          "structureField": "${fields('values[Info]')}"
+        },
+        {
+          "name": "Program",
+          "structureField": "${fields('values[Program]')}"
+        },
+        {
+          "name": "id",
+          "structureField": "${fields('id')}"
+        },
+        {
+          "name": "Registration Fee Include",
+          "structureField": "${fields('values[Registration Fee Include]')}"
+        },
+        {
+          "name": "Display Info Text",
+          "structureField": "${fields('values[Display Info Text]')}"
+        },
+        {
+          "name": "Charge Timing",
+          "structureField": "${fields('values[Charge Timing]')}"
+        },
+        {
+          "name": "Registration Fee",
+          "structureField": "${fields('values[Registration Fee]')}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Program Fees",
+      "qualifications": [
+        {
+          "name": "All",
+          "query": "formSlug=membership-fees&limit=1000&index=values[Status]&q=values[Status]=\"Active\""
+        },
+        {
+          "name": "By Frequency",
+          "query": "formSlug=membership-fees&limit=1000&index=values[Status],values[Frequency]&q=values[Frequency]=\"${parameters('Frequency')}\" AND values[Status]=\"Active\""
+        },
+        {
+          "name": "By ID",
+          "query": "id=${parameters('ID')}"
+        }
+      ],
+      "structure": "Datastore Submissions"
+    }
+  ],
+  "name": "Program Fees",
+  "qualifications": [
+    {
+      "name": "All",
+      "parameters": [
+
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "By Frequency",
+      "parameters": [
+        {
+          "name": "Frequency"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "By ID",
+      "parameters": [
+        {
+          "name": "ID"
+        }
+      ],
+      "resultType": "Single"
+    }
+  ],
+  "status": "Active"
+}

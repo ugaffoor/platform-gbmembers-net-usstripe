@@ -1,0 +1,1316 @@
+{
+  "anonymous": false,
+  "attributes": [
+    {
+      "name": "Cancel Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Cloning Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Comment Disabled",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "Submission Workflow",
+      "values": [
+        "Submitted - True"
+      ]
+    }
+  ],
+  "bridgedResources": [
+    {
+      "model": "Members",
+      "name": "Get Billing Members",
+      "order": [
+        {
+          "attribute": "Last Name",
+          "direction": "asc"
+        },
+        {
+          "attribute": "First Name",
+          "direction": "asc"
+        }
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Billing Members",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Get Member",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Members')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Member",
+      "status": "Active"
+    },
+    {
+      "model": "Members",
+      "name": "Get Member by Username",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${identity('username')}",
+          "name": "username"
+        }
+      ],
+      "qualification": "Get Member by Username",
+      "status": "Active"
+    }
+  ],
+  "categorizations": [
+
+  ],
+  "customHeadContent": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<script src=\"https://js.stripe.com/v3/\" defer></script>\n<style>\n  button#bankSubmit {\n      margin: 6px;\n  }  \n  \n  #card-element {\n    width: 400px;\n\t}\n</style>\n<style>\n.errorDetails {\n    background-color: red;\n    border-radius: 5px;\n    margin: 5px;\n}  \n.card-container {\n    background-color: rgb(240, 240, 240);\n    margin: auto;\n    width: calc(95%);\n\n    border: none;\n    border-radius: 4px;\n}\n.form-group {\n    flex: 0 0 auto;\n    flex-flow: column !important;\n}\n#checkout-form {\n    position: relative;\n    width: 400px;\n    padding: 10px;\n}\n\n#checkout-form label {\n    display: block;\n    min-height: 25px;\n\n    font-size: 15px;\n    font-weight: 500;\n    margin: 5px 0;\n    padding: 0;\n    color: red;\n}\n\n#card-number, #card-cvv, #card-expiry {\n    background-color: #FFF;\n    display: block;\n    width: calc(90%);\n    border-radius: 2px;\n    border: 1px solid rgba(200, 200, 200, 1);\n    padding: 14px 60px 13px 20px;\n    margin: auto;\n    transition: all 100ms ease-out;\n}\n\n/* card images are added to card number */\n#card-number {\n    background-image: none;\n\n    background-origin: content-box;\n    background-position: calc(100% + 40px) center;\n    background-repeat: no-repeat;\n    background-size: contain;\n}\n\n/* buttons */\n.btn {\n    vertical-align: top;\n}\n\n#pay-button {\n    position: relative;\n    border: none;\n    border-radius: 4px;\n    background-color: #0c384f;\n    color: rgba(255, 255, 255, 1);\n    display: inline-block;\n    transition: all 100ms ease-out;\n    padding: 11px 25px;\n    margin-left: 30px;\n}\n\n#pay-button:hover, #pay-button:active {\n    background-color: rgba(69, 36, 89, 1);\n}\n\n#pay-button:active {\n    box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.3);\n}\n\n#pay-button:disabled {\n    background-color: rgba(255, 255, 255, 1);\n    border: 1px solid #0c384f;\n    color: #0c384f;\n}\n\n/* feedback is displayed after tokenization */\n#feedback {\n    position: relative;\n    left: 15px;\n    display: inline-block;\n    background-color: transparent;\n    border: 0px solid rgba(200, 200, 200, 1);\n    border-radius: 4px;\n    transition: all 100ms ease-out;\n    padding: 11px;\n}\n\n#feedback.error {\n    color: red;\n    border: 1px solid;\n}\n\n#feedback.success {\n    color: seagreen;\n    border: 1px solid;\n}\n</style>\n<style>\n  .hidden{\n   display:none; \n  }\n</style>\n",
+  "description": "Change Member payment type, such as Credit Card or Bank Details",
+  "name": "Stripe Change Payment Type",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "GB Logo",
+          "text": "<img src=\"https://gbfms-files.s3-ap-southeast-2.amazonaws.com/GB+Name+Log.png\" alt=\"GB Logo\" class=\"GBLogo\">",
+          "visible": true,
+          "renderAttributes": {
+            "class": "logo"
+          }
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Emailed Message",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Emailed Member Info",
+              "text": "<p>Change Member Credit Card details</p>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Thank You",
+          "title": "Thank You",
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Info",
+              "text": "Your Credit Card Details have been recieved and updated.",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Select Member",
+          "title": "Select Member",
+          "visible": "!form('review')",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Members",
+              "label": "Members",
+              "key": "f38",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "A member must be selected",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Members",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    debugger;\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[Billing Customer Reference]').value(bridgedData['Billing Customer Reference']);\n    K('field[DOB]').value(bridgedData['DOB']);\n    K('field[Address]').value(bridgedData['Address']);\n    K('field[Suburb]').value(bridgedData['Suburb']);\n    K('field[State]').value(bridgedData['State']);\n    K('field[Postcode]').value(bridgedData['Postcode']);\n    K('field[Email]').value(bridgedData['Email']);\n    K('field[Mobile]').value(bridgedData['Phone Number']);\n    K('field[Payment]').value(bridgedData['Payment']);\n    K('field[First Payment]').value(bridgedData['First Payment']);\n    K('field[Billing Period]').value(bridgedData['Billing Period']);\n    K('field[Billing Start Date]').value(bridgedData['Billing Start Date']);\n    K('field[Admin Fee]').value(bridgedData['Admin Fee']);\n    K('field[Setup Fee]').value(bridgedData['Setup Fee']);\n    \n    var paymentPeriod=bridgedData['Billing Period'];\n    var period=\"months\";\n    if (paymentPeriod===\"Daily\") {\n      period=\"days\";\n    } else if (paymentPeriod===\"Weekly\") {\n      period=\"weeks\"; \n    } else if (paymentPeriod===\"Monthly\") {\n      period=\"months\"; \n    } \n    var nextBillingDate=moment(bridgedData['Billing Start Date'],\"YYYY-MM-DD\").add(moment().diff(moment(bridgedData['Billing Start Date'],\"YYYY-MM-DD\"), period)+1,period);\n    \n    K('field[Billing Start Date]').value(nextBillingDate.format(\"YYYY-MM-DD\"));\n    \n    K('section[Student Information]').show();\n    K('field[Payment Method]').value(\"\");\n  }\n});",
+                  "bridgedResourceName": null,
+                  "runIf": "values('Members')!==\"\""
+                },
+                {
+                  "name": "Clear Member Details",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Member ID]').value(\"\");\nK('field[Student First Name]').value(\"\");\nK('field[Student Last Name]').value(\"\");\nK('field[DOB]').value(\"\");\nK('field[Billing Customer Id]').value(\"\");\nK('field[Address]').value(\"\");\nK('field[Suburb]').value(\"\");\nK('field[State]').value(\"\");\nK('field[Postcode]').value(\"\");\nK('field[Email]').value(\"\");\nK('field[Mobile]').value(\"\");\nK('field[Payment]').value(\"\");\nK('field[First Payment]').value(\"\");\nK('field[Billing Period]').value(\"\");\nK('field[Billing Start Date]').value(\"\");\nK('field[Payment Method]').value(\"\");\nK('field[Admin Fee]').value(\"\");\nK('field[Setup Fee]').value(\"\");\n\nK('section[Student Information]').hide();\nK('section[Member Select Space]').show();    \n",
+                  "runIf": "values('Members')===null"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Get Billing Members",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Get Billing Members:First Name')} ${resources('Get Billing Members:Last Name')}",
+                "value": "${resources('Get Billing Members:id')}"
+              }
+            },
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Members Select",
+              "text": "<div id=\"selectMemberMenu\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Student Information",
+          "title": "Student Information",
+          "visible": "values('Members')!==null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f39",
+              "defaultValue": "",
+              "defaultResourceName": "",
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member GUID",
+              "label": "Member GUID",
+              "key": "f48",
+              "defaultValue": "${resources('Get Member by Username:id')}",
+              "defaultResourceName": "Get Member by Username",
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing User",
+              "label": "Billing User",
+              "key": "f49",
+              "defaultValue": "${resources('Get Member by Username:Billing User')}",
+              "defaultResourceName": "Get Member by Username",
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student First Name",
+              "label": "Student's First Name",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student Last Name",
+              "label": "Student's Last Name",
+              "key": "f29",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Requested For",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Requested For",
+                      "value": "${values('Student First Name')} ${values('Student Last Name')}",
+                      "visible": null
+                    }
+                  ]
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f68",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "DOB",
+              "label": "DOB",
+              "key": "f47",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Billing Customer Id",
+              "label": "Billing Customer Id",
+              "key": "f45",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Customer Reference",
+              "label": "Billing Customer Reference",
+              "key": "f67",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Address",
+              "label": null,
+              "key": "f54",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Suburb",
+              "label": null,
+              "key": "f55",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "State",
+              "label": "State",
+              "key": "f56",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Postcode",
+              "label": "Postcode",
+              "key": "f57",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Email",
+              "label": "Email",
+              "key": "f58",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Drivers Licence",
+              "label": "Drivers Licence",
+              "key": "f59",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Mobile",
+              "label": "Mobile",
+              "key": "f60",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Payment",
+              "label": "Payment",
+              "key": "f61",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "First Payment",
+              "label": "First Payment",
+              "key": "f66",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Period",
+              "label": "Billing Period",
+              "key": "f62",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing Start Date",
+              "label": "Billing Start Date",
+              "key": "f63",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Admin Fee",
+              "label": "Admin Fee",
+              "key": "f64",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Setup Fee",
+              "label": "Setup Fee",
+              "key": "f65",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Payment Details",
+          "title": "Payment Details",
+          "visible": "values('Members')!==null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+            "class": "services-paysmart-billing-details"
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Payment Method",
+              "label": "Payment Method",
+              "key": "f22",
+              "defaultValue": "",
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Load Card",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "bundle.stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nbundle.elements = bundle.stripe.elements();\n\nbundle.cardElement = bundle.elements.create('card', {hidePostalCode: true});\nbundle.cardElement.mount('#card-element');\nbundle.cardElement.on('change', function(event) {\n  debugger;\n  if (event.complete) {\n    K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n  } else {\n    K('field[Payment Method Complete]').value(\"\");\t\t\n  }\n});",
+                  "runIf": "values('Payment Method')===\"Credit Card\""
+                },
+                {
+                  "name": "Load Bank Account(PAD)",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": K('space').attributes('Billing Company'),\n    \"paymentType\": \"acss_debit\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n        const { setupIntent, error } = await stripe.confirmAcssDebitSetup(clientSecret, {\n          payment_method: {\n            billing_details: {\n              name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n              email: K('field[Email]').value(),\n            },\n          },\n        });\n\t\t\t\tdebugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n        } else {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent.id);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
+                  "runIf": "values('Payment Method')===\"Bank Account PAD\""
+                },
+                {
+                  "name": "Load Bank Account (ACH)",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": K('space').attributes('Billing Company'),\n    \"paymentType\": \"us_bank_account\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value(),\n    \"firstName\": K('field[Student First Name]').value(),\n    \"lastName\": K('field[Student Last Name]').value(),\n    \"email\": K('field[Email]').value(),\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    K('field[Billing Customer Reference]').value(response.data.customerId);\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n      \telements.submit();\n        const { setupIntent, error } = await stripe.confirmSetup({\n          elements,\n          clientSecret,\n          confirmParams: {\n            return_url: window.location.href, // ✅ required unless redirect flag is top-level\n            payment_method_data: {\n              billing_details: {\n                name: `${K('field[Student First Name]').value()} ${K('field[Student Last Name]').value()}`,\n                email: K('field[Email]').value(),\n              },\n            },\n          },\n          redirect: 'if_required', // ✅ put redirect flag here (top-level)\n        });\n      debugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n\t\t\t\t} else if (setupIntent.status === \"succeeded\") {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
+                  "runIf": "values('Payment Method')===\"Bank Account ACH\""
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Credit Card",
+                  "value": "Credit Card"
+                },
+                {
+                  "label": "Bank Account PAD",
+                  "value": "Bank Account PAD"
+                },
+                {
+                  "label": "Bank Account ACH",
+                  "value": "Bank Account ACH"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Payment Method Complete",
+              "label": "Payment Method Complete",
+              "key": "f71",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "Please ensure a Payment method has been completed.",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Credit Card Details",
+          "title": "Credit Card Details",
+          "visible": "values('Members')!==null && values('Payment Method') === 'Credit Card'",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+            "class": "services-paysmart-billing-details"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Credit Card Capture",
+              "text": "\n<!--\n  Or create a <label> with a 'for' attribute,\n  referencing the ID of your container.\n-->\n<label for=\"card-element\"></label>\n<div id=\"card-element\"></div>\n\n",
+              "visible": "!form('review')",
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Number",
+              "label": "Credit Card Number",
+              "key": "f15",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "form('review')",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": {
+                "regex": "^(?:4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\\d{3})\\d{11}|^...[0-9][0-9][0-9][0-9])$",
+                "message": "Credit card number should be a valid CC number"
+              },
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Expiry Month",
+              "label": "Credit Card Expiry Month",
+              "key": "f52",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Credit Card Expiry Year",
+              "label": "Credit Card Expiry Year",
+              "key": "f53",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "CVV",
+              "label": "CVV",
+              "key": "f50",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Bank Account Details",
+          "title": "Bank Account Details",
+          "visible": "values('Payment Method')===\"Bank Account PAD\" || values('Payment Method')===\"Bank Account ACH\" ",
+          "omitWhenHidden": false,
+          "renderAttributes": {
+            "class": "services-paysmart-billing-details"
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Bank Account Capture",
+              "text": "  <div id=\"bank-element\">\n  </div>\n<button id=\"bankSubmit\" type=\"button\" class=\"btn btn-primary\">\n  Confirm Bank Details\n</button>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Signature",
+          "title": null,
+          "visible": "values('Members')!==null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Payment Type Signature",
+              "text": "<label class=\"field-label required\">Payment Change Signature</label>\n<div id=\"payment-signature-canvas\"/>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            },
+            {
+              "type": "field",
+              "name": "Encoded Payment Signature",
+              "label": "Encoded Payment Signature",
+              "key": "f44",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": "Payment Change Signature is required",
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Overdue Payment",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Apply Overdue payment",
+              "label": "Apply Overdue payment",
+              "key": "f69",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "json",
+              "renderType": "checkbox",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Apply Overdue payment",
+                  "value": "Apply Overdue payment"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Amount",
+              "label": "Amount",
+              "key": "f70",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": "values('Apply Overdue payment').indexOf(\"Apply Overdue payment\")!==-1",
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Card Error",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Error Details",
+              "text": "<p class=\"errorDetails\" id=\"errorValue\"/p>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Select Space",
+          "title": null,
+          "visible": "values('Members')===null",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "Member Select Space",
+              "text": "<div style=\"height:300px\"></div>",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "Submit",
+          "name": "Submit Button",
+          "visible": true,
+          "enabled": "Object.keys(K('form').validate()).length===0",
+          "renderType": "custom",
+          "renderAttributes": {
+          },
+          "events": [
+            {
+              "name": "Submit",
+              "type": "Click",
+              "action": "Custom",
+              "code": "debugger;\n\nif (K('field[Payment Method]').value()===\"Credit Card\") {\n  bundle.stripe\n    .createSource(bundle.cardElement, {\n    type: \"card\",\n    currency:  K('space').attributes('Currency'),\n    owner: {\n      name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(),\n    },\n  })\n    .then(function(result) {\n    // Handle result.error or result.source\n    // Handle result.error or result.source\n    if (result.error) {\n      $(\"#errorValue\").html(result.error.message);\n      K('section[Card Error]').show();\n    } else {\n      debugger;\n      console.log(result.source);\n      bundle.sourceID=result.source.id;\n      bundle.completeChangePaymentType();\n    }    \n  });\n} else {\n      bundle.completeChangePaymentType();\n}"
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Signatures",
+          "type": "Load",
+          "action": "Custom",
+          "code": "bundle.stripe = null;\nbundle.elements = null;\n  \nbundle.cardElement = null;\nbundle.ibanElement = null;\nbundle.sourceID = null;  \nbundle.GetURLParameter = function(sParam){\n    if (window.location.hash.indexOf(\"?\")!==-1) {\n      var params = window.location.hash.split(\"?\")[1]\n        .substring(0)\n        .split(\"&\")\n        .map(v => v.split(\"=\"))\n        .reduce((map, [key, value]) => map.set(key, decodeURIComponent(value)), new Map());    \n      \n      if (params.get(sParam)!==undefined) {\n        return params.get(sParam);\n      } else {\n       \treturn null; \n      }\n    }\n    return null;\n  }  \nbundle.completeChangePaymentType = function() {\n    debugger;\n    var registerSettings = {\n      \"crossDomain\": true,\n      \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/savePaymentMethod\",\n      \"method\": \"POST\",\n      \"headers\": {},\n      \"dataType\": \"json\",\n      \"contentType\": \"application/json\",\n      \"data\": JSON.stringify({\n        \"customerId\": K('field[Billing Customer Id]').value(),\n        \"paymentMethod\": K('field[Payment Method]').value()===\"Credit Card\" ? \"CREDITCARD\" : \"BANKACCOUNT\",\n        \"cardToken\": bundle.sourceID,\n        \"space\": K('space').slug(),\n        \"billingService\": K('space').attributes('Billing Company'),\n      })\n    }\n    $.ajax(registerSettings).done(function (response) {\n      debugger;\n      console.log(response);\n      if (response.error===100) {\n        var message=response.errorMessage;\n        if (response.errorMessage===\"DECLINE\") {\n          message=\"Credit Card not valid (Declined)\";  \n        }\n        $(\"#errorValue\").html(message);\n        K('section[Card Error]').show();\n      } else {\n        K('section[Card Error]').hide();\n        K('form').submitPage();\n      }\n    });        \n  }\n\n\nbundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#payment-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Payment Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Payment Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.representativeSignaturePad = el;\n  },\n});\n",
+          "runIf": ""
+        },
+        {
+          "name": "Load Members Select",
+          "type": "Load",
+          "action": "Custom",
+          "code": "\nbundle.config.widgets.selectMenu({\n  element: K(\"form\").find(\"#selectMemberMenu\")[0],\n\toptions: K('field[Members]').options(),\n  onChange: function(option) {\n\t  K('field[Members]').value(option.value);\n    setTimeout(function(){\n    \t$(K(\"form\").find(\"#selectMemberMenu [class$='placeholder']\")).html(option.label);\n    },100);\n\t},\n  value: K('field[Members]').value(),\n});\ndebugger;\nif (bundle.GetURLParameter(\"id\")!==null || !K(\"identity\").teams.includes(\"Role::Program Managers\")) {\n  if (bundle.GetURLParameter(\"id\")!==null && bundle.GetURLParameter(\"id\")!==undefined) {\n    K('field[Members]').value(bundle.GetURLParameter(\"id\"));\n  }else{\n    K('field[Members]').value(K('field[Member GUID]').value());\n  }\n  $(K('field[Members]').options()).each(function(index) {\n    if (K('field[Members]').options()[index].value===bundle.GetURLParameter(\"id\")) {\n      label=K('field[Members]').options()[index].label;\n    \t$(K(\"form\").find(\"#selectMemberMenu [class$='placeholder']\")).html(label);\n    }\n  });      \n  K('section[Select Member]').hide();\n}\nif (bundle.GetURLParameter(\"overdue\")!==null) {\n\tK('field[Amount]').value(bundle.GetURLParameter(\"overdue\"));\n  K('section[Overdue Payment]').show();\n}",
+          "runIf": "!form('review')"
+        },
+        {
+          "name": "Handle Errors",
+          "type": "Submit",
+          "action": "Custom",
+          "code": "if (!jQuery.isEmptyObject(K('form').validate())){\n  setTimeout(function(){\n  if ($(\".has-error\").length>0){\n    $(\".has-error\").each(function(i,l) { \n      if ($(l).attr(\"data-element-name\").indexOf(\"Signature\")!==-1) {\n        sigCanElName=$(l).attr(\"data-element-name\").replace(\"Encoded \",\"\");\n        $(K('content['+sigCanElName+']').element()).addClass(\"has-error\");\n      }\n    })  \n    $('.main-container').animate({\n      scrollTop: 0\n    },500);\n  }\n  },100);\n}"
+        },
+        {
+          "name": "Load Previous set page",
+          "type": "Load",
+          "action": "Custom",
+          "code": "K('section[Student Information]').show();\nK('section[Payment Details]').show();\n\nK('section[Member Select Space]').hide();    \n",
+          "runIf": "values('Members')!==null"
+        },
+        {
+          "name": "Clear Styles",
+          "type": "Load",
+          "action": "Custom",
+          "code": "const hash = window.location.hash;\n\n// Create a URLSearchParams object from the part after '?'\nconst queryString = hash.split('?')[1];\nconst params = new URLSearchParams(queryString);\n\n// Check if \"public\" parameter is present\nif (params.has('public')) {\n  document.body.style.height = \"auto\";\n}\n"
+        },
+        {
+          "name": "Review",
+          "type": "Load",
+          "action": "Custom",
+          "code": "",
+          "runIf": "form('review')"
+        },
+        {
+          "name": "Set Payment Methods",
+          "type": "Load",
+          "action": "Custom",
+          "code": "paymentMethods=K('field[Payment Method]').element()[0];\noptionToHide = paymentMethods.querySelector('option[value=\"Bank Account PAD\"]');\nif (optionToHide) {\n  optionToHide.hidden = true;  \n}\noptionToHide = paymentMethods.querySelector('option[value=\"Bank Account ACH\"]');\nif (optionToHide) {\n  optionToHide.hidden = true;  \n}\n\nif (K('space').attributes('School Country Code') === \"CA\") {\n  optionToShow = paymentMethods.querySelector('option[value=\"Bank Account PAD\"]');\n  if (optionToShow) {\n    optionToShow.hidden = false;  \n  }\n}\nif (K('space').attributes('School Country Code') === \"US\") {\n  optionToShow = paymentMethods.querySelector('option[value=\"Bank Account ACH\"]');\n  if (optionToShow) {\n    optionToShow.hidden = false;  \n  }\n}\n"
+        }
+      ],
+      "name": "Instalment Information",
+      "renderType": "submittable",
+      "type": "page"
+    },
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "content",
+          "renderType": "html",
+          "name": "GB Logo",
+          "text": "<img src=\"https://gbfms-files.s3-ap-southeast-2.amazonaws.com/GB+Name+Log.png\" alt=\"GB Logo\" class=\"GBLogo\">",
+          "visible": true,
+          "renderAttributes": {
+          }
+        },
+        {
+          "type": "content",
+          "renderType": "text",
+          "name": "Info",
+          "text": "Thank you for updating your Credit Card details.",
+          "visible": true,
+          "renderAttributes": {
+          }
+        }
+      ],
+      "events": [
+
+      ],
+      "name": "Thank You",
+      "renderType": "confirmation",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Everyone"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Everyone"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Everyone"
+    }
+  ],
+  "slug": "stripe-change-payment-type",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Student First Name')} ${values('Student Last Name')} Payment Type : ${values('Payment Method')}",
+  "type": "Service"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "attributes": [
+
+    ],
+    "name": "Class Bookings",
+    "slug": "class-bookings"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Incidents",
+    "slug": "incidents"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Oceania",
+    "slug": "oceania"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Stripe Billing",
+    "slug": "stripe-billing"
+  },
+  {
+    "attributes": [
+
+    ],
+    "name": "Waivers",
+    "slug": "registrations"
+  }
+]

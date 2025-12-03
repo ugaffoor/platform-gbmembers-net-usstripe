@@ -1,0 +1,1338 @@
+{
+  "attributes": [
+
+  ],
+  "bridgedResources": [
+    {
+      "model": "Additional Services",
+      "name": "Get Service",
+      "order": [
+
+      ],
+      "parameters": [
+        {
+          "mapping": "${values('Service ID')}",
+          "name": "ID"
+        }
+      ],
+      "qualification": "Get Service",
+      "status": "Active"
+    },
+    {
+      "model": "Additional Services",
+      "name": "Get Services",
+      "order": [
+
+      ],
+      "parameters": [
+
+      ],
+      "qualification": "Get Active Services",
+      "status": "Active"
+    }
+  ],
+  "customHeadContent": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<script src=\"https://js.stripe.com/v3/\" defer></script>\n<script>\nvar stripe = null;\nvar elements = null;\n  \nvar cardElement = null;\nvar paymentElement = null;\nvar sourceID = null;  \n</script>\n<style>\n  #card-element {\n    width: 400px;\n\t}\n</style>\n<style>\n.submitButton {\n   margin-top: 20px;  \n}\n.errorDetails {\n    background-color: red;\n    border-radius: 5px;\n    margin: 5px;\n}  \n.card-container {\n    background-color: rgb(240, 240, 240);\n    margin: auto;\n    width: calc(95%);\n\n    border: none;\n    border-radius: 4px;\n}\n.form-group {\n    flex: 0 0 auto;\n    flex-flow: column !important;\n}\n#checkout-form {\n    position: relative;\n    width: 400px;\n    padding: 10px;\n}\n\n#checkout-form label {\n    display: block;\n    min-height: 25px;\n\n    font-size: 15px;\n    font-weight: 500;\n    margin: 5px 0;\n    padding: 0;\n    color: red;\n}\n\n#card-number, #card-cvv, #card-expiry {\n    background-color: #FFF;\n    display: block;\n    width: calc(90%);\n    border-radius: 2px;\n    border: 1px solid rgba(200, 200, 200, 1);\n    padding: 14px 60px 13px 20px;\n    margin: auto;\n    transition: all 100ms ease-out;\n}\n\n/* card images are added to card number */\n#card-number {\n    background-image: none;\n\n    background-origin: content-box;\n    background-position: calc(100% + 40px) center;\n    background-repeat: no-repeat;\n    background-size: contain;\n}\n\n/* buttons */\n.btn {\n    vertical-align: top;\n}\n\n#pay-button {\n    position: relative;\n    border: none;\n    border-radius: 4px;\n    background-color: #0c384f;\n    color: rgba(255, 255, 255, 1);\n    display: inline-block;\n    transition: all 100ms ease-out;\n    padding: 11px 25px;\n    margin-left: 30px;\n}\n\n#pay-button:hover, #pay-button:active {\n    background-color: rgba(69, 36, 89, 1);\n}\n\n#pay-button:active {\n    box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.3);\n}\n\n#pay-button:disabled {\n    background-color: rgba(255, 255, 255, 1);\n    border: 1px solid #0c384f;\n    color: #0c384f;\n}\n\n/* feedback is displayed after tokenization */\n#feedback {\n    position: relative;\n    left: 15px;\n    display: inline-block;\n    background-color: transparent;\n    border: 0px solid rgba(200, 200, 200, 1);\n    border-radius: 4px;\n    transition: all 100ms ease-out;\n    padding: 11px;\n}\n\n#feedback.error {\n    color: red;\n    border: 1px solid;\n}\n\n#feedback.success {\n    color: seagreen;\n    border: 1px solid;\n}\n</style>\n<style>\n  .hidden{\n   display:none; \n  }\n</style>\n<script>\nasync function setupBankAccount(){\n  debugger;  \n  var params={\n    space: K('space').slug(),\n    billingService: \"Stripe\",\n    type: 'payment',\n    currency: K('space').attributes('Currency'),\n    amount: K('field[Fee]').value(),\n    email: K('field[Email]').value(),  \n  };\n  const response = await fetch(K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  {\n    method: \"POST\",\n    headers: { \"Content-Type\": \"application/json\" },\n    body: JSON.stringify(params ),\n  });\n  const result = await response.json();\n\n  debugger;\n  const appearance = {\n      theme: 'stripe',\n    };\n  elements = stripe.elements({ appearance, clientSecret: result.data.clientSecret});\n\n  const paymentElementOptions = {\n    layout: \"tabs\",\n  };\n\n  paymentElement = elements.create(\"p24Bank\", paymentElementOptions);\n  paymentElement.mount(\"#payment-element\");\n}\n</script>\n",
+  "description": "Stripe Member additional services added",
+  "indexDefinitions": [
+    {
+      "name": "createdAt",
+      "parts": [
+        "createdAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "createdBy",
+      "parts": [
+        "createdBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "handle",
+      "parts": [
+        "handle"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedAt",
+      "parts": [
+        "submittedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "submittedBy",
+      "parts": [
+        "submittedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedAt",
+      "parts": [
+        "updatedAt"
+      ],
+      "unique": false
+    },
+    {
+      "name": "updatedBy",
+      "parts": [
+        "updatedBy"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Address]",
+      "parts": [
+        "values[Address]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Billing ID]",
+      "parts": [
+        "values[Billing ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Country]",
+      "parts": [
+        "values[Country]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Credit Card Expiry Month]",
+      "parts": [
+        "values[Credit Card Expiry Month]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Credit Card Expiry Year]",
+      "parts": [
+        "values[Credit Card Expiry Year]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Credit Card Number]",
+      "parts": [
+        "values[Credit Card Number]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[DOB]",
+      "parts": [
+        "values[DOB]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Display Payment Frequency]",
+      "parts": [
+        "values[Display Payment Frequency]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Email]",
+      "parts": [
+        "values[Email]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[End Date]",
+      "parts": [
+        "values[End Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Fee]",
+      "parts": [
+        "values[Fee]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Frequency Units]",
+      "parts": [
+        "values[Frequency Units]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Information]",
+      "parts": [
+        "values[Information]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member GUID]",
+      "parts": [
+        "values[Member GUID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Member ID]",
+      "parts": [
+        "values[Member ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Mobile]",
+      "parts": [
+        "values[Mobile]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Name]",
+      "parts": [
+        "values[Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[POS Profile ID]",
+      "parts": [
+        "values[POS Profile ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Payment Frequency]",
+      "parts": [
+        "values[Payment Frequency]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Payment Method]",
+      "parts": [
+        "values[Payment Method]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Postcode]",
+      "parts": [
+        "values[Postcode]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Requested For]",
+      "parts": [
+        "values[Requested For]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Service ID]",
+      "parts": [
+        "values[Service ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Slug]",
+      "parts": [
+        "values[Slug]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Start Date]",
+      "parts": [
+        "values[Start Date]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[State]",
+      "parts": [
+        "values[State]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status]",
+      "parts": [
+        "values[Status]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[Member ID]",
+      "parts": [
+        "values[Status]",
+        "values[Member ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Status],values[POS Profile ID]",
+      "parts": [
+        "values[Status]",
+        "values[POS Profile ID]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Student First Name]",
+      "parts": [
+        "values[Student First Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Student Last Name]",
+      "parts": [
+        "values[Student Last Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Suburb]",
+      "parts": [
+        "values[Suburb]"
+      ],
+      "unique": false
+    }
+  ],
+  "name": "Stripe Member Additional Services",
+  "notes": null,
+  "pages": [
+    {
+      "advanceCondition": null,
+      "displayCondition": null,
+      "displayPage": null,
+      "elements": [
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Details",
+          "title": null,
+          "visible": true,
+          "omitWhenHidden": null,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Status",
+              "label": "Status",
+              "key": "f1",
+              "defaultValue": "Active",
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "radio",
+              "choicesResourceName": null,
+              "choicesRunIf": null,
+              "choices": [
+                {
+                  "label": "Active",
+                  "value": "Active"
+                },
+                {
+                  "label": "Cancelled",
+                  "value": "Cancelled"
+                },
+                {
+                  "label": "Expired",
+                  "value": "Expired"
+                }
+              ]
+            },
+            {
+              "type": "field",
+              "name": "Service ID",
+              "label": "Service",
+              "key": "f10",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Get Service",
+                  "type": "Change",
+                  "action": "Set Fields",
+                  "mappings": [
+                    {
+                      "field": "Name",
+                      "value": "${resources('Get Service:Name')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "Slug",
+                      "value": "${resources('Get Service:Slug')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "Payment Frequency",
+                      "value": "${resources('Get Service:Payment Frequency')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "Information",
+                      "value": "${resources('Get Service:Info')}",
+                      "visible": true
+                    },
+                    {
+                      "field": "Fee",
+                      "value": "${resources('Get Service:Fee')}",
+                      "visible": true
+                    }
+                  ],
+                  "bridgedResourceName": "Get Service"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "dropdown",
+              "choicesResourceName": "Get Services",
+              "choicesRunIf": null,
+              "choices": {
+                "label": "${resources('Get Services:Name')}",
+                "value": "${resources('Get Services:id')}"
+              }
+            },
+            {
+              "type": "field",
+              "name": "Name",
+              "label": "Name",
+              "key": "f11",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Information",
+              "label": "Information",
+              "key": "f12",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 2
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Member Details",
+          "title": null,
+          "visible": false,
+          "omitWhenHidden": false,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "Student First Name",
+              "label": null,
+              "key": "f16",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Student Last Name",
+              "label": null,
+              "key": "f17",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Requested For",
+              "label": "Requested For",
+              "key": "f18",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Address",
+              "label": "Address",
+              "key": "f19",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Suburb",
+              "label": "Suburb",
+              "key": "f20",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Country",
+              "label": "Country",
+              "key": "f28",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "State",
+              "label": "State",
+              "key": "f21",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Postcode",
+              "label": "Postcode",
+              "key": "f22",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Email",
+              "label": "Email",
+              "key": "f23",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Mobile",
+              "label": "Mobile",
+              "key": "f24",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "DOB",
+              "label": "DOB",
+              "key": "f25",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "No Profile",
+          "title": null,
+          "visible": "values('POS Profile ID')===\"null\" || values('POS Profile ID')===null || values('POS Profile ID')===\"\" || values('POS Profile ID')==='undefined'",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "content",
+              "renderType": "html",
+              "name": "No Profile Info",
+              "text": "This member does not have a Card Profile stored, or a parent does not have a Card Profile stored.",
+              "visible": true,
+              "renderAttributes": {
+              }
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "renderType": null,
+          "name": "Payment Info",
+          "title": null,
+          "visible": "values('POS Profile ID')!==\"null\" && values('POS Profile ID')!==null && values('POS Profile ID')!==\"\" && values('POS Profile ID')!=='undefined'",
+          "omitWhenHidden": true,
+          "renderAttributes": {
+          },
+          "elements": [
+            {
+              "type": "field",
+              "name": "POS Profile ID",
+              "label": "POS Profile ID",
+              "key": "f13",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member ID",
+              "label": "Member ID",
+              "key": "f2",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Member GUID",
+              "label": "Member GUID",
+              "key": "f27",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Slug",
+              "label": "Slug",
+              "key": "f5",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Payment Frequency",
+              "label": "Payment Frequency",
+              "key": "f9",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set Frequency",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "K('field[Display Payment Frequency]').value(K.translate(K('field[Payment Frequency]').value()));"
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Display Payment Frequency",
+              "label": "Payment Frequency",
+              "key": "f14",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Start Date",
+              "label": "Start Date",
+              "key": "f6",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Frequency Units",
+              "label": "Frequency Units",
+              "key": "f26",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+                {
+                  "name": "Set End Date",
+                  "type": "Change",
+                  "action": "Custom",
+                  "code": "  if (K('field[Frequency Units]').value()===null || K('field[Start Date]').value()===null) return;\n  var toDate;\n  if (K('field[Payment Frequency]').value()===\"Fortnightly\") {\n    toDate=moment(K('field[Start Date]').value()).add(parseInt(K('field[Frequency Units]').value())*2, \"weeks\");\n  } else if (K('field[Payment Frequency]').value()===\"Daily\") {\n\t\ttoDate=moment(K('field[Start Date]').value()).add(K('field[Frequency Units]').value(), \"days\"); \n  } else if (K('field[Payment Frequency]').value()===\"Weekly\") {\n\t\ttoDate=moment(K('field[Start Date]').value()).add(K('field[Frequency Units]').value(), \"weeks\"); \n  } else if (K('field[Payment Frequency]').value()===\"Monthly\") {\n\t\ttoDate=moment(K('field[Start Date]').value()).add(K('field[Frequency Units]').value(), \"months\"); \n  } else if (K('field[Payment Frequency]').value()===\"Quarterly\") {\n\t\ttoDate=moment(K('field[Start Date]').value()).add(parse(K('field[Frequency Units]').value())/3, \"months\");\n  } else if (K('field[Payment Frequency]').value()===\"Yearly\") {\n\t\ttoDate=moment(K('field[Start Date]').value()).add(K('field[Frequency Units]').value(), \"years\"); \n  }\n  K('field[End Date]').value(toDate.format(\"YYYY-MM-DD\"));                                 ",
+                  "runIf": "values('Start Date')!==\"\""
+                }
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "End Date",
+              "label": "End Date",
+              "key": "f7",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": false,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "date"
+            },
+            {
+              "type": "field",
+              "name": "Fee",
+              "label": "Fee",
+              "key": "f15",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": true,
+              "enabled": true,
+              "required": true,
+              "requiredMessage": null,
+              "omitWhenHidden": null,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "Billing ID",
+              "label": "Billing ID",
+              "key": "f8",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": false,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": false,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Payment Details",
+              "title": "Payment Details",
+              "visible": false,
+              "omitWhenHidden": true,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "field",
+                  "name": "Payment Method",
+                  "label": "Payment Method",
+                  "key": "f29",
+                  "defaultValue": "CREDITCARD",
+                  "defaultResourceName": null,
+                  "visible": true,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": null,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+                    {
+                      "name": "Load Card",
+                      "type": "Change",
+                      "action": "Custom",
+                      "code": "cardElement = elements.create('card', {hidePostalCode: true});\ncardElement.mount('#card-element');\ncardElement.on('change', function(event) {\n  debugger;\n\tif (event.complete) {\n     K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n  } else {\n     K('field[Payment Method Complete]').value(\"\");\t\t\n  }\n});",
+                      "runIf": "cardElement===null"
+                    },
+                    {
+                      "name": "Load Bank Account",
+                      "type": "Change",
+                      "action": "Custom",
+                      "code": "setupBankAccount();",
+                      "runIf": "values('Payment Method')===\"Bank Account\""
+                    }
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "dropdown",
+                  "choicesResourceName": null,
+                  "choicesRunIf": null,
+                  "choices": [
+                    {
+                      "label": "Credit Card",
+                      "value": "Credit Card"
+                    },
+                    {
+                      "label": "Bank Account",
+                      "value": "Bank Account"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Credit Card Details",
+              "title": "Credit Card Details",
+              "visible": "values('Payment Method') === 'Credit Card'",
+              "omitWhenHidden": true,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Credit Card Capture",
+                  "text": "\n<!--\n  Or create a <label> with a 'for' attribute,\n  referencing the ID of your container.\n-->\n<label for=\"card-element\"></label>\n<div id=\"card-element\"></div>\n\n",
+                  "visible": true,
+                  "renderAttributes": {
+                  }
+                },
+                {
+                  "type": "field",
+                  "name": "Credit Card Number",
+                  "label": "Credit Card Number",
+                  "key": "f30",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": "form('review')",
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Credit Card Expiry Month",
+                  "label": "Credit Card Expiry Month",
+                  "key": "f31",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": false,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                },
+                {
+                  "type": "field",
+                  "name": "Credit Card Expiry Year",
+                  "label": "Credit Card Expiry Year",
+                  "key": "f32",
+                  "defaultValue": null,
+                  "defaultResourceName": null,
+                  "visible": false,
+                  "enabled": true,
+                  "required": false,
+                  "requiredMessage": null,
+                  "omitWhenHidden": true,
+                  "pattern": null,
+                  "constraints": [
+
+                  ],
+                  "events": [
+
+                  ],
+                  "renderAttributes": {
+                  },
+                  "dataType": "string",
+                  "renderType": "text",
+                  "rows": 1
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Card Error",
+              "title": null,
+              "visible": true,
+              "omitWhenHidden": null,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Error Details",
+                  "text": "<p class=\"errorDetails\" id=\"errorValue\"/p>",
+                  "visible": true,
+                  "renderAttributes": {
+                  }
+                }
+              ]
+            },
+            {
+              "type": "section",
+              "renderType": null,
+              "name": "Bank Account Details",
+              "title": "Bank Account Details",
+              "visible": "values('Payment Method')===\"Bank Account\"",
+              "omitWhenHidden": false,
+              "renderAttributes": {
+              },
+              "elements": [
+                {
+                  "type": "content",
+                  "renderType": "html",
+                  "name": "Bank Account Capture",
+                  "text": "<div class=\"bankDetails\">\n\t\t<form id=\"payment-form\">\n      <div id=\"payment-element\">\n        <!--Stripe.js injects the Payment Element-->\n      </div>\n      <div id=\"payment-message\" class=\"hidden\"></div>\n    </form>\n</div>",
+                  "visible": true,
+                  "renderAttributes": {
+                  }
+                }
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Submit",
+              "name": "Submit Button",
+              "visible": true,
+              "enabled": true,
+              "renderType": "custom",
+              "renderAttributes": {
+                "class": "submitButton"
+              },
+              "events": [
+                {
+                  "name": "Register Service",
+                  "type": "Click",
+                  "action": "Custom",
+                  "code": "K('section[Card Error]').hide();\nif (Object.keys(K('form').validate()).length>0) {\n  K('form').submitPage();\n} else {\n  var settings = {\n    \"crossDomain\": true,\n    \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/registerUser\",\n    \"method\": \"POST\",\n    \"headers\": {},\n    \"dataType\": \"json\",\n    \"contentType\": \"application/json\",\n    \"data\": JSON.stringify({\n      \"customerId\": K('field[Member ID]').value(),\n      \"firstName\": K('field[Student First Name]').value(),\n      \"lastName\": K('field[Student Last Name]').value(),\n      \"dob\": K('field[DOB]').value(),\n      \"address\": K('field[Address]').value(),\n      \"suburb\": K('field[Suburb]').value(),\n      \"state\": K('field[State]').value(),\n      \"postCode\": K('field[Postcode]').value(),\n      \"email\": K('field[Email]').value(),\n      \"mobile\": K('field[Mobile]').value(),\n      \"payment\": K('field[Fee]').value(),\n      \"billingPeriod\": K('field[Payment Frequency]').value(),\n      \"contractStartDate\": K('field[Start Date]').value(),\n      \"contractEndDate\": K('field[End Date]').value(),\n      \"cardToken\": K('field[POS Profile ID]').value(),\n      \"paymentMethod\": \"Credit Card\",\n      \"subscriptionType\": \"Additional Service\",\n      \"ref1\": \"AdditionalService\",\n      \"ref2\": K('field[Name]').value(),\n      \"space\": K('space').slug(),\n      \"currency\": K('space').attributes('Currency'),\n      \"billingService\": \"Stripe\",\n    })\n  }\n\n  $.ajax(settings).done(function (registerResponse) {\n    debugger;\n    console.log(registerResponse);\n    if (registerResponse.error===100) {\n      var message=registerResponse.errorMessage;\n      if (registerResponse.errorMessage===\"DECLINE\") {\n        message=\"Credit Card not valid (Declined)\";  \n      }\n      $(\"#errorValue\").html(message);\n      K('section[Card Error]').show();\n    } else {\n      K('section[Card Error]').hide();\n      K('field[Billing ID]').value(registerResponse.data.customerBillingId);\n      K('form').submitPage();\n    }\n\t});\n }"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "events": [
+        {
+          "name": "Load Stripe Card Info",
+          "type": "Load",
+          "action": "Custom",
+          "code": "debugger;\nsetTimeout(function() {\n  stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\n  elements = stripe.elements();\n\n  cardElement = elements.create('card', {hidePostalCode: true});\n  cardElement.mount('#card-element');\n  cardElement.on('change', function(event) {\n    debugger;\n    if (event.complete) {\n       K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n    } else {\n       K('field[Payment Method Complete]').value(\"\");\t\t\n    }\n  });\n},3000);"
+        }
+      ],
+      "name": "Main",
+      "renderType": "submittable",
+      "type": "page"
+    }
+  ],
+  "securityPolicies": [
+    {
+      "endpoint": "Display",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Authenticated Users"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Authenticated Users"
+    }
+  ],
+  "slug": "stripe-member-additional-services",
+  "status": "Active",
+  "submissionLabelExpression": "${values('Status')} - ${values('Name')} - ${values('End Date')} - ${values('POS Profile ID')}"
+}

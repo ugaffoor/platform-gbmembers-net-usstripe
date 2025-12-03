@@ -1,0 +1,167 @@
+{
+  "activeMappingName": "Service Member Submissions",
+  "attributes": [
+    {
+      "name": "coreState"
+    },
+    {
+      "name": "id"
+    },
+    {
+      "name": "memberID"
+    },
+    {
+      "name": "Payment Method"
+    },
+    {
+      "name": "Student First Name"
+    },
+    {
+      "name": "Student Last Name"
+    }
+  ],
+  "mappings": [
+    {
+      "agentSlug": "system",
+      "attributes": [
+        {
+          "name": "id",
+          "structureField": "${fields(\"id\")}"
+        },
+        {
+          "name": "memberID",
+          "structureField": "${fields('values[Members]')}"
+        },
+        {
+          "name": "Student First Name",
+          "structureField": "${fields('values[Student First Name]')}"
+        },
+        {
+          "name": "Student Last Name",
+          "structureField": "${fields('values[Student Last Name]')}"
+        },
+        {
+          "name": "Payment Method",
+          "structureField": "${fields('values[Payment Method]')}"
+        },
+        {
+          "name": "coreState",
+          "structureField": "${fields(\"coreState\")}"
+        }
+      ],
+      "bridgeSlug": "kinetic-core",
+      "name": "Service Member Submissions",
+      "qualifications": [
+        {
+          "name": "Get PaySmart Member Registrations",
+          "query": "kappSlug=services&formSlug=paysmart-member-registration&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get PaySmart Member Cancellation",
+          "query": "kappSlug=services&formSlug=member-cancellation&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Bambora Member Cancellation",
+          "query": "kappSlug=services&formSlug=bambora-member-cancellation&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Bambora Member Registrations",
+          "query": "kappSlug=services&formSlug=bambora-member-registration&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Stripe Member Cancellation",
+          "query": "kappSlug=services&formSlug=stripe-member-cancellation&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Stripe Member Registrations",
+          "query": "kappSlug=services&formSlug=stripe-member-registration&limit=10&q=values[Members]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Stripe Sign Up Fee",
+          "query": "kappSlug=services&formSlug=stripe-franchisee-sign-up-fee&limit=10&q=values[Member GUID]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Stripe Payment Schedule",
+          "query": "kappSlug=services&formSlug=stripe-franchisee-payments-schedule&limit=10&q=values[Member GUID]=\"${parameters('Member GUID')}\""
+        }
+      ],
+      "structure": "Submissions"
+    }
+  ],
+  "name": "Service Member Submissions",
+  "qualifications": [
+    {
+      "name": "Get Bambora Member Cancellation",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Bambora Member Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get PaySmart Member Cancellation",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get PaySmart Member Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Stripe Member Cancellation",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Stripe Member Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Stripe Payment Schedule",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    },
+    {
+      "name": "Get Stripe Sign Up Fee",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Multiple"
+    }
+  ],
+  "status": "Active"
+}
