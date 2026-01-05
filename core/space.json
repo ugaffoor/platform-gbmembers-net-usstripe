@@ -50,6 +50,12 @@
       ]
     },
     {
+      "name": "Allow Meeting Calls",
+      "values": [
+        "YES"
+      ]
+    },
+    {
       "name": "Approval Form Slug",
       "values": [
         "approval"

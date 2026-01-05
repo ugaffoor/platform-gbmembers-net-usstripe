@@ -2984,7 +2984,7 @@
           "name": "Set Payment Methods",
           "type": "Load",
           "action": "Custom",
-          "code": "paymentMethods=K('field[Payment Method]').element()[0];\noptionToHide = paymentMethods.querySelector('option[value=\"Bank Account PAD\"]');\nif (optionToHide) {\n  optionToHide.style.display = \"none\";  \n}\noptionToHide = paymentMethods.querySelector('option[value=\"Bank Account ACH\"]');\nif (optionToHide) {\n  optionToHide.style.display = \"none\";  \n}\n\nif (K('space').attributes('School Country Code') === \"CA\") {\n  optionToShow = paymentMethods.querySelector('option[value=\"Bank Account PAD\"]');\n  if (optionToShow) {\n    optionToShow.style.display = \"block\";  \n  }\n}\nif (K('space').attributes('School Country Code') === \"US\") {\n  optionToShow = paymentMethods.querySelector('option[value=\"Bank Account ACH\"]');\n  if (optionToShow) {\n    optionToShow.style.display = \"block\"; \n  }\n}\n"
+          "code": "debugger;\nconst paymentMethods = K('field[Payment Method]').element()[0];\n\n// Get options\nconst pad = paymentMethods.querySelector('option[value=\"Bank Account PAD\"]');\nconst ach = paymentMethods.querySelector('option[value=\"Bank Account ACH\"]');\n\n// Hide both by removing them\nif (pad) pad.remove();\nif (ach) ach.remove();\n\n// Determine which option should be shown\nconst country = K('space').attributes('School Country Code');\n\n// Add back PAD for CA\nif (country === \"CA\" && pad) {\n    paymentMethods.appendChild(pad);\n}\n\n// Add back ACH for US\nif (country === \"US\" && ach) {\n    paymentMethods.appendChild(ach);\n}\n"
         }
       ],
       "name": "Billing Information",

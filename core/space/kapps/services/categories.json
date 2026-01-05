@@ -17,13 +17,6 @@
     "attributes": [
 
     ],
-    "name": "Oceania",
-    "slug": "oceania"
-  },
-  {
-    "attributes": [
-
-    ],
     "name": "Stripe Billing",
     "slug": "stripe-billing"
   },

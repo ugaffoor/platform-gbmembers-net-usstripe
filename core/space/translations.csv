@@ -1,1 +1,4 @@
 Context,Locale,Key,Value
+shared,en-US,Fortnightly,Bi-Weekly
+shared,en-US,Postcode,Zip
+shared,en-US,Suburb,City
