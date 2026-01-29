@@ -16,13 +16,13 @@
     {
       "name": "Admin Fee Charge",
       "values": [
-        "1.33%"
+        "2%"
       ]
     },
     {
       "name": "Admin Fee Label",
       "values": [
-        "Admin Fee 1.33%"
+        "Admin Fee 2%"
       ]
     },
     {
