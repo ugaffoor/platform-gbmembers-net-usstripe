@@ -62,6 +62,12 @@
       ]
     },
     {
+      "name": "AutoCompleteKey",
+      "values": [
+        "AIzaSyA-tujnpf8Jy33hVaJ_9GtRdMgHw4jvnwo"
+      ]
+    },
+    {
       "name": "AWS GBShop Bucket",
       "values": [
         "us-gbmembers-gbshop"
