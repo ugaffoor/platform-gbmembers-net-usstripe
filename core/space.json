@@ -14,6 +14,12 @@
       ]
     },
     {
+      "name": "Admin Fee Apply to POS",
+      "values": [
+        "YES"
+      ]
+    },
+    {
       "name": "Admin Fee Charge",
       "values": [
         "2%"
@@ -185,6 +191,12 @@
       ]
     },
     {
+      "name": "Ignore Admin Fee",
+      "values": [
+        ""
+      ]
+    },
+    {
       "name": "Interested In Choices",
       "values": [
         "Women's Self Defense Classes; Kids Classes; Men's Classes; Women's Classes;"
@@ -199,7 +211,7 @@
     {
       "name": "Kinetic Billing Server URL",
       "values": [
-        "https://services.gbmembers.net/billingservice"
+        "http://localhost:8081/billingservice"
       ]
     },
     {
