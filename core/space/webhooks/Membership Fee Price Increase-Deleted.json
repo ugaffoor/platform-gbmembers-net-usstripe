@@ -1,0 +1,8 @@
+{
+  "event": "Deleted",
+  "filter": "form('slug')==\"membership-fee-price-increase\"",
+  "name": "Membership Fee Price Increase-Deleted",
+  "type": "Datastore Submission",
+  "url": "/app/api/v1/run-tree/Kinetic%20Request%20CE/Datastore%20Submissions%20%3E%20membership-fee-price-increase/Deleted",
+  "attributes": null
+}
