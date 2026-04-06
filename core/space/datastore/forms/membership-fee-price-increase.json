@@ -63,6 +63,13 @@
       "unique": false
     },
     {
+      "name": "values[Billing Members]",
+      "parts": [
+        "values[Billing Members]"
+      ],
+      "unique": false
+    },
+    {
       "name": "values[Email Template ID]",
       "parts": [
         "values[Email Template ID]"
@@ -405,6 +412,31 @@
         },
         {
           "type": "field",
+          "name": "Billing Members",
+          "label": "Billing Members",
+          "key": "f11",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [
+
+          ],
+          "events": [
+
+          ],
+          "renderAttributes": {
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
           "name": "Excluded Members",
           "label": "Excluded Members",
           "key": "f6",
@@ -448,7 +480,18 @@
     }
   ],
   "securityPolicies": [
-
+    {
+      "endpoint": "Display",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Access",
+      "name": "Data Admins"
+    },
+    {
+      "endpoint": "Submission Modification",
+      "name": "Data Admins"
+    }
   ],
   "slug": "membership-fee-price-increase",
   "status": "Active",
