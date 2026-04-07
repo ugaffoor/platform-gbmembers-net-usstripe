@@ -51,6 +51,11 @@
   },
   {
     "allowsMultiple": false,
+    "description": "Allowing exposing Price Increase for a School, set as YES to allow",
+    "name": "Allow Price Increase"
+  },
+  {
+    "allowsMultiple": false,
     "description": "The Queue kapp form which approvals should be created in (Overridden by Kapp and Form Attributes)",
     "name": "Approval Form Slug"
   },
@@ -533,6 +538,16 @@
     "allowsMultiple": false,
     "description": "Name of google calendar that will be used for all Intro/Free class appointments.",
     "name": "Trial Calendar Name"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Trial Booking cost, required to complete a booking",
+    "name": "Trial Payment Amount"
+  },
+  {
+    "allowsMultiple": false,
+    "description": "Message display to Lead when capturing a payment for a Trial Booking.",
+    "name": "Trial Payment Message"
   },
   {
     "allowsMultiple": false,
