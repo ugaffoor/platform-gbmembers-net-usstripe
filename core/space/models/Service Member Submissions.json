@@ -83,6 +83,10 @@
         {
           "name": "Get Stripe Payment Schedule",
           "query": "kappSlug=services&formSlug=stripe-franchisee-payments-schedule&limit=10&q=values[Member GUID]=\"${parameters('Member GUID')}\""
+        },
+        {
+          "name": "Get Self Signup Registrations",
+          "query": "kappSlug=services&formSlug=member-self-sign-up&limit=10&q=values[Member GUID]=\"${parameters('Member GUID')}\""
         }
       ],
       "structure": "Submissions"
@@ -125,6 +129,15 @@
         }
       ],
       "resultType": "Multiple"
+    },
+    {
+      "name": "Get Self Signup Registrations",
+      "parameters": [
+        {
+          "name": "Member GUID"
+        }
+      ],
+      "resultType": "Single"
     },
     {
       "name": "Get Stripe Member Cancellation",
