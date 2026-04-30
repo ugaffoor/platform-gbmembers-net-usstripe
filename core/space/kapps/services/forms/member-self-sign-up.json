@@ -1671,11 +1671,11 @@
     },
     {
       "endpoint": "Submission Access",
-      "name": "Bombara Authenticated Users"
+      "name": "Stripe Authenticated Users"
     },
     {
       "endpoint": "Submission Modification",
-      "name": "Bombara Authenticated Users"
+      "name": "Stripe Authenticated Users"
     }
   ],
   "slug": "member-self-sign-up",
