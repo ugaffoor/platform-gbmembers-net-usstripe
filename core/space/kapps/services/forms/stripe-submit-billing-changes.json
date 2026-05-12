@@ -1129,6 +1129,11 @@
                       "field": "tableMemberID",
                       "value": "${resources('Get Family Member:id')}",
                       "visible": true
+                    },
+                    {
+                      "field": "tableMemberBiller",
+                      "value": "${resources('Get Family Member:Billing User')}",
+                      "visible": true
                     }
                   ],
                   "bridgedResourceName": "Get Family Member"
@@ -1193,6 +1198,31 @@
               "name": "tableMemberName",
               "label": "tableMemberName",
               "key": "f49",
+              "defaultValue": null,
+              "defaultResourceName": null,
+              "visible": false,
+              "enabled": true,
+              "required": false,
+              "requiredMessage": null,
+              "omitWhenHidden": true,
+              "pattern": null,
+              "constraints": [
+
+              ],
+              "events": [
+
+              ],
+              "renderAttributes": {
+              },
+              "dataType": "string",
+              "renderType": "text",
+              "rows": 1
+            },
+            {
+              "type": "field",
+              "name": "tableMemberBiller",
+              "label": "tableMemberBiller",
+              "key": "f117",
               "defaultValue": null,
               "defaultResourceName": null,
               "visible": false,
@@ -1396,7 +1426,14 @@
                       "type": "Click",
                       "action": "Custom",
                       "code": "DataViewer.renderFieldValues($('#memberTableDiv'), global.viewerConfig);\nbundle.completeTableChange();\n",
-                      "runIf": "values('tableMemberName')!=null && values('tableProgram')!=null && values('tableFee')!=null && !bundle.memberProgramAdded(K('field[tableMemberID]').value(),K('field[tableFeeProgram]').value())"
+                      "runIf": "values('tableMemberBiller')!=\"YES\" && values('tableMemberName')!=null && values('tableProgram')!=null && values('tableFee')!=null && !bundle.memberProgramAdded(K('field[tableMemberID]').value(),K('field[tableFeeProgram]').value())"
+                    },
+                    {
+                      "name": "No Biller Allowed",
+                      "type": "Click",
+                      "action": "Custom",
+                      "code": "alert(\"You can not add an existing Biller Member, please first Cancel the member to avoid billing charges.\");",
+                      "runIf": "values('tableMemberBiller')===\"YES\" "
                     }
                   ]
                 },
