@@ -62,6 +62,12 @@
       ]
     },
     {
+      "name": "Allow Price Increase",
+      "values": [
+        "YES"
+      ]
+    },
+    {
       "name": "Approval Form Slug",
       "values": [
         "approval"
@@ -247,7 +253,7 @@
     {
       "name": "Payment Frequencies",
       "values": [
-        "Weekly,Fortnightly,Monthly,Quarterly,6 Months,Yearly"
+        "Weekly,Fortnightly,Monthly,Quarterly,6 Months,Yearly,4 Weekly"
       ]
     },
     {
@@ -490,6 +496,18 @@
       ]
     },
     {
+      "name": "Trial Payment Amount",
+      "values": [
+        "30"
+      ]
+    },
+    {
+      "name": "Trial Payment Message",
+      "values": [
+        "Your trial payment value will be deducted from your Member registration when you continue to register as a member"
+      ]
+    },
+    {
       "name": "Web Server Url",
       "values": [
         "https://gbusstripebeta.gbmembers.net"
@@ -503,7 +521,7 @@
   "defaultDatastoreFormConfirmationPage": null,
   "defaultDatastoreFormDisplayPage": null,
   "defaultLocale": "en-US",
-  "defaultTimezone": "Australian Eastern Standard Time (New South Wales) (Australia/Sydney)",
+  "defaultTimezone": "America/New_York",
   "displayType": "Single Page App",
   "displayValue": "https://s3.us-east-2.amazonaws.com/us-gbmembers-v2/index.html",
   "enabledLocales": [
