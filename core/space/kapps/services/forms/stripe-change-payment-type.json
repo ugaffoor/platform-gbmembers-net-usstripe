@@ -40,18 +40,14 @@
           "direction": "asc"
         }
       ],
-      "parameters": [
-
-      ],
+      "parameters": [],
       "qualification": "Get Billing Members",
       "status": "Active"
     },
     {
       "model": "Members",
       "name": "Get Member",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Members')}",
@@ -64,9 +60,7 @@
     {
       "model": "Members",
       "name": "Get Member by Username",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${identity('username')}",
@@ -77,9 +71,7 @@
       "status": "Active"
     }
   ],
-  "categorizations": [
-
-  ],
+  "categorizations": [],
   "customHeadContent": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<script src=\"https://js.stripe.com/v3/\" defer></script>\n<style>\n  button#bankSubmit {\n      margin: 6px;\n  }  \n  \n  #card-element {\n    width: 400px;\n\t}\n</style>\n<style>\n.errorDetails {\n    background-color: red;\n    border-radius: 5px;\n    margin: 5px;\n}  \n.card-container {\n    background-color: rgb(240, 240, 240);\n    margin: auto;\n    width: calc(95%);\n\n    border: none;\n    border-radius: 4px;\n}\n.form-group {\n    flex: 0 0 auto;\n    flex-flow: column !important;\n}\n#checkout-form {\n    position: relative;\n    width: 400px;\n    padding: 10px;\n}\n\n#checkout-form label {\n    display: block;\n    min-height: 25px;\n\n    font-size: 15px;\n    font-weight: 500;\n    margin: 5px 0;\n    padding: 0;\n    color: red;\n}\n\n#card-number, #card-cvv, #card-expiry {\n    background-color: #FFF;\n    display: block;\n    width: calc(90%);\n    border-radius: 2px;\n    border: 1px solid rgba(200, 200, 200, 1);\n    padding: 14px 60px 13px 20px;\n    margin: auto;\n    transition: all 100ms ease-out;\n}\n\n/* card images are added to card number */\n#card-number {\n    background-image: none;\n\n    background-origin: content-box;\n    background-position: calc(100% + 40px) center;\n    background-repeat: no-repeat;\n    background-size: contain;\n}\n\n/* buttons */\n.btn {\n    vertical-align: top;\n}\n\n#pay-button {\n    position: relative;\n    border: none;\n    border-radius: 4px;\n    background-color: #0c384f;\n    color: rgba(255, 255, 255, 1);\n    display: inline-block;\n    transition: all 100ms ease-out;\n    padding: 11px 25px;\n    margin-left: 30px;\n}\n\n#pay-button:hover, #pay-button:active {\n    background-color: rgba(69, 36, 89, 1);\n}\n\n#pay-button:active {\n    box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.3);\n}\n\n#pay-button:disabled {\n    background-color: rgba(255, 255, 255, 1);\n    border: 1px solid #0c384f;\n    color: #0c384f;\n}\n\n/* feedback is displayed after tokenization */\n#feedback {\n    position: relative;\n    left: 15px;\n    display: inline-block;\n    background-color: transparent;\n    border: 0px solid rgba(200, 200, 200, 1);\n    border-radius: 4px;\n    transition: all 100ms ease-out;\n    padding: 11px;\n}\n\n#feedback.error {\n    color: red;\n    border: 1px solid;\n}\n\n#feedback.success {\n    color: seagreen;\n    border: 1px solid;\n}\n</style>\n<style>\n  .hidden{\n   display:none; \n  }\n</style>\n",
   "description": "Change Member payment type, such as Credit Card or Bank Details",
   "name": "Stripe Change Payment Type",
@@ -107,8 +99,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -116,8 +107,7 @@
               "name": "Emailed Member Info",
               "text": "<p>Change Member Credit Card details</p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -128,8 +118,7 @@
           "title": "Thank You",
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -137,8 +126,7 @@
               "name": "Info",
               "text": "Your Credit Card Details have been recieved and updated.",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -149,8 +137,7 @@
           "title": "Select Member",
           "visible": "!form('review')",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -165,9 +152,7 @@
               "requiredMessage": "A member must be selected",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Members",
@@ -185,8 +170,7 @@
                   "runIf": "values('Members')===null"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Get Billing Members",
@@ -202,8 +186,7 @@
               "name": "Members Select",
               "text": "<div id=\"selectMemberMenu\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -214,8 +197,7 @@
           "title": "Student Information",
           "visible": "values('Members')!==null",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -230,14 +212,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -255,14 +232,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -280,14 +252,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -305,9 +272,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -322,8 +287,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -341,9 +305,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -358,8 +320,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -377,14 +338,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -402,14 +358,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "date"
             },
@@ -426,14 +377,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -451,14 +397,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -476,14 +417,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -501,14 +437,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -526,14 +457,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -551,14 +477,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -576,14 +497,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -601,14 +517,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -626,14 +537,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -651,14 +557,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -676,14 +577,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -701,14 +597,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -726,14 +617,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -751,14 +637,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -776,14 +657,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -814,9 +690,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Load Card",
@@ -829,19 +703,18 @@
                   "name": "Load Bank Account(PAD)",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": K('space').attributes('Billing Company'),\n    \"paymentType\": \"acss_debit\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n        const { setupIntent, error } = await stripe.confirmAcssDebitSetup(clientSecret, {\n          payment_method: {\n            billing_details: {\n              name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n              email: K('field[Email]').value(),\n            },\n          },\n        });\n\t\t\t\tdebugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n        } else {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent.id);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
+                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": 'Stripe',\n    \"paymentType\": \"acss_debit\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n        const { setupIntent, error } = await stripe.confirmAcssDebitSetup(clientSecret, {\n          payment_method: {\n            billing_details: {\n              name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n              email: K('field[Email]').value(),\n            },\n          },\n        });\n\t\t\t\tdebugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n        } else {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent.id);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
                   "runIf": "values('Payment Method')===\"Bank Account PAD\""
                 },
                 {
                   "name": "Load Bank Account (ACH)",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": K('space').attributes('Billing Company'),\n    \"paymentType\": \"us_bank_account\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value(),\n    \"firstName\": K('field[Student First Name]').value(),\n    \"lastName\": K('field[Student Last Name]').value(),\n    \"email\": K('field[Email]').value(),\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    K('field[Billing Customer Reference]').value(response.data.customerId);\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n      \telements.submit();\n        const { setupIntent, error } = await stripe.confirmSetup({\n          elements,\n          clientSecret,\n          confirmParams: {\n            return_url: window.location.href, // ✅ required unless redirect flag is top-level\n            payment_method_data: {\n              billing_details: {\n                name: `${K('field[Student First Name]').value()} ${K('field[Student Last Name]').value()}`,\n                email: K('field[Email]').value(),\n              },\n            },\n          },\n          redirect: 'if_required', // ✅ put redirect flag here (top-level)\n        });\n      debugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n\t\t\t\t} else if (setupIntent.status === \"succeeded\") {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
+                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": 'Stripe',\n    \"paymentType\": \"us_bank_account\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value(),\n    \"firstName\": K('field[Student First Name]').value(),\n    \"lastName\": K('field[Student Last Name]').value(),\n    \"email\": K('field[Email]').value(),\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    K('field[Billing Customer Reference]').value(response.data.customerId);\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n      \telements.submit();\n        const { setupIntent, error } = await stripe.confirmSetup({\n          elements,\n          clientSecret,\n          confirmParams: {\n            return_url: window.location.href, // ✅ required unless redirect flag is top-level\n            payment_method_data: {\n              billing_details: {\n                name: `${K('field[Student First Name]').value()} ${K('field[Student Last Name]').value()}`,\n                email: K('field[Email]').value(),\n              },\n            },\n          },\n          redirect: 'if_required', // ✅ put redirect flag here (top-level)\n        });\n      debugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n\t\t\t\t} else if (setupIntent.status === \"succeeded\") {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
                   "runIf": "values('Payment Method')===\"Bank Account ACH\""
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": null,
@@ -874,14 +747,9 @@
               "requiredMessage": "Please ensure a Payment method has been completed.",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -905,8 +773,7 @@
               "name": "Credit Card Capture",
               "text": "\n<!--\n  Or create a <label> with a 'for' attribute,\n  referencing the ID of your container.\n-->\n<label for=\"card-element\"></label>\n<div id=\"card-element\"></div>\n\n",
               "visible": "!form('review')",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -924,14 +791,9 @@
                 "regex": "^(?:4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|6(?:011|5[0-9]{2})[0-9]{12}|(?:2131|1800|35\\d{3})\\d{11}|^...[0-9][0-9][0-9][0-9])$",
                 "message": "Credit card number should be a valid CC number"
               },
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -949,14 +811,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -974,14 +831,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -999,14 +851,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1030,8 +877,7 @@
               "name": "Bank Account Capture",
               "text": "  <div id=\"bank-element\">\n  </div>\n<button id=\"bankSubmit\" type=\"button\" class=\"btn btn-primary\">\n  Confirm Bank Details\n</button>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1042,8 +888,7 @@
           "title": null,
           "visible": "values('Members')!==null",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1051,8 +896,7 @@
               "name": "Payment Type Signature",
               "text": "<label class=\"field-label required\">Payment Change Signature</label>\n<div id=\"payment-signature-canvas\"/>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -1067,14 +911,9 @@
               "requiredMessage": "Payment Change Signature is required",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1088,8 +927,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -1104,14 +942,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "json",
               "renderType": "checkbox",
               "choicesResourceName": null,
@@ -1136,14 +969,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1157,8 +985,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1166,8 +993,7 @@
               "name": "Error Details",
               "text": "<p class=\"errorDetails\" id=\"errorValue\"/p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1178,8 +1004,7 @@
           "title": null,
           "visible": "values('Members')===null",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1187,8 +1012,7 @@
               "name": "Member Select Space",
               "text": "<div style=\"height:300px\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1199,8 +1023,7 @@
           "visible": true,
           "enabled": "Object.keys(K('form').validate()).length===0",
           "renderType": "custom",
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "events": [
             {
               "name": "Submit",
@@ -1216,7 +1039,7 @@
           "name": "Load Signatures",
           "type": "Load",
           "action": "Custom",
-          "code": "bundle.stripe = null;\nbundle.elements = null;\n  \nbundle.cardElement = null;\nbundle.ibanElement = null;\nbundle.sourceID = null;  \nbundle.GetURLParameter = function(sParam){\n    if (window.location.hash.indexOf(\"?\")!==-1) {\n      var params = window.location.hash.split(\"?\")[1]\n        .substring(0)\n        .split(\"&\")\n        .map(v => v.split(\"=\"))\n        .reduce((map, [key, value]) => map.set(key, decodeURIComponent(value)), new Map());    \n      \n      if (params.get(sParam)!==undefined) {\n        return params.get(sParam);\n      } else {\n       \treturn null; \n      }\n    }\n    return null;\n  }  \nbundle.completeChangePaymentType = function() {\n    debugger;\n    var registerSettings = {\n      \"crossDomain\": true,\n      \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/savePaymentMethod\",\n      \"method\": \"POST\",\n      \"headers\": {},\n      \"dataType\": \"json\",\n      \"contentType\": \"application/json\",\n      \"data\": JSON.stringify({\n        \"customerId\": K('field[Billing Customer Id]').value(),\n        \"paymentMethod\": K('field[Payment Method]').value()===\"Credit Card\" ? \"CREDITCARD\" : \"BANKACCOUNT\",\n        \"cardToken\": bundle.sourceID,\n        \"space\": K('space').slug(),\n        \"billingService\": K('space').attributes('Billing Company'),\n      })\n    }\n    $.ajax(registerSettings).done(function (response) {\n      debugger;\n      console.log(response);\n      if (response.error===100) {\n        var message=response.errorMessage;\n        if (response.errorMessage===\"DECLINE\") {\n          message=\"Credit Card not valid (Declined)\";  \n        }\n        $(\"#errorValue\").html(message);\n        K('section[Card Error]').show();\n      } else {\n        K('section[Card Error]').hide();\n        K('form').submitPage();\n      }\n    });        \n  }\n\n\nbundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#payment-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Payment Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Payment Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.representativeSignaturePad = el;\n  },\n});\n",
+          "code": "bundle.stripe = null;\nbundle.elements = null;\n  \nbundle.cardElement = null;\nbundle.ibanElement = null;\nbundle.sourceID = null;  \nbundle.GetURLParameter = function(sParam){\n    if (window.location.hash.indexOf(\"?\")!==-1) {\n      var params = window.location.hash.split(\"?\")[1]\n        .substring(0)\n        .split(\"&\")\n        .map(v => v.split(\"=\"))\n        .reduce((map, [key, value]) => map.set(key, decodeURIComponent(value)), new Map());    \n      \n      if (params.get(sParam)!==undefined) {\n        return params.get(sParam);\n      } else {\n       \treturn null; \n      }\n    }\n    return null;\n  }  \nbundle.completeChangePaymentType = function() {\n    debugger;\n    var registerSettings = {\n      \"crossDomain\": true,\n      \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/savePaymentMethod\",\n      \"method\": \"POST\",\n      \"headers\": {},\n      \"dataType\": \"json\",\n      \"contentType\": \"application/json\",\n      \"data\": JSON.stringify({\n        \"customerId\": K('field[Billing Customer Id]').value(),\n        \"paymentMethod\": K('field[Payment Method]').value()===\"Credit Card\" ? \"CREDITCARD\" : \"BANKACCOUNT\",\n        \"cardToken\": bundle.sourceID,\n        \"space\": K('space').slug(),\n        \"billingService\": 'Stripe',\n      })\n    }\n    $.ajax(registerSettings).done(function (response) {\n      debugger;\n      console.log(response);\n      if (response.error===100) {\n        var message=response.errorMessage;\n        if (response.errorMessage===\"DECLINE\") {\n          message=\"Credit Card not valid (Declined)\";  \n        }\n        $(\"#errorValue\").html(message);\n        K('section[Card Error]').show();\n      } else {\n        K('section[Card Error]').hide();\n        K('form').submitPage();\n      }\n    });        \n  }\n\n\nbundle.config.widgets.signatureCanvas({\n  element: K(\"form\").find(\"#payment-signature-canvas\")[0],\n  initialValue: K(\"field[Encoded Payment Signature]\").value(),\n  onChange: function(value) {\n\t  K(\"field[Encoded Payment Signature]\").value(value);\n\t},\n  height: 250,\n  width: 500,\n  disable: form('review'),\n  ref: function(el) {\n    window.representativeSignaturePad = el;\n  },\n});\n",
           "runIf": ""
         },
         {
@@ -1274,8 +1097,7 @@
           "name": "GB Logo",
           "text": "<img src=\"https://gbfms-files.s3-ap-southeast-2.amazonaws.com/GB+Name+Log.png\" alt=\"GB Logo\" class=\"GBLogo\">",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "content",
@@ -1283,13 +1105,10 @@
           "name": "Info",
           "text": "Thank you for updating your Credit Card details.",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
-      "events": [
-
-      ],
+      "events": [],
       "name": "Thank You",
       "renderType": "confirmation",
       "type": "page"

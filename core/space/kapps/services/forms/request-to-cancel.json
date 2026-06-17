@@ -20,12 +20,8 @@
       ]
     }
   ],
-  "bridgedResources": [
-
-  ],
-  "categorizations": [
-
-  ],
+  "bridgedResources": [],
+  "categorizations": [],
   "customHeadContent": null,
   "description": "This form is used by the portal to cancel a request that has previously been submitted and is no longer needed.",
   "name": "Request to Cancel",
@@ -49,14 +45,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 3
@@ -79,8 +70,7 @@
               "visible": true,
               "enabled": true,
               "renderType": "submit-page",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -91,8 +81,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -107,14 +96,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -132,14 +116,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -157,21 +136,14 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "json",
               "renderType": "checkbox",
               "choicesResourceName": null,
               "choicesRunIf": null,
-              "choices": [
-
-              ]
+              "choices": []
             },
             {
               "type": "field",
@@ -186,36 +158,25 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "json",
               "renderType": "checkbox",
               "choicesResourceName": null,
               "choicesRunIf": null,
-              "choices": [
-
-              ]
+              "choices": []
             }
           ]
         }
       ],
-      "events": [
-
-      ],
+      "events": [],
       "name": "Shared Resources",
       "renderType": "submittable",
       "type": "page"
     }
   ],
-  "securityPolicies": [
-
-  ],
+  "securityPolicies": [],
   "slug": "request-to-cancel",
   "status": "Active",
   "submissionLabelExpression": "${values('Cancellation Reason').length > 97 ? values('Cancellation Reason').substring(0,97)+'...' : values('Cancellation Reason')}",

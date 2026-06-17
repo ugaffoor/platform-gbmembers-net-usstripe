@@ -58,9 +58,7 @@
   "qualifications": [
     {
       "name": "Email Templates",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {

@@ -105,9 +105,7 @@
     },
     {
       "name": "Get Products",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

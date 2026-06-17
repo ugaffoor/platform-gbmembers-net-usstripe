@@ -75,9 +75,7 @@
   "qualifications": [
     {
       "name": "Get Active Services",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {

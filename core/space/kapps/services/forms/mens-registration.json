@@ -30,9 +30,7 @@
     {
       "model": "Leads",
       "name": "Get Lead",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Leads')}",
@@ -45,9 +43,7 @@
     {
       "model": "Terms and Conditions",
       "name": "Get Waiver",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "Gracie Barra Waiver",
@@ -66,9 +62,7 @@
           "direction": "asc"
         }
       ],
-      "parameters": [
-
-      ],
+      "parameters": [],
       "qualification": "Active Leads",
       "status": "Active"
     }
@@ -97,8 +91,7 @@
           "title": null,
           "visible": "form('review')",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -106,8 +99,7 @@
               "name": "Thanks Info",
               "text": "<h2>Thank you</h2>\n<h4>Your registration form has been accepted.</h4>\n<br>",
               "visible": "form('review')",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -124,14 +116,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -143,8 +130,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -162,8 +148,7 @@
               "name": "Brochure Info",
               "text": "<div class=\"emf-div-field-section\">\n  <div class=\"emf-section-separator\"></div>\n\t<h3 id=\"element_0\" name=\"element_0\">Features</h3>\n  <div class=\"emf-section-text\">We are proud of our Gracie Barra school our program director is happy to show you around. <br>\n\t\t<br>\n\t\t<span id=\"equipe\">\n  \t<span class=\"programs\">Office/Front Desk</span>\n  \t<span class=\"programs\">Pro Shop</span>\n  \t<span class=\"programs\">Training Area</span>\n  \t<span class=\"programs\">Changing Room</span>\n  \t<span class=\"programs\">Restrooms</span>\n  \t</span>\n  </div>\n</div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -173,8 +158,7 @@
           "name": "GBLogo",
           "text": "<img src=\"https://gbfms-files.s3-ap-southeast-2.amazonaws.com/GB+Name+Log.png\" alt=\"GB Logo\" class=\"GBLogo\">",
           "visible": false,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "section",
@@ -183,8 +167,7 @@
           "title": "Select Lead",
           "visible": "!form('review')",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -192,8 +175,7 @@
               "name": "Lead Select",
               "text": "<div id=\"selectLeadMenu\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -208,9 +190,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Lead",
@@ -235,15 +215,12 @@
                   "runIf": "values('Leads')===\"NEW_LEAD\""
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": null,
               "choicesRunIf": null,
-              "choices": [
-
-              ]
+              "choices": []
             }
           ]
         },
@@ -254,8 +231,7 @@
           "title": "Person Information",
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -270,9 +246,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -287,8 +261,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -306,9 +279,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -323,8 +294,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -342,21 +312,14 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "radio",
               "choicesResourceName": null,
               "choicesRunIf": null,
-              "choices": [
-
-              ]
+              "choices": []
             },
             {
               "type": "field",
@@ -371,14 +334,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -389,8 +347,7 @@
               "name": "Autocomplete",
               "text": "<div id=\"locationField\">\n  <input id=\"autocomplete\"\n         class=\"form-control\"\n         placeholder=\"Enter your address\"\n         onFocus=\"geolocate()\"\n         type=\"text\"/>\n</div>",
               "visible": "!form('review')",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -405,14 +362,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -430,14 +382,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -455,14 +402,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -480,14 +422,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -505,14 +442,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -530,14 +462,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -555,14 +482,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -580,9 +502,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Invalid date",
@@ -592,8 +512,7 @@
                   "runIf": "K('field[Date of birth]').value()===\"Invalid date\""
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "date"
             },
@@ -610,14 +529,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -629,8 +543,7 @@
               "title": "Emergency Contact Information",
               "visible": true,
               "omitWhenHidden": null,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -645,14 +558,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -670,14 +578,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -695,14 +598,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -718,8 +616,7 @@
           "title": "Report Information",
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -734,14 +631,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": null,
@@ -790,14 +682,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -808,8 +695,7 @@
               "name": "Time During Week",
               "text": "<h3 id=\"element_24\" name=\"element_24\">Open 7 Days a Week*</h3>\n<div class=\"emf-section-text\">* What days are you free to train with us?</div>\n<table class=\"emf-field-grid\" my_statement_order_type=\"\" my_choice_order_type=\"\">\n\t<thead>\n\t\t<tr class=\"emf-banding-head\"><th my_order_property=\"first\"></th>\n      <td width=\"11%\">M</td>\n      <td width=\"11%\">T</td>\n      <td width=\"11%\">W</td>\n      <td width=\"11%\">Th</td>\n      <td width=\"11%\">F</td>\n      <td width=\"11%\">S</td>\n      <td width=\"11%\">S</td>\n\t  </tr>\n  </thead>\n<tbody>\n<tr class=\"emf-banding-odd\">\n<th>Time</th><td>\n<input id=\"wdMon\" name=\"wdMon\" onChange=\"K('field[MondayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdTue\" name=\"wdTue\" onChange=\"K('field[TuesdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdWed\" name=\"wdWed\" onChange=\"K('field[WednesdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdThur\" name=\"wdThur\" onChange=\"K('field[ThursdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdFrid\" name=\"wdFrid\" onChange=\"K('field[FridayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdSat\" name=\"wdSat\" onChange=\"K('field[SaturdayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n<td>\n<input id=\"wdSun\" name=\"wdSun\" onChange=\"K('field[SundayTime]').value(this.value)\" style=\"width:100%\" type=\"text\"></td>\n</tr>\n</tbody>\n</table>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -824,14 +710,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -849,14 +730,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -874,14 +750,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -899,14 +770,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -924,14 +790,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -949,14 +810,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -974,14 +830,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -995,8 +846,7 @@
           "title": "Health Information",
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -1011,14 +861,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "radio",
               "choicesResourceName": null,
@@ -1047,14 +892,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1068,8 +908,7 @@
           "title": "Personal Jiu Jitsu Objectives",
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -1084,14 +923,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1109,14 +943,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1134,14 +963,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1159,14 +983,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "json",
               "renderType": "checkbox",
               "choicesResourceName": null,
@@ -1239,8 +1058,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -1255,14 +1073,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "json",
               "renderType": "checkbox",
               "choicesResourceName": null,
@@ -1281,8 +1094,7 @@
               "title": null,
               "visible": false,
               "omitWhenHidden": false,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -1297,14 +1109,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -1315,8 +1122,7 @@
                   "name": "Waiver Information",
                   "text": "<span id=\"waiverInformation\"/>",
                   "visible": true,
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 }
               ]
             }
@@ -1329,8 +1135,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -1345,14 +1150,9 @@
               "requiredMessage": "Signature required",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1363,8 +1163,7 @@
               "name": "Person Signature",
               "text": "<span>\n<p>  \n<i>I hereby acknowledge and understand that Brazilian Jiu Jitsu is a physical activity and learning self-defense skills involves some physical contact. <span id=\"legalName\"></span> and or its staff and student are not to be hold liable or responsible for any risks and/or injuries as a result of training Brazilian Jiu-Jitsu. \n  </i></p>\n</span>\n<label class=\"field-label required\">Person Signature</label><div id=\"person-signature-canvas\"/>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1375,8 +1174,7 @@
           "title": "Path to Excellence",
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1384,8 +1182,7 @@
               "name": "Path to Excellence HTML",
               "text": "<div class=\"emf-section-text\">\n  •Why is it important for you to achieve your black belt?<br>\n\t•Reasonable investment? What is that worth to you?\n</div>\n<div class=\"emf-div-field-section\">\n  <div class=\"emf-section-separator\"></div>\n\t<h3 id=\"element_36\" name=\"element_36\"></h3>\n  <div class=\"emf-section-text\">\n    <span id=\"curr\"><br>\n\t\t<br>\n\t\t</span><br>\n\t\t<br>\n\t</div>\n</div>\n\n<div id=\"emf-li-36\" class=\"emf-li-field emf-field-section_break\">\t\t\t\t\n\t<div class=\"emf-div-field-section\">\n  \t<div class=\"emf-section-separator\"></div>\n\t\t<h3 id=\"element_36\" name=\"element_36\">Getting started</h3>\n    <div class=\"emf-section-text\">16 Weeks of Training - Same level of Training Partners - Self Defense - Basic Take Downs - Solid GB BJJ Foundation with Ground Techniques - Physical Drills - Specific Training - Friendship - Fun</div>\n  </div>\n\t<div class=\"emf-clear\"></div>\n</div>\n\n<div id=\"emf-li-37\" class=\"emf-li-field emf-field-section_break\">\t\t\t\t\n\t<div class=\"emf-div-field-section\">\n  \t<div class=\"emf-section-separator\"></div>\n\t\t<h3 id=\"element_37\" name=\"element_37\">Developing Your Game </h3>\n    <div class=\"emf-section-text\">Advanced take downs - Advanced ground techniques - Higher level of training partners - Sparring sessions - More classes available - Competition Classes - More Fun!!</div>\n  </div>\n\t<div class=\"emf-clear\"></div>\n</div>\n\n<div id=\"emf-li-38\" class=\"emf-li-field emf-field-section_break\">\t\t\t\t\n\t<div class=\"emf-div-field-section\">\n    <div class=\"emf-section-separator\"></div>\n\t\t<h3 id=\"element_38\" name=\"element_38\">Enjoying the BJJ Lifestyle</h3>\n    <div class=\"emf-section-text\">The Ultimate Level of Training - Highly Skilled Technique Levels - 1 hour<br>\nSparring Session - Stand up Sparring - Blue, Purple, Brown and Black Belt sparring partners only - BB No Gi Classes - BJJ for MMA Special Classes</div>\n  </div>\n\t<div class=\"emf-clear\"></div>\n</div>\n\n<div id=\"emf-li-39\" class=\"emf-li-field emf-field-section_break    \">\n\t<div class=\"emf-div-field-section\">\n    <div class=\"emf-section-separator\"></div>\n\t\t<h3 id=\"element_39\" name=\"element_39\">Kids: Character Development </h3>\n    <div class=\"emf-section-text\">BJJ Lifestyle Circle - Community Awareness - Self Defense - Exercise - Discipline - Focus - Coordination - Team Work - Fun!!</div>\t\t\t</div>\n\t<div class=\"emf-clear\"></div>\n</div>\n\n<div id=\"emf-li-40\" class=\"emf-li-field emf-field-section_break    \">\n\t<div class=\"emf-div-field-section\">\n    <div class=\"emf-section-separator\"></div>\n\t\t<h3 id=\"element_40\" name=\"element_40\">Women’s Program</h3>\n  \t<div class=\"emf-section-text\">Learn - Love - Live - Specially designed BJJ program just for women - self defense - fitness - Pink team - friendship - family - fun!!!\t\t\t</div>\n  </div>\n\t<div class=\"emf-clear\"></div>\n</div>\n\n\n\n<h3 id=\"element_38\" name=\"element_38\">The hardest part about becoming a GB Black Belt is getting started</h3>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1396,8 +1193,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1405,8 +1201,7 @@
               "name": "Menu Space",
               "text": "<div style=\"height:300px\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1417,8 +1212,7 @@
           "visible": true,
           "enabled": true,
           "renderType": "submit-page",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
       "events": [
@@ -1494,8 +1288,7 @@
           "title": "",
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1503,15 +1296,12 @@
               "name": "Info",
               "text": "<img src=\"https://gbfms-files.s3-ap-southeast-2.amazonaws.com/GB+Name+Log.png\" alt=\"GB Logo\" class=\"GBLogo\">\n<br>\n<p>Thank you for completing the information required.</p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         }
       ],
-      "events": [
-
-      ],
+      "events": [],
       "name": "Confirmation",
       "renderType": "confirmation",
       "type": "page"

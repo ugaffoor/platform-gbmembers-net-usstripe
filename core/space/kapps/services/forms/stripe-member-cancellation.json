@@ -30,9 +30,7 @@
     {
       "model": "Members",
       "name": "Get Member",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Members')}",
@@ -45,9 +43,7 @@
     {
       "model": "Members",
       "name": "Get Member by Username",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${identity('username')}",
@@ -60,9 +56,7 @@
     {
       "model": "Service Member Submissions",
       "name": "Get Stripe Member Cancellations",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Member GUID')}",
@@ -75,12 +69,8 @@
     {
       "model": "Members",
       "name": "Members",
-      "order": [
-
-      ],
-      "parameters": [
-
-      ],
+      "order": [],
+      "parameters": [],
       "qualification": "Active Members",
       "status": "Active"
     }
@@ -109,8 +99,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -118,8 +107,7 @@
               "name": "cancellations",
               "text": "<div>\n  <table>\n    <tbody  id=\"cancellationsTableBody\">      \n    </tbody>\n  </table>\n</div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -130,8 +118,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -139,8 +126,7 @@
               "name": "MessageOne",
               "text": "<p>This form must be initiated by the a Gracie Barra Representative.</p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -151,8 +137,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -160,8 +145,7 @@
               "name": "Message",
               "text": "<p>This Member Cancellation form was not intended for you to complete. Please contact your GB School to inform them of the mistake.</p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -172,8 +156,7 @@
           "title": "Select Member",
           "visible": "!form('review')",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -188,15 +171,13 @@
               "requiredMessage": "A member must be selected",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Member",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "loadingDetails=true;\nK('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[Billing Customer Reference]').value(bridgedData['Billing Customer Reference']);\n    K('field[Payment Frequency]').value(bridgedData['Billing Period']);\n    K('field[Billing Period]').value(bridgedData['Billing Period']);\n    K('field[Billing Start Date]').value(bridgedData['Billing Start Date']);\n    K('field[Billing Parent Member]').value(bridgedData['Billing Parent Member']);\n    K('field[Billing Payment Type]').value(bridgedData['Billing Payment Type']);\n    K('field[Billing Family Members]').value(bridgedData['Billing Family Members']);\n    K('field[Non Paying]').value(bridgedData['Non Paying']);\n    K('field[Billing User]').value(bridgedData['Billing User']);\n\n    var paymentPeriod=bridgedData['Billing Period'];\n\n    $.ajax({\n      type: \"post\",\n        url: K('space').attributes(\"Kinetic Billing Server URL\")+\"/billingInfo\",\n        data: JSON.stringify({ \n          customerId: bridgedData['Billing Customer Reference'],\n          space: K('space').slug(),\n          billingService: K('space').attributes(\"Billing Company\"),\n        }),\n        headers: {\n          'Accept': 'application/json, text/plain, */*',\n          'Content-Type': 'application/json;charset=UTF-8'\n      \t}\n      })\n      .done(function( data ) {\n        if (data.data===null) {\n  \t      K('field[The last debit will be taken on]').value(\"\");\n          K('field[Billing Period]').value(\"\");\n        } else {\n          nextBillingDate=moment(data.data['nextBillingDate']).format('YYYY-MM-DD');\n\t\t\t    K('field[Next Billing Date]').value(nextBillingDate);\n  \t      K('field[The last debit will be taken on]').value(nextBillingDate);\n          K('field[Billing Period]').value(data.data['paymentPeriod']);\n\n          bundle.config.widgets.xdsoftDatepickerRemove({\n              element: K(\"form\").find(\"#lastdebitdate\")[0]\n          });          \n          debugger;\n          period=1;\n          span=\"days\";\n          if (paymentPeriod===\"Weekly\"){\n            period=7;\n          }\n          if (paymentPeriod===\"Fortnightly\"){\n            period=14;\n          }\n          if (paymentPeriod===\"4 Weekly\"){\n            period=28;\n          }\n          if (paymentPeriod===\"Monthly\"){\n            span=\"months\";\n          }\n          if (paymentPeriod===\"Quarterly\") {\n            period=3;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"4 Months\") {\n            period=4;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"6 Months\") {\n            period=6;\n            span=\"months\";\n          }\n          \n          allowDates=[];\n          for (i=0;i<22;i++){\n            if (moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).isAfter(moment())) {\n              allowDates[allowDates.length]=moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).format(\"DD-MM-YYYY\");\n            }\n          }\n          debugger;\n          bundle.config.widgets.xdsoftDatepicker({\n              element: K(\"form\").find(\"#lastdebitdate\")[0],\n              timepicker: false,\n              displayDateFormat: \"DD/MM/YYYY\",\n              options: {\n                allowDates: allowDates,\n                formatDate:\"d-m-Y\",\n                validateOnBlur:false\n              },\n              onSelectDate:function(ct,$i){\n                K('field[The last debit will be taken on]').value(ct.dateFormat('YYYY-MM-DD'));\n              }                \n          });          \n         }\n      });\n    loadingDetails=false;\n    \n    K('section[Member Select Space]').hide();  \n    \n    html=primaryHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$parentMemberID$\", bridgedData['Billing Parent Member']);    \n\t\t$(K('content[Primary Family Member Info]').element()).html(html);\n\n    \n    html=dependantHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$memberGUID$\", bridgedData['id']);    \n    html=html.replaceAll(\"$parentMemberID$\", bridgedData['Billing Parent Member']);    \n    \n\t\t$(K('content[Family Dependant Info]').element()).html(html);\n    \n    \n    html=nonpayingHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$memberGUID$\", bridgedData['id']);    \n\t\t$(K('content[Non Paying Info]').element()).html(html);\n    \n    html=nonbillingHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$memberGUID$\", bridgedData['id']);    \n\t\t$(K('content[Non Billing Info]').element()).html(html);\n    \n   }\n});\n\n",
+                  "code": "loadingDetails=true;\nK('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[Billing Customer Reference]').value(bridgedData['Billing Customer Reference']);\n    K('field[Payment Frequency]').value(bridgedData['Billing Period']);\n    K('field[Billing Period]').value(bridgedData['Billing Period']);\n    K('field[Billing Start Date]').value(bridgedData['Billing Start Date']);\n    K('field[Billing Parent Member]').value(bridgedData['Billing Parent Member']);\n    K('field[Billing Payment Type]').value(bridgedData['Billing Payment Type']);\n    K('field[Billing Family Members]').value(bridgedData['Billing Family Members']);\n    K('field[Non Paying]').value(bridgedData['Non Paying']);\n    K('field[Billing User]').value(bridgedData['Billing User']);\n\n    var paymentPeriod=bridgedData['Billing Period'];\n\n    $.ajax({\n      type: \"post\",\n        url: K('space').attributes(\"Kinetic Billing Server URL\")+\"/billingInfo\",\n        data: JSON.stringify({ \n          customerId: bridgedData['Billing Customer Reference'],\n          space: K('space').slug(),\n          billingService: 'Stripe',\n        }),\n        headers: {\n          'Accept': 'application/json, text/plain, */*',\n          'Content-Type': 'application/json;charset=UTF-8'\n      \t}\n      })\n      .done(function( data ) {\n        if (data.data===null) {\n  \t      K('field[The last debit will be taken on]').value(\"\");\n          K('field[Billing Period]').value(\"\");\n        } else {\n          nextBillingDate=moment(data.data['nextBillingDate']).format('YYYY-MM-DD');\n\t\t\t    K('field[Next Billing Date]').value(nextBillingDate);\n  \t      K('field[The last debit will be taken on]').value(nextBillingDate);\n          K('field[Billing Period]').value(data.data['paymentPeriod']);\n\n          bundle.config.widgets.xdsoftDatepickerRemove({\n              element: K(\"form\").find(\"#lastdebitdate\")[0]\n          });          \n          debugger;\n          period=1;\n          span=\"days\";\n          if (paymentPeriod===\"Weekly\"){\n            period=7;\n          }\n          if (paymentPeriod===\"Fortnightly\"){\n            period=14;\n          }\n          if (paymentPeriod===\"4 Weekly\"){\n            period=28;\n          }\n          if (paymentPeriod===\"Monthly\"){\n            span=\"months\";\n          }\n          if (paymentPeriod===\"Quarterly\") {\n            period=3;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"4 Months\") {\n            period=4;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"6 Months\") {\n            period=6;\n            span=\"months\";\n          }\n          \n          allowDates=[];\n          for (i=0;i<22;i++){\n            if (moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).isAfter(moment())) {\n              allowDates[allowDates.length]=moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).format(\"DD-MM-YYYY\");\n            }\n          }\n          debugger;\n          bundle.config.widgets.xdsoftDatepicker({\n              element: K(\"form\").find(\"#lastdebitdate\")[0],\n              timepicker: false,\n              displayDateFormat: \"DD/MM/YYYY\",\n              options: {\n                allowDates: allowDates,\n                formatDate:\"d-m-Y\",\n                validateOnBlur:false\n              },\n              onSelectDate:function(ct,$i){\n                K('field[The last debit will be taken on]').value(ct.dateFormat('YYYY-MM-DD'));\n              }                \n          });          \n         }\n      });\n    loadingDetails=false;\n    \n    K('section[Member Select Space]').hide();  \n    \n    html=primaryHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$parentMemberID$\", bridgedData['Billing Parent Member']);    \n\t\t$(K('content[Primary Family Member Info]').element()).html(html);\n\n    \n    html=dependantHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$memberGUID$\", bridgedData['id']);    \n    html=html.replaceAll(\"$parentMemberID$\", bridgedData['Billing Parent Member']);    \n    \n\t\t$(K('content[Family Dependant Info]').element()).html(html);\n    \n    \n    html=nonpayingHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$memberGUID$\", bridgedData['id']);    \n\t\t$(K('content[Non Paying Info]').element()).html(html);\n    \n    html=nonbillingHTML.replaceAll(\"$studentName$\", K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value());\n    html=html.replaceAll(\"$memberGUID$\", bridgedData['id']);    \n\t\t$(K('content[Non Billing Info]').element()).html(html);\n    \n   }\n});\n\n",
                   "bridgedResourceName": null,
                   "runIf": "values('Members')!==\"\""
                 },
@@ -208,8 +189,7 @@
                   "runIf": "values('Members')===null"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Members",
@@ -225,8 +205,7 @@
               "name": "Members Select",
               "text": "<div id=\"selectMemberMenu\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -237,8 +216,7 @@
           "title": "Student Information",
           "visible": "values('Members')!==null && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -253,14 +231,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -278,14 +251,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -303,9 +271,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -320,8 +286,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -339,9 +304,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -356,8 +319,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -375,14 +337,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -400,14 +357,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -425,14 +377,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -450,14 +397,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -475,14 +417,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -500,14 +437,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -525,14 +457,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -550,14 +477,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -575,14 +497,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -600,14 +517,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -625,14 +537,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -650,14 +557,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -675,14 +577,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -700,14 +597,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -721,8 +613,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null && bundle.isPrimaryBiller() && (values('Billing Customer Reference')!==\"\" || values('Billing Customer Reference')!==null)  && (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -730,8 +621,7 @@
               "name": "Primary Family Member Info",
               "text": "<h4>Primary Family Member</h4>\n<span>The member selected <b>$studentName$</b> is the Primary family member.</span>\n<br>\n<span>Completing this form will also Cancel all Family members.</span>\n<br>\n<span>If you only wish to Cancel this member and NOT the dependant members, please follow below.</span>\n<br>\n<ul>\n  <li>Switch the Billing Member to one of the dependant members.</li>\n  <ul>\n    <li>Click <a href=\"#/kapps/gbmembers/Member/$parentMemberID$\">here</a> to Switch Billing Member.\t</li>\n  </ul>\n  <li>Complete the Bambora Setup Biller Details(Family) form to remove this student from billing.</li>\n  <li>Set the students status to Inactive, after completing the above form.</li>\n</ul>\n<br>\n",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -742,8 +632,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null && values('Non Paying')!==\"YES\" && (values('Billing Parent Member')!==\"\" && values('Billing Parent Member')!==null && values('Billing Parent Member')!==values('Members'))  && (values('Billing Customer Reference')===\"\" || values('Billing Customer Reference')===null)  && (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -751,8 +640,7 @@
               "name": "Family Dependant Info",
               "text": "<h3>Family Dependant Member</h3>\n<span>The member selected <b>$studentName$</b> is a depend family member.</span>\n<br>\n<ul>\n  <li>Complete the Bambora Setup Biller Details(Family) form to remove the student from billing.</li>\n  <ul>\n    <li>Click <a href=\"#/kapps/services/categories/bambora-billing/bambora-setup-biller-details?id=$parentMemberID$\">here</a> to complete form.</li>\n  </ul>\n  <li>Set the students status to Inactive, after completing the above form.</li>\n</ul>\n<br>\n",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -763,8 +651,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null && values('Non Paying')===\"YES\" && (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -772,8 +659,7 @@
               "name": "Non Paying Info",
               "text": "<h3>Non Paying Member</h3>\n<span>The member selected <b>$studentName$</b> is a Non Paying member.</span>\n<br>\n<ul>\n  <li>Set the students status to Inactive directly on the Members record.</li>\n  <li>Click <a href=\"#/kapps/gbmembers/Member/$memberGUID$\">here</a> to change status</li>  \n</ul>\n<br>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -784,8 +670,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null && values('Non Paying')!==\"YES\" && (values('Billing Payment Type')===\"Cash\" || values('Billing User')===undefined || values('Billing User')===null || values('Billing User')===\"\") && (values('Billing Parent Member')===null || values('Billing Parent Member')===undefined || values('Billing Parent Member')===\"\") && (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -793,8 +678,7 @@
               "name": "Non Billing Info",
               "text": "<h3>Non Billing Member</h3>\n<span>The member selected <b>$studentName$</b> is a Non billing or Cash member.</span>\n<br>\n<ul>\n  <li>Set the students status to Inactive directly on the Members record.</li>\n  <li>Click <a href=\"#/kapps/gbmembers/Member/$memberGUID$\">here</a> to change status</li>  \n</ul>\n<br>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -805,8 +689,7 @@
           "title": "",
           "visible": "values('Members')!==null && (values('Billing Customer Reference')!==\"\" && values('Billing Customer Reference')!==null) && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -821,14 +704,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "json",
               "renderType": "checkbox",
               "choicesResourceName": null,
@@ -865,14 +743,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -883,8 +756,7 @@
               "name": "The last debit will be taken on HTML",
               "text": "<div class=\"form-group required\" linkedField=\"The last debit will be taken on\">  \n  <label class=\"field-label\" for=\"lastdebitdate\">Payment Cancellation Date(no payment will be made on this date) (Next billing cycle dates)\n<ul>\n  <li>Immediate cancellation, select next available billing date.</li>\n  <li>Future cancellation, select a future billing date</li>\n  <li>eg, if the last payment should be on the 14th, then select the 14th of the following month</li> \n</ul>\n  </label>\n  <div id=\"lastdebitdate\"></div>\n</div>",
               "visible": "!form('review')",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -899,14 +771,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "date"
             },
@@ -923,14 +790,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "date"
             },
@@ -947,14 +809,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 5
@@ -968,8 +825,7 @@
           "title": "List of Documents",
           "visible": "values('Members')!==null && (values('Billing Customer Reference')!==\"\" && values('Billing Customer Reference')!==null) && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -977,8 +833,7 @@
               "name": "Document Information",
               "text": "<p>Please provide the list of documents you are submitting to prove the reason for your membership cancellation request.</p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -993,14 +848,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "file",
               "renderType": "attachment",
               "allowMultiple": false
@@ -1018,14 +868,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "file",
               "renderType": "attachment",
               "allowMultiple": false
@@ -1043,14 +888,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "file",
               "renderType": "attachment",
               "allowMultiple": false
@@ -1064,8 +904,7 @@
           "title": "Terms",
           "visible": "values('Members')!==null && (values('Billing Customer Reference')!==\"\" && values('Billing Customer Reference')!==null) && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1073,8 +912,7 @@
               "name": "Terms Information",
               "text": "<div class=\"emf-section-text\">The student's installment payments must be current and up to date prior to submitting the application.<br>\n<br>\nFor any cancellation request, the appropriate document must be provided:<br>\n<br>\n- Change of address; bill or lease agreement for the new address<br>\n- Medical condition; doctor's letter proving the permanent disability<br>\n- Document proving deployment<br>\n- Document proving loss of employment<br>\n<br>\nStudents who would like to cancel without reason must give 60 days written notice.<br>\n<br>\nYour request will be evaluated and you will be contacted within 3 business days.</div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -1082,8 +920,7 @@
               "name": "Member Signature",
               "text": "<label class=\"field-label required\">Member Signature</label><div id=\"member-signature-canvas\"/>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -1098,14 +935,9 @@
               "requiredMessage": "Gracie Barra Representative Signature is required",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1136,14 +968,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1154,8 +981,7 @@
               "name": "Confirmation Info",
               "text": "<span id=\"confirmationInfo\">\n<p>Please confirm that you wish to cancel <b>_MemberName_</b> with the cancellation date <b>_CancellationDate_</b>.\n<p>\n</span>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "button",
@@ -1164,8 +990,7 @@
               "visible": true,
               "enabled": true,
               "renderType": "custom",
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "events": [
                 {
                   "name": "Cancel Continue",
@@ -1181,9 +1006,16 @@
               "name": "Submit Button",
               "visible": true,
               "enabled": true,
-              "renderType": "submit-page",
-              "renderAttributes": {
-              }
+              "renderType": "custom",
+              "renderAttributes": {},
+              "events": [
+                {
+                  "name": "Submit",
+                  "type": "Click",
+                  "action": "Custom",
+                  "code": "debugger;\n\nif (Object.keys(K('form').validate()).length>0) {\n  K('form').submitPage();\n} else {\n  \tK('button[Submit Button]').disable();\n    K('form').submitPage();\n}\n"
+                }
+              ]
             }
           ]
         },
@@ -1194,8 +1026,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1203,8 +1034,7 @@
               "name": "Member Select Space",
               "text": "<div style=\"height:300px\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -1215,8 +1045,7 @@
           "visible": true,
           "enabled": "values('The last debit will be taken on')!==null && values('Can train up until')!==null",
           "renderType": "save",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "button",
@@ -1225,8 +1054,7 @@
           "visible": true,
           "enabled": "values('Members')!==null && (values('Billing Customer Reference')!==\"\" && values('Billing Customer Reference')!==null) ",
           "renderType": "custom",
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "events": [
             {
               "name": "Confirmation Submission",

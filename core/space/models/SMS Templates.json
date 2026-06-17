@@ -76,9 +76,7 @@
     },
     {
       "name": "SMS Templates",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

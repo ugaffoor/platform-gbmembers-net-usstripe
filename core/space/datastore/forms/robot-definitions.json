@@ -7,9 +7,7 @@
       ]
     }
   ],
-  "bridgedResources": [
-
-  ],
+  "bridgedResources": [],
   "customHeadContent": "<style>\n/* Medium Devices, Desktops */\n@media only screen and (min-width : 768px) {\n  #start-date-utc-display, #end-date-utc-display {\n    margin-top:25px;\n  }\n}\n</style>",
   "description": "",
   "indexDefinitions": [
@@ -323,8 +321,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -339,14 +336,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "datetime"
             },
@@ -363,14 +355,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -388,14 +375,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -413,14 +395,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -438,14 +415,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -459,8 +431,7 @@
           "visible": "values('Embedded') !== null && values('Embedded Display Mode') !== \"Advanced\"",
           "enabled": true,
           "renderType": "custom",
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "events": [
             {
               "name": "Set Embedded Display Mode",
@@ -483,8 +454,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -499,14 +469,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -524,14 +489,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 3
@@ -549,14 +509,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -574,14 +529,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "radio",
               "choicesResourceName": null,
@@ -610,14 +560,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -628,8 +573,7 @@
               "name": "Valid JSON Format Message",
               "text": "<div class=\"alert alert-danger\" role=\"alert\">\n  'Runtime Inputs' must be valid JSON or blank. <br>\n  Example: {\"input 1\":\"value 1\",\"input 2\":\"value 2\"}\n</div>",
               "visible": false,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -644,14 +588,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 3
@@ -665,8 +604,7 @@
           "title": "Execution Notification",
           "visible": "values('Embedded') === null  || (values('Embedded') !== null && values('Embedded Display Mode') === \"Advanced\") ",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -681,12 +619,8 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
+              "constraints": [],
+              "events": [],
               "renderAttributes": {
                 "data-recurrence-radio": "true"
               },
@@ -712,8 +646,7 @@
               "title": null,
               "visible": "values('Notify Upon Each Run Completion') === \"Yes\"",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -728,14 +661,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -753,14 +681,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -775,8 +698,7 @@
           "name": "HR",
           "text": "<hr/>",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "section",
@@ -785,8 +707,7 @@
           "title": "Recurrence Information",
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -805,8 +726,7 @@
               "title": null,
               "visible": true,
               "omitWhenHidden": null,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -821,14 +741,9 @@
                   "requiredMessage": "You must specify an interval for the recurrences.",
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -846,9 +761,7 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Set Recurrence Value",
@@ -863,8 +776,7 @@
                       ]
                     }
                   ],
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "dropdown",
                   "choicesResourceName": null,
@@ -909,9 +821,7 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Populate Recurrence Label - DISABLED",
@@ -927,8 +837,7 @@
                       "runIf": "1==2"
                     }
                   ],
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "dropdown",
                   "choicesResourceName": null,
@@ -985,12 +894,8 @@
               "requiredMessage": "Either 'On certain days of week' or 'On specific days in a month' must be selected.",
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
+              "constraints": [],
+              "events": [],
               "renderAttributes": {
                 "data-recurrence-radio": "true",
                 "data-label-hidden": "true"
@@ -1017,8 +922,7 @@
               "title": null,
               "visible": "values('Recurrence') == \"yearly\"",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -1033,12 +937,8 @@
                   "requiredMessage": "You must select at least one month.",
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
+                  "constraints": [],
+                  "events": [],
                   "renderAttributes": {
                     "data-recurrence-checkbox": "true"
                   },
@@ -1106,8 +1006,7 @@
               "title": null,
               "visible": "values('Recurrence') == \"weekly\" || ((values('Recurrence') == \"monthly\" || values('Recurrence') == \"yearly\") && values('Timing') == \"relative\")",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -1122,12 +1021,8 @@
                   "requiredMessage": "You must select at least one day of the week.",
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
+                  "constraints": [],
+                  "events": [],
                   "renderAttributes": {
                     "data-recurrence-checkbox": "true"
                   },
@@ -1179,9 +1074,7 @@
                   "requiredMessage": "You must select at least one Sunday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1245,9 +1138,7 @@
                   "requiredMessage": "You must select at least one Monday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1311,9 +1202,7 @@
                   "requiredMessage": "You must select at least one Tuesday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1377,9 +1266,7 @@
                   "requiredMessage": "You must select at least one Wednesday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1443,9 +1330,7 @@
                   "requiredMessage": "You must select at least one Thursday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1509,9 +1394,7 @@
                   "requiredMessage": "You must select at least one Friday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1575,9 +1458,7 @@
                   "requiredMessage": "You must select at least one Saturday of the month.",
                   "omitWhenHidden": true,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Verify Values",
@@ -1637,8 +1518,7 @@
               "title": null,
               "visible": "(values('Recurrence') == \"monthly\" || values('Recurrence') == \"yearly\") && values('Timing') == \"absolute\"",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -1653,12 +1533,8 @@
                   "requiredMessage": "You must select at least one day.",
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
+                  "constraints": [],
+                  "events": [],
                   "renderAttributes": {
                     "data-recurrence-checkbox": "true"
                   },
@@ -1866,14 +1742,9 @@
                               "requiredMessage": null,
                               "omitWhenHidden": null,
                               "pattern": null,
-                              "constraints": [
-
-                              ],
-                              "events": [
-
-                              ],
-                              "renderAttributes": {
-                              },
+                              "constraints": [],
+                              "events": [],
+                              "renderAttributes": {},
                               "dataType": "string",
                               "renderType": "dropdown",
                               "choicesResourceName": null,
@@ -2003,14 +1874,9 @@
                               "requiredMessage": null,
                               "omitWhenHidden": true,
                               "pattern": null,
-                              "constraints": [
-
-                              ],
-                              "events": [
-
-                              ],
-                              "renderAttributes": {
-                              },
+                              "constraints": [],
+                              "events": [],
+                              "renderAttributes": {},
                               "dataType": "string",
                               "renderType": "dropdown",
                               "choicesResourceName": null,
@@ -2338,8 +2204,7 @@
                                   "visible": true,
                                   "enabled": true,
                                   "renderType": "custom",
-                                  "renderAttributes": {
-                                  },
+                                  "renderAttributes": {},
                                   "events": [
                                     {
                                       "name": "Set Execution Hour and Execution Minute based on user local tim",
@@ -2367,8 +2232,7 @@
           "name": "HR 2",
           "text": "<hr/>",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "section",
@@ -2377,8 +2241,7 @@
           "title": "Execution Period",
           "visible": "values('Embedded') === null  || (values('Embedded') !== null  && values('Embedded Display Mode') === \"Advanced\") ",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "section",
@@ -2415,9 +2278,7 @@
                       "requiredMessage": null,
                       "omitWhenHidden": null,
                       "pattern": null,
-                      "constraints": [
-
-                      ],
+                      "constraints": [],
                       "events": [
                         {
                           "name": "Convert and populate Start Date UTC",
@@ -2426,8 +2287,7 @@
                           "code": "bundle.ext.robotSchedules.setUtcStartDate();"
                         }
                       ],
-                      "renderAttributes": {
-                      },
+                      "renderAttributes": {},
                       "dataType": "string",
                       "renderType": "datetime"
                     }
@@ -2494,9 +2354,7 @@
                       "requiredMessage": null,
                       "omitWhenHidden": null,
                       "pattern": null,
-                      "constraints": [
-
-                      ],
+                      "constraints": [],
                       "events": [
                         {
                           "name": "Convert and populate End Date UTC",
@@ -2505,8 +2363,7 @@
                           "code": "bundle.ext.robotSchedules.setUtcEndDate();"
                         }
                       ],
-                      "renderAttributes": {
-                      },
+                      "renderAttributes": {},
                       "dataType": "string",
                       "renderType": "datetime"
                     }
@@ -2544,8 +2401,7 @@
               "name": "HR 3",
               "text": "<hr/>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "section",
@@ -2564,8 +2420,7 @@
                   "name": "Next Scheduled Execution",
                   "text": "Next scheduled execution (local time): <b><span id=\"next-scheduled-execution\"></span></b>",
                   "visible": true,
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 }
               ]
             },
@@ -2576,8 +2431,7 @@
               "title": "Schedule Completion Notification",
               "visible": "values('End Date') != null",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -2592,12 +2446,8 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
+                  "constraints": [],
+                  "events": [],
                   "renderAttributes": {
                     "data-recurrence-radio": "true"
                   },
@@ -2623,8 +2473,7 @@
                   "title": "",
                   "visible": "values('Notify Upon Schedule Completion') === \"Yes\"",
                   "omitWhenHidden": true,
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "elements": [
                     {
                       "type": "field",
@@ -2639,14 +2488,9 @@
                       "requiredMessage": null,
                       "omitWhenHidden": null,
                       "pattern": null,
-                      "constraints": [
-
-                      ],
-                      "events": [
-
-                      ],
-                      "renderAttributes": {
-                      },
+                      "constraints": [],
+                      "events": [],
+                      "renderAttributes": {},
                       "dataType": "string",
                       "renderType": "text",
                       "rows": 1
@@ -2664,14 +2508,9 @@
                       "requiredMessage": null,
                       "omitWhenHidden": null,
                       "pattern": null,
-                      "constraints": [
-
-                      ],
-                      "events": [
-
-                      ],
-                      "renderAttributes": {
-                      },
+                      "constraints": [],
+                      "events": [],
+                      "renderAttributes": {},
                       "dataType": "string",
                       "renderType": "text",
                       "rows": 1
@@ -2689,8 +2528,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "button",
@@ -2714,9 +2552,7 @@
                 "class": "btn btn-link delete-schedule pull-right",
                 "id": "delete-schedule-btn"
               },
-              "events": [
-
-              ]
+              "events": []
             }
           ]
         }
@@ -2747,9 +2583,7 @@
       "type": "page"
     }
   ],
-  "securityPolicies": [
-
-  ],
+  "securityPolicies": [],
   "slug": "robot-definitions",
   "status": "Active",
   "submissionLabelExpression": "${values('Robot Name')} - ${values('Start Date')}"

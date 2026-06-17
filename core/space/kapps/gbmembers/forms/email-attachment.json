@@ -1,14 +1,8 @@
 {
   "anonymous": false,
-  "attributes": [
-
-  ],
-  "bridgedResources": [
-
-  ],
-  "categorizations": [
-
-  ],
+  "attributes": [],
+  "bridgedResources": [],
+  "categorizations": [],
   "customHeadContent": "<style>\n  .empty-message {\n    display: none !important;\n  }\n</style>",
   "description": "Captures email attachments",
   "name": "Email Attachment",
@@ -32,14 +26,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -63,11 +52,8 @@
               "message": "The attachment file limit is 8mb. Please try another file."
             }
           ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "events": [],
+          "renderAttributes": {},
           "dataType": "file",
           "renderType": "attachment",
           "allowMultiple": true
@@ -79,13 +65,10 @@
           "visible": "K('field[Attachments]').value().length!==0",
           "enabled": true,
           "renderType": "submit-page",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
-      "events": [
-
-      ],
+      "events": [],
       "name": "Main",
       "renderType": "submittable",
       "type": "page"

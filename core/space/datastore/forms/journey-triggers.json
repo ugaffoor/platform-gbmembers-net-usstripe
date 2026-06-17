@@ -1,7 +1,5 @@
 {
-  "attributes": [
-
-  ],
+  "attributes": [],
   "bridgedResources": [
     {
       "model": "Email Templates",
@@ -16,18 +14,14 @@
           "direction": "asc"
         }
       ],
-      "parameters": [
-
-      ],
+      "parameters": [],
       "qualification": "Email Templates",
       "status": "Active"
     },
     {
       "model": "Program Belts",
       "name": "Get Belts",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Program')}",
@@ -40,9 +34,7 @@
     {
       "model": "Email Templates",
       "name": "Get Lead Email",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Lead Email')}",
@@ -55,9 +47,7 @@
     {
       "model": "Email Templates",
       "name": "Get Lead Email by Name",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Template Name')}",
@@ -70,9 +60,7 @@
     {
       "model": "Call Scripts",
       "name": "Get Lead Script",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Lead Call Script')}",
@@ -85,9 +73,7 @@
     {
       "model": "Call Scripts",
       "name": "Get Lead Script by Name",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Template Name')}",
@@ -100,9 +86,7 @@
     {
       "model": "SMS Templates",
       "name": "Get Lead SMS",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Lead SMS')}",
@@ -115,9 +99,7 @@
     {
       "model": "SMS Templates",
       "name": "Get Lead SMS by Name",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Template Name')}",
@@ -130,9 +112,7 @@
     {
       "model": "Email Templates",
       "name": "Get Member Email",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Member Email')}",
@@ -145,9 +125,7 @@
     {
       "model": "Email Templates",
       "name": "Get Member Email by Name",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Template Name')}",
@@ -160,9 +138,7 @@
     {
       "model": "Call Scripts",
       "name": "Get Member Script",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Member Call Script')}",
@@ -175,9 +151,7 @@
     {
       "model": "Call Scripts",
       "name": "Get Member Script by Name",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Template Name')}",
@@ -190,9 +164,7 @@
     {
       "model": "SMS Templates",
       "name": "Get Member SMS",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Member SMS')}",
@@ -205,9 +177,7 @@
     {
       "model": "SMS Templates",
       "name": "Get Member SMS by Name",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Template Name')}",
@@ -220,12 +190,8 @@
     {
       "model": "Program Belts",
       "name": "Get Programs",
-      "order": [
-
-      ],
-      "parameters": [
-
-      ],
+      "order": [],
+      "parameters": [],
       "qualification": "Programs",
       "status": "Active"
     },
@@ -238,9 +204,7 @@
           "direction": "asc"
         }
       ],
-      "parameters": [
-
-      ],
+      "parameters": [],
       "qualification": "Lead Scripts",
       "status": "Active"
     },
@@ -253,9 +217,7 @@
           "direction": "asc"
         }
       ],
-      "parameters": [
-
-      ],
+      "parameters": [],
       "qualification": "Member Scripts",
       "status": "Active"
     },
@@ -268,9 +230,7 @@
           "direction": "asc"
         }
       ],
-      "parameters": [
-
-      ],
+      "parameters": [],
       "qualification": "SMS Templates",
       "status": "Active"
     }
@@ -522,14 +482,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "radio",
           "choicesResourceName": null,
@@ -558,14 +513,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "radio",
           "choicesResourceName": null,
@@ -594,9 +544,7 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Set Dirty",
@@ -611,8 +559,7 @@
               ]
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "radio",
           "choicesResourceName": null,
@@ -641,9 +588,7 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Set Dirty",
@@ -658,8 +603,7 @@
               ]
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "radio",
           "choicesResourceName": null,
@@ -686,8 +630,7 @@
           "title": null,
           "visible": "values('Record Type')===\"Lead\"",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -702,9 +645,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dirty",
@@ -719,8 +660,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": null,
@@ -788,9 +728,7 @@
                 "regex": "^-?\\d*$",
                 "message": "Please enter a valid integer"
               },
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dirty",
@@ -805,8 +743,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -824,9 +761,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Load Script",
@@ -848,8 +783,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Lead Call Scripts",
@@ -872,9 +806,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Load SMS",
@@ -896,8 +828,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "SMS Templates",
@@ -920,9 +851,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Email",
@@ -944,8 +873,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Email Templates",
@@ -964,8 +892,7 @@
           "title": null,
           "visible": "values('Record Type')===\"Member\"",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -980,9 +907,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dirty",
@@ -997,8 +922,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": null,
@@ -1087,9 +1011,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dirty",
@@ -1104,8 +1026,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Get Programs",
@@ -1128,9 +1049,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dirty",
@@ -1145,8 +1064,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Get Belts",
@@ -1172,9 +1090,7 @@
                 "regex": "^-?\\d*$",
                 "message": "Please enter a valid Integer"
               },
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dirty",
@@ -1189,8 +1105,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1208,9 +1123,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Script",
@@ -1232,8 +1145,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Member Call Scripts",
@@ -1256,9 +1168,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get SMS",
@@ -1280,8 +1190,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "SMS Templates",
@@ -1304,9 +1213,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Email",
@@ -1328,8 +1235,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Email Templates",
@@ -1347,8 +1253,7 @@
           "name": "Additional Qual",
           "text": "<div id=\"additionalHelp\" style=\"display:none\">\n<p>This is an advanced qualification and should be used with care.<br>\nThis allows additional values to be used to filter Members or Leads<br>\nAn example, ['values']['Ranking Program']=='GB1'\n  <br>OR<br>\n['values']['Ranking Program'].include?('GB1')<br>\nThe field 'Main Benefits' will contain multiple values, use:<br>\n['values']['Main Benefits'].include?('exercise') || ['values']['Main Benefits'].include?('self defense')<br></p>\n  <p>To qualify by age use one of the following:</p>\n<ul>\n  <li>isAgeLessOrSame(age number) - use 15 for all Kids </li>  \n  <li>isAgeAfterOrSame(age number) - use 16 for all Adults </li>  \n  <li>isAgeBetween(from age number, to age number) - the age is included </li>  \n</ul>\nYou can use the <b>AND</b> logic:<br>\nTo match Kids that are Female<br>\nisAgeLessOrSame(16) && ['values']['Ranking Program']=='Female'\n  \n</div>",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "field",
@@ -1363,9 +1268,7 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Set Dirty",
@@ -1380,8 +1283,7 @@
               ]
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -1393,8 +1295,7 @@
           "visible": "values('Contact Type')!==\"\" && values('Contact Type')!==null",
           "enabled": true,
           "renderType": "custom",
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "events": [
             {
               "name": "New Template",
@@ -1411,8 +1312,7 @@
           "visible": "values('Template Name')!==\"\" && values('Template Name')!==null",
           "enabled": true,
           "renderType": "custom",
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "events": [
             {
               "name": "Edit Template",
@@ -1435,9 +1335,7 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Set Dirty",
@@ -1452,8 +1350,7 @@
               ]
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -1465,8 +1362,7 @@
           "title": "Preview",
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1487,8 +1383,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -1496,8 +1391,7 @@
               "name": "New Email Template",
               "text": "<div id=\"newEmailTemplateForm\"/>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -1505,8 +1399,7 @@
               "name": "New SMS Template",
               "text": "<div id=\"newSMSTemplateForm\"/>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -1521,14 +1414,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1540,8 +1428,7 @@
               "visible": true,
               "enabled": true,
               "renderType": "custom",
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "events": [
                 {
                   "name": "Submit",

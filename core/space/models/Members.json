@@ -372,37 +372,27 @@
   "qualifications": [
     {
       "name": "Active Members",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "Get Active and Frozen Members",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "Get Active Billing Members",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "Get Billing Members",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "Get Frozen Members",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
@@ -425,9 +415,7 @@
     },
     {
       "name": "Get Pending Cancellation Members",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

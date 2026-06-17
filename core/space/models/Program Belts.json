@@ -63,9 +63,7 @@
     },
     {
       "name": "Programs",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

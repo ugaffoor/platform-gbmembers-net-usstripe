@@ -55,9 +55,7 @@
   "qualifications": [
     {
       "name": "All",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {

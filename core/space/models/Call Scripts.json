@@ -80,16 +80,12 @@
     },
     {
       "name": "Lead Scripts",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "Member Scripts",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

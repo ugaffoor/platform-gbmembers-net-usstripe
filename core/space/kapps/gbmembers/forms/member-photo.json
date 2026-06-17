@@ -1,14 +1,8 @@
 {
   "anonymous": false,
-  "attributes": [
-
-  ],
-  "bridgedResources": [
-
-  ],
-  "categorizations": [
-
-  ],
+  "attributes": [],
+  "bridgedResources": [],
+  "categorizations": [],
   "customHeadContent": "<style>\n  .empty-message {\n    display: none !important;\n  }\n</style>",
   "description": "",
   "name": "Member Photo",
@@ -32,14 +26,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -57,14 +46,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "file",
           "renderType": "attachment",
           "allowMultiple": false
@@ -82,14 +66,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -107,14 +86,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -125,8 +99,7 @@
           "name": "CameraFeed",
           "text": "<div id=\"CameraFeedDiv\"></div>\n",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "button",
@@ -135,8 +108,7 @@
           "visible": false,
           "enabled": "values('Photo').length!==0 || values('Photo Image')!==null",
           "renderType": "submit-page",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
       "events": [

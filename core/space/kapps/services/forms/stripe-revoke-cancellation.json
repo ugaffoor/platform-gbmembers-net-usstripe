@@ -30,9 +30,7 @@
     {
       "model": "Members",
       "name": "Get Member",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Members')}",
@@ -45,12 +43,8 @@
     {
       "model": "Members",
       "name": "Members",
-      "order": [
-
-      ],
-      "parameters": [
-
-      ],
+      "order": [],
+      "parameters": [],
       "qualification": "Get Pending Cancellation Members",
       "status": "Active"
     }
@@ -79,8 +73,7 @@
           "title": "Select Member",
           "visible": "!form('review')",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -95,9 +88,7 @@
               "requiredMessage": "A member must be selected",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Member",
@@ -115,8 +106,7 @@
                   "runIf": "values('Members')===null"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Members",
@@ -132,8 +122,7 @@
               "name": "Members Select",
               "text": "<div id=\"selectMemberMenu\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -144,8 +133,7 @@
           "title": "Student Information",
           "visible": "values('Members')!==null && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -160,14 +148,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -185,9 +168,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -202,8 +183,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -221,9 +201,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -238,8 +216,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -257,14 +234,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -282,14 +254,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -307,14 +274,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -332,14 +294,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -357,14 +314,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -382,14 +334,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -407,14 +354,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -432,14 +374,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -457,14 +394,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -482,14 +414,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -507,14 +434,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -528,8 +450,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null && bundle.isPrimaryBiller() && (values('Billing Customer Reference')!==\"\" || values('Billing Customer Reference')!==null)  && (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -537,8 +458,7 @@
               "name": "Primary Family Member Info",
               "text": "<h4>Primary Family Member</h4>\n<span>The member selected <b>$studentName$</b> is the Primary family member.</span>\n<br>\n<span>Completing this form will also revoke cancellation to all Family members.</span>\n<br>\n<span>If you only wish to Revoke cancellation for this member and NOT the dependant members, please follow below.</span>\n<br>\n<ul>\n  <li>Click <a href=\"#/kapps/services/categories/bambora-billing/bambora-setup-biller-details?id=$parentMemberID$\">here</a> to complete Bambora Setup Biller Details(Family) form to remove dependant members from billing.</li>\n  <li>Set the students status to Active, after completing the above form.</li>\n</ul>\n<br>\n",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -549,8 +469,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null && values('Non Paying')!==\"YES\" && (values('Billing Parent Member')!==\"\" && values('Billing Parent Member')!==null && values('Billing Parent Member')!==values('Members'))  && (values('Billing Customer Reference')===\"\" || values('Billing Customer Reference')===null)  && (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -558,8 +477,7 @@
               "name": "Family Dependant Info",
               "text": "<h3>Family Dependant Member</h3>\n<span>The member selected <b>$studentName$</b> is a depend family member.</span>\n<br>\n<ul>\n  <li>Complete the Bambora Setup Biller Details(Family) form to add the student to billing.</li>\n  <ul>\n    <li>Click <a href=\"#/kapps/services/categories/bambora-billing/bambora-setup-biller-details?id=$parentMemberID$\">here</a> to complete form.</li>\n  </ul>\n  <li>Set the students status to Active, after completing the above form.</li>\n</ul>\n<br>\n",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -570,8 +488,7 @@
           "title": null,
           "visible": "!form('review') && values('Members')!==null &&  (values('Non Paying')===\"YES\" || values('Billing Customer Reference')===\"\" || values('Billing Customer Reference')===null) && values('Billing Parent Member')===values('Members')&& (typeof(loadingDetails) !== \"undefined\" && !loadingDetails)",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -579,8 +496,7 @@
               "name": "Non Paying Info",
               "text": "<h3>Non Paying Member or has No Billing</h3>\n<span>The member selected <b>$studentName$</b> is a Non Paying member or has No Billing.</span>\n<br>\n<ul>\n  <li>Set the students status to Active directly on the Members record.</li>\n  <li>Click <a href=\"#/kapps/gbmembers/Member/$memberGUID$\">here</a> to change status</li>\n</ul>\n<br>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -591,8 +507,7 @@
           "title": "",
           "visible": "values('Members')!==null  && (values('Billing Customer Reference')!==\"\" && values('Billing Customer Reference')!==null)  && ((typeof(loadingDetails) !== \"undefined\" && !loadingDetails) || form('review')) ",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -607,14 +522,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -628,8 +538,7 @@
           "title": "Terms",
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -637,8 +546,7 @@
               "name": "Terms Information",
               "text": "<div id=\"termsInformation\">\n<div class=\"emf-section-text\">You hereby agree not to cancel of debit authority via your bank account or credit card for any reason and any debts owing to $school_legal_name$. LTD.<br>\n<br>\nYou may cancel this contract if you (1) relocate your residence further than 20km from any school operated by Gracie Barra; (2) medical condition, being a permanent disability that will not allow the practice of BJJ for a considerable time (at least one year); (3) deployment in the case the student is military; (4) unexpected unemployment.<br>\n<br>\nFor any cancellation request, the appropriate document must be provided:<br>\n<br>\n* Change of Address: bill or lease agreement for the new address;<br>\n* Medical Condition: doctor's letter proving the permanent disability;<br>\n* Document proving deployment;<br>\n* Document proving the person lost the job;<br>\n<br>\nStudents who would like to cancel without reason must give 60 day's written notice.<br>\n<br>\nCancellation requests must be in person or via email sent to $school_email$ with any appropriate documentation. Requests will be reviewed and responded to within three business days.<br>\n<br>\nStudents enrolled in the Future Champions Programs can cancel their agreement for any reason upon delivery of 60 days written cancellation notice to the school.<br>\n<br>\n* Gracie Barra reserves the right to alter the days, hours of operation and classes if deemed necessary to better fit the student's needs.<br>\n<br>\n* The student and co-signer agree unconditionally to pay the above tuition without regard to the attendance made or classes missed.<br>\n<br>\n* Gracie Barra reserves the right to use any images, video footage and conduct interviews from Gracie Barra students. By signing this form you hereby grant Gracie Barra permission to use and or publish through any marketing channels.<br>\n<br>\n* The student consents to Gracie Barra collecting and using their personal information provided it is only used for the purposes of the proper running of the Gracie Barra business and will not be disclosed to third parties unless required by law.<br>\n<br>\nNote: This agreement is non-refundable.</div>\n</div>",
               "visible": false,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -646,8 +554,7 @@
               "name": "Member Signature",
               "text": "<label class=\"field-label required\">Member Signature</label><div id=\"member-signature-canvas\"/>",
               "visible": false,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -662,14 +569,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -683,8 +585,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -692,8 +593,7 @@
               "name": "Member Select Space",
               "text": "<div style=\"height:300px\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -704,8 +604,7 @@
           "visible": true,
           "enabled": "values('Members')!==null && (values('Billing Customer Reference')!==\"\" && values('Billing Customer Reference')!==null) ",
           "renderType": "submit-page",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
       "events": [

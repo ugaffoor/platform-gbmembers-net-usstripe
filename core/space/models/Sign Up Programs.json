@@ -99,9 +99,7 @@
   "qualifications": [
     {
       "name": "Get Sign Up Programs",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

@@ -30,21 +30,15 @@
     {
       "model": "Members",
       "name": "Get Billing Members",
-      "order": [
-
-      ],
-      "parameters": [
-
-      ],
+      "order": [],
+      "parameters": [],
       "qualification": "Get Active Billing Members",
       "status": "Active"
     },
     {
       "model": "Members",
       "name": "Get Family Member",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Family Member')}",
@@ -57,9 +51,7 @@
     {
       "model": "Members",
       "name": "Get Member",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Members')}",
@@ -72,9 +64,7 @@
     {
       "model": "Program Fees",
       "name": "Get Program",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Programs')}",
@@ -87,21 +77,15 @@
     {
       "model": "Members",
       "name": "Members",
-      "order": [
-
-      ],
-      "parameters": [
-
-      ],
+      "order": [],
+      "parameters": [],
       "qualification": "Get Active and Frozen Members",
       "status": "Active"
     },
     {
       "model": "Program Fees",
       "name": "Program Fees",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Payment Frequency')}",
@@ -136,8 +120,7 @@
           "title": "Select Member",
           "visible": "!form('review')",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -152,15 +135,13 @@
               "requiredMessage": "A member must be selected",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Members",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "K('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    if (bridgedData===null) return;\n    bundle.editFeeMode=false; \n    debugger;\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[Billing Customer Reference]').value(bridgedData['Billing Customer Reference']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Payment Frequency]').value(bridgedData['Billing Period']);\n    K('field[Billing Period]').value(bridgedData['Billing Period']);\n    K('field[Billing Start Date]').value(bridgedData['Billing Start Date']);\n    K('field[Biller Migrated]').value(bridgedData['Biller Migrated']);\n    K('field[Current Payment Frequency]').value(bridgedData['Billing Period']);\n    K('field[Current Payment]').value(bridgedData['Payment']);\n    K('field[Current Fee]').value(bridgedData['Admin Fee'].replace(\"$\",\"\"));\n    K('field[Payment Total]').value(bridgedData['Payment']);\n    K('field[Address]').value(bridgedData['Address']);\n    K('field[Suburb]').value(bridgedData['Suburb']);\n    K('field[State]').value(bridgedData['State']);\n    K('field[Postcode]').value(bridgedData['Postcode']);\n    K('field[Email]').value(bridgedData['Email']);\n    K('field[Mobile]').value(bridgedData['Mobile']);\n    K('field[DOB]').value(bridgedData['DOB']);\n    K('field[POS Profile ID]').value(bridgedData['POS Profile ID']);\n\n    K('section[Student Information]').show();\n\n    var paymentPeriod=bridgedData['Billing Period'];\n\n    $.ajax({\n      type: \"post\",\n        url: K('space').attributes(\"Kinetic Billing Server URL\")+\"/billingInfo\",\n        data: JSON.stringify({ \n          customerId: bridgedData['Billing Customer Reference'],\n          space: K('space').slug(),\n          billingService: K('space').attributes(\"Billing Company\"),\n        }),\n        headers: {\n          'Accept': 'application/json, text/plain, */*',\n          'Content-Type': 'application/json;charset=UTF-8'\n      \t}\n      })\n      .done(function( data ) {\n        if (data.data===null) {\n          K('field[Date Affective]').value('');\n          K('field[Billing Next Date]').value('');\n        } else {\n          nextBillingDate=moment(data.data['nextBillingDate']).format('YYYY-MM-DD');\n          K('field[Date Affective]').value(nextBillingDate);\n          K('field[Billing Next Date]').value(nextBillingDate);\n\n          bundle.config.widgets.xdsoftDatepickerRemove({\n            element: K(\"form\").find(\"#dateaffective\")[0]\n          });          \n          bundle.config.widgets.xdsoftDatepickerRemove({\n            element: K(\"form\").find(\"#datepaymentsresume\")[0]\n          });          \n          debugger;\n          period=1;\n          span=\"days\";\n          if (paymentPeriod===\"Weekly\"){\n            period=7;\n          }\n          if (paymentPeriod===\"Fortnightly\"){\n            period=14;\n          }\n          if (paymentPeriod===\"4 Weekly\"){\n            period=28;\n          }\n          if (paymentPeriod===\"Monthly\"){\n            span=\"months\";\n          }\n          if (paymentPeriod===\"Quarterly\") {\n            period=3;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"4 Months\") {\n            period=4;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"6 Months\") {\n            period=6;\n            span=\"months\";\n          }\n          \n          allowDates=[];\n          for (i=0;i<22;i++){\n            if (moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).isAfter(moment())) {\n              allowDates[allowDates.length]=moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).format(\"DD-MM-YYYY\");\n            }\n          }\n          debugger;\n          bundle.config.widgets.xdsoftDatepicker({\n            element: K(\"form\").find(\"#dateaffective\")[0],\n            timepicker: false,\n            displayDateFormat: \"MM/DD/YYYY\",\n            options: {\n              allowDates: allowDates,\n              formatDate:\"d-m-Y\",\n              validateOnBlur:false\n            },\n            onSelectDate:function(ct,$i){\n              K('field[Date Affective]').value(ct.dateFormat('YYYY-MM-DD'));\n            },                \n            onGenerate: function( ct ){\n                $(\"#dateaffective input\").val(moment(K('field[Date Affective]').value(),\"YYYY-MM-DD\").format(\"MM/DD/YYYY\"));\n            }\n          });          \n          bundle.config.widgets.xdsoftDatepicker({\n            element: K(\"form\").find(\"#datepaymentsresume\")[0],\n            timepicker: false,\n            displayDateFormat: \"MM/DD/YYYY\",\n            options: {\n              allowDates: allowDates,\n              formatDate:\"d-m-Y\",\n              validateOnBlur:false\n            },\n            onSelectDate:function(ct,$i){\n              K('field[Date Payments Resume]').value(ct.dateFormat('YYYY-MM-DD'));\n            },                \n            onGenerate: function( ct ){\n                $(\"#datepaymentsresume input\").val(K('field[Date Payments Resume]').value()!=null ? moment(K('field[Date Payments Resume]').value(),\"YYYY-MM-DD\").format(\"MM/DD/YYYY\") : \"\");\n            }    \n          });            \n          \n          bundle.config.widgets.xdsoftDatepickerRemove({\n            element: K(\"form\").find(\"#newBillingStartDate\")[0]\n          });          \n          debugger;\n          var tomorrow = new Date((new Date()).getTime() + 24 * 60 * 60 * 1000);\n          bundle.config.widgets.xdsoftDatepicker({\n            element: K(\"form\").find(\"#newBillingStartDate\")[0],\n            timepicker: false,\n            displayDateFormat: \"MM/DD/YYYY\",\n            options: {\n              startDate: new Date((new Date()).getTime() + 24 * 60 * 60 * 1000),\n              minDate: 0, \n              formatDate:\"d-m-Y\",\n              validateOnBlur:false\n            },\n            onSelectDate:function(ct,$i){\n              K('field[New Billing Start Date]').value(ct.dateFormat('YYYY-MM-DD'));\n            },                \n            onGenerate: function( ct ){\n              $('.xdsoft_today')\n                .addClass('xdsoft_disabled');\n            }\n          });          \n        }\n      });\n          \n    var familyMembers=bridgedData['Billing Family Members'];\n    if (familyMembers!==\"\" && familyMembers!==null && familyMembers!==\"[]\"){\n      if (JSON.parse(familyMembers).length>1) {\n\t      K('field[Include Family Members]').value(\"Yes\");\n      } else {\n\t      K('field[Include Family Members]').value(\"No\");\n      }\n      K('field[membersJSON]').value(familyMembers);\n      K('field[feesJSON]').value(bridgedData['Family Fee Details']);\n      \n      viewerConfig.response = JSON.parse(K('field[feesJSON]').value());\n      if (viewerConfig.response!==null) {\n\t      DataViewer.renderResults($('#memberTableDiv'), viewerConfig);  \n      }\n      \n      $('#member-table tbody tr').on( 'click', function () {\n        if ( $(this).hasClass('selected') ) {\n          $(this).removeClass('selected');\n        }\n        else {\n          $('#member-table').DataTable().$('tr.selected').removeClass('selected');\n          $(this).addClass('selected');\n        }\n      });     \n      bundle.completeTableChange();      \n    } else {\n\t      K('field[Include Family Members]').value(\"No\");\n      viewerConfig.response = JSON.parse(\"[]\");\n      if (viewerConfig.response!==null) {\n\t      DataViewer.renderResults($('#memberTableDiv'), viewerConfig);  \n      }\n      \n      $('#member-table tbody tr').on( 'click', function () {\n        if ( $(this).hasClass('selected') ) {\n          $(this).removeClass('selected');\n        }\n        else {\n          $('#member-table').DataTable().$('tr.selected').removeClass('selected');\n          $(this).addClass('selected');\n        }\n      });     \n      bundle.completeTableChange();      \n    }\n    bundle.removedMembers=undefined;\n    \n    \n    if (K('space').attributes('Ignore Admin Fee')===\"YES\" || K('space').attributes('Admin Fee Charge')===null || K('space').attributes('Admin Fee Charge')===\"\") {\n      K('field[Admin Fee]').hide();\n      K('field[Admin Fee]').value(\"\");\n    } else {\n\t    K('field[Admin Fee]').show();\n      if (K('space').attributes('Admin Fee Label')!==null && K('space').attributes('Admin Fee Label')!==\"\" && (K('field[Admin Fee]').value()===null || K('field[Admin Fee]').value().indexOf(\"%\")===-1)) {\n        $(\"#admin_fee_label\").html(K('space').attributes('Admin Fee Label'));\n      }\n    }\n    bundle.disableEdits();\n\n    K('section[Student Information]').show();\n    K('section[Program Information]').show();    \n  }\n});",
+                  "code": "K('bridgedResource[Get Member]').load({\n  attributes: ['Member ID', 'First Name', 'Last Name'],\n  values: {'ID' : 'Allen'},\n  success: function(bridgedData) {\n    if (bridgedData===null) return;\n    bundle.editFeeMode=false; \n    debugger;\n    K('field[Member ID]').value(bridgedData['Member ID']);\n    K('field[Billing Customer Id]').value(bridgedData['Billing Customer Id']);\n    K('field[Billing Customer Reference]').value(bridgedData['Billing Customer Reference']);\n    K('field[Student First Name]').value(bridgedData['First Name']);\n    K('field[Student Last Name]').value(bridgedData['Last Name']);\n    K('field[Payment Frequency]').value(bridgedData['Billing Period']);\n    K('field[Billing Period]').value(bridgedData['Billing Period']);\n    K('field[Billing Start Date]').value(bridgedData['Billing Start Date']);\n    K('field[Biller Migrated]').value(bridgedData['Biller Migrated']);\n    K('field[Current Payment Frequency]').value(bridgedData['Billing Period']);\n    K('field[Current Payment]').value(bridgedData['Payment']);\n    K('field[Current Fee]').value(bridgedData['Admin Fee'].replace(\"$\",\"\"));\n    K('field[Payment Total]').value(bridgedData['Payment']);\n    K('field[Address]').value(bridgedData['Address']);\n    K('field[Suburb]').value(bridgedData['Suburb']);\n    K('field[State]').value(bridgedData['State']);\n    K('field[Postcode]').value(bridgedData['Postcode']);\n    K('field[Email]').value(bridgedData['Email']);\n    K('field[Mobile]').value(bridgedData['Mobile']);\n    K('field[DOB]').value(bridgedData['DOB']);\n    K('field[POS Profile ID]').value(bridgedData['POS Profile ID']);\n\n    K('section[Student Information]').show();\n\n    var paymentPeriod=bridgedData['Billing Period'];\n\n    $.ajax({\n      type: \"post\",\n        url: K('space').attributes(\"Kinetic Billing Server URL\")+\"/billingInfo\",\n        data: JSON.stringify({ \n          customerId: bridgedData['Billing Customer Reference'],\n          space: K('space').slug(),\n          billingService: 'Stripe',\n        }),\n        headers: {\n          'Accept': 'application/json, text/plain, */*',\n          'Content-Type': 'application/json;charset=UTF-8'\n      \t}\n      })\n      .done(function( data ) {\n        if (data.data===null) {\n          K('field[Date Affective]').value('');\n          K('field[Billing Next Date]').value('');\n        } else {\n          nextBillingDate=moment(data.data['nextBillingDate']).format('YYYY-MM-DD');\n          K('field[Date Affective]').value(nextBillingDate);\n          K('field[Billing Next Date]').value(nextBillingDate);\n\n          bundle.config.widgets.xdsoftDatepickerRemove({\n            element: K(\"form\").find(\"#dateaffective\")[0]\n          });          \n          bundle.config.widgets.xdsoftDatepickerRemove({\n            element: K(\"form\").find(\"#datepaymentsresume\")[0]\n          });          \n          debugger;\n          period=1;\n          span=\"days\";\n          if (paymentPeriod===\"Weekly\"){\n            period=7;\n          }\n          if (paymentPeriod===\"Fortnightly\"){\n            period=14;\n          }\n          if (paymentPeriod===\"4 Weekly\"){\n            period=28;\n          }\n          if (paymentPeriod===\"Monthly\"){\n            span=\"months\";\n          }\n          if (paymentPeriod===\"Quarterly\") {\n            period=3;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"4 Months\") {\n            period=4;\n            span=\"months\";\n          }\n          if (paymentPeriod===\"6 Months\") {\n            period=6;\n            span=\"months\";\n          }\n          \n          allowDates=[];\n          for (i=0;i<22;i++){\n            if (moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).isAfter(moment())) {\n              allowDates[allowDates.length]=moment(nextBillingDate, \"YYYY-MM-DD\").add(period*i,span).format(\"DD-MM-YYYY\");\n            }\n          }\n          debugger;\n          bundle.config.widgets.xdsoftDatepicker({\n            element: K(\"form\").find(\"#dateaffective\")[0],\n            timepicker: false,\n            displayDateFormat: \"MM/DD/YYYY\",\n            options: {\n              allowDates: allowDates,\n              formatDate:\"d-m-Y\",\n              validateOnBlur:false\n            },\n            onSelectDate:function(ct,$i){\n              K('field[Date Affective]').value(ct.dateFormat('YYYY-MM-DD'));\n            },                \n            onGenerate: function( ct ){\n                $(\"#dateaffective input\").val(moment(K('field[Date Affective]').value(),\"YYYY-MM-DD\").format(\"MM/DD/YYYY\"));\n            }\n          });          \n          bundle.config.widgets.xdsoftDatepicker({\n            element: K(\"form\").find(\"#datepaymentsresume\")[0],\n            timepicker: false,\n            displayDateFormat: \"MM/DD/YYYY\",\n            options: {\n              allowDates: allowDates,\n              formatDate:\"d-m-Y\",\n              validateOnBlur:false\n            },\n            onSelectDate:function(ct,$i){\n              K('field[Date Payments Resume]').value(ct.dateFormat('YYYY-MM-DD'));\n            },                \n            onGenerate: function( ct ){\n                $(\"#datepaymentsresume input\").val(K('field[Date Payments Resume]').value()!=null ? moment(K('field[Date Payments Resume]').value(),\"YYYY-MM-DD\").format(\"MM/DD/YYYY\") : \"\");\n            }    \n          });            \n          \n          bundle.config.widgets.xdsoftDatepickerRemove({\n            element: K(\"form\").find(\"#newBillingStartDate\")[0]\n          });          \n          debugger;\n          var tomorrow = new Date((new Date()).getTime() + 24 * 60 * 60 * 1000);\n          bundle.config.widgets.xdsoftDatepicker({\n            element: K(\"form\").find(\"#newBillingStartDate\")[0],\n            timepicker: false,\n            displayDateFormat: \"MM/DD/YYYY\",\n            options: {\n              startDate: new Date((new Date()).getTime() + 24 * 60 * 60 * 1000),\n              minDate: 0, \n              formatDate:\"d-m-Y\",\n              validateOnBlur:false\n            },\n            onSelectDate:function(ct,$i){\n              K('field[New Billing Start Date]').value(ct.dateFormat('YYYY-MM-DD'));\n            },                \n            onGenerate: function( ct ){\n              $('.xdsoft_today')\n                .addClass('xdsoft_disabled');\n            }\n          });          \n        }\n      });\n          \n    var familyMembers=bridgedData['Billing Family Members'];\n    if (familyMembers!==\"\" && familyMembers!==null && familyMembers!==\"[]\"){\n      if (JSON.parse(familyMembers).length>1) {\n\t      K('field[Include Family Members]').value(\"Yes\");\n      } else {\n\t      K('field[Include Family Members]').value(\"No\");\n      }\n      K('field[membersJSON]').value(familyMembers);\n      K('field[feesJSON]').value(bridgedData['Family Fee Details']);\n      \n      viewerConfig.response = JSON.parse(K('field[feesJSON]').value());\n      if (viewerConfig.response!==null) {\n\t      DataViewer.renderResults($('#memberTableDiv'), viewerConfig);  \n      }\n      \n      $('#member-table tbody tr').on( 'click', function () {\n        if ( $(this).hasClass('selected') ) {\n          $(this).removeClass('selected');\n        }\n        else {\n          $('#member-table').DataTable().$('tr.selected').removeClass('selected');\n          $(this).addClass('selected');\n        }\n      });     \n      bundle.completeTableChange();      \n    } else {\n\t      K('field[Include Family Members]').value(\"No\");\n      viewerConfig.response = JSON.parse(\"[]\");\n      if (viewerConfig.response!==null) {\n\t      DataViewer.renderResults($('#memberTableDiv'), viewerConfig);  \n      }\n      \n      $('#member-table tbody tr').on( 'click', function () {\n        if ( $(this).hasClass('selected') ) {\n          $(this).removeClass('selected');\n        }\n        else {\n          $('#member-table').DataTable().$('tr.selected').removeClass('selected');\n          $(this).addClass('selected');\n        }\n      });     \n      bundle.completeTableChange();      \n    }\n    bundle.removedMembers=undefined;\n    \n    \n    if (K('space').attributes('Ignore Admin Fee')===\"YES\" || K('space').attributes('Admin Fee Charge')===null || K('space').attributes('Admin Fee Charge')===\"\") {\n      K('field[Admin Fee]').hide();\n      K('field[Admin Fee]').value(\"\");\n    } else {\n\t    K('field[Admin Fee]').show();\n      if (K('space').attributes('Admin Fee Label')!==null && K('space').attributes('Admin Fee Label')!==\"\" && (K('field[Admin Fee]').value()===null || K('field[Admin Fee]').value().indexOf(\"%\")===-1)) {\n        $(\"#admin_fee_label\").html(K('space').attributes('Admin Fee Label'));\n      }\n    }\n    bundle.disableEdits();\n\n    K('section[Student Information]').show();\n    K('section[Program Information]').show();    \n  }\n});",
                   "bridgedResourceName": null,
                   "runIf": "values('Members')!==\"\""
                 },
@@ -172,8 +153,7 @@
                   "runIf": "values('Members')===null"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Get Billing Members",
@@ -189,8 +169,7 @@
               "name": "Members Select",
               "text": "<div id=\"selectMemberMenu\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -201,8 +180,7 @@
           "title": "Student Information",
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -217,14 +195,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -242,9 +215,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -259,8 +230,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -278,9 +248,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Requested For",
@@ -295,8 +263,7 @@
                   ]
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -314,14 +281,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -339,14 +301,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -364,14 +321,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -389,9 +341,7 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Billing Info",
@@ -400,8 +350,7 @@
                   "code": "var settings = {\n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/billingInfo\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": \"Stripe\",\n    \"customerId\": K('field[Billing Customer Reference]').value(),\n  })\n}\n$.ajax(settings).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var data=response.data;\n    var message=data.status_message;\n    $(\"#errorValue\").html(message);\n  } else {\n    K('field[Billing Status]').value(response.data.statusCode);\n    \n    K('field[Billing Status]').hide();\n    K('section[Inactive Payment Options]').hide();\n\n    if (response.data.statusCode===\"Inactive\") {\n      K('field[Billing Status]').show();\n      $(\"#rescheduleDateOnlyLabel\").hide();\n      $(\"#rescheduleDateOnly\").prop(\"disabled\", true);\n\t\t\t$(\"#rescheduleWithDetailsLabel\").hide();      \n\t\t\t$(\"#rescheduleWithDetails\").prop(\"disabled\", true);  \n\t    K('section[Inactive Payment Options]').show();\n      \n      \n      bundle.config.widgets.xdsoftDatepickerRemove({\n        element: K(\"form\").find(\"#dateaffective\")[0]\n      });          \n      debugger;\n      var tomorrow = new Date((new Date()).getTime() + 24 * 60 * 60 * 1000);\n      bundle.config.widgets.xdsoftDatepicker({\n        element: K(\"form\").find(\"#dateaffective\")[0],\n        timepicker: false,\n        displayDateFormat: \"MM/DD/YYYY\",\n        options: {\n          formatDate:\"d-m-Y\",\n          validateOnBlur:false\n        },\n        onSelectDate:function(ct,$i){\n          K('field[Date Affective]').value(ct.dateFormat('YYYY-MM-DD'));\n        },                \n        onGenerate: function( ct ){\n            $(\"#dateaffective input\").val(moment(K('field[Date Affective]').value(),\"YYYY-MM-DD\").format(\"MM/DD/YYYY\"));\n        }\n      });          \n    }    \n  }\n});\n"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -419,14 +368,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -444,14 +388,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -469,14 +408,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -494,14 +428,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -519,14 +448,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -544,14 +468,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -569,14 +488,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -594,14 +508,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -619,14 +528,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -644,14 +548,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -669,14 +568,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -694,14 +588,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -719,14 +608,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -744,14 +628,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -769,14 +648,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -794,14 +668,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -819,14 +688,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -844,14 +708,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -862,8 +721,7 @@
               "name": "Editing Options",
               "text": "<span class=\"editingOptions\">\n\t<input type=\"radio\" name=\"editingOptions\" id=\"editBillingDetails\" value=\"editBillingDetails\"/>\n  <label id=\"editBillingDetailsLabel\" for=\"editBillingDetails\"> Edit Billing Details</label>\n\t<input type=\"radio\" name=\"editingOptions\" id=\"rescheduleDateOnly\" value=\"rescheduleDateOnly\"/>\n  <label id=\"rescheduleDateOnlyLabel\" for=\"rescheduleDateOnly\"> Reschedule Date Only</label>\n\t<input type=\"radio\" name=\"editingOptions\" id=\"rescheduleWithDetails\" value=\"rescheduleWithDetails\"/>\n  <label id=\"rescheduleWithDetailsLabel\" for=\"rescheduleWithDetails\"> Reschedule and Change Details</label>\n</span>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -878,14 +736,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -896,8 +749,7 @@
               "name": "RescheduleDateOnlyInfo",
               "text": "<div class=\"editOptionText\">\n  <span>Maintain the current Membership fee, and only select a new Billing Date.</span><br>\n  <span><b style=\"color:red\">Note, all failed billing attempts will not be retried.</b></span>\n</div>",
               "visible": "values('Editing Option')===\"RescheduleDateOnly\" ",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -905,8 +757,7 @@
               "name": "RescheduleWithDetailsInfo",
               "text": "<div class=\"editOptionText\">\n  <span><b style=\"color:red\">Note, all failed billing attempts will not be retried.</b></span>\n</div>",
               "visible": "values('Editing Option')===\"RescheduleWithDetails\" ",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -914,8 +765,7 @@
               "name": "EditBillingDetailsInfo",
               "text": "<div class=\"editOptionText\">\n\t<span>This option will maintain the current Billing cycle.</span>\n</div>",
               "visible": "values('Editing Option')===\"EditBillingDetails\" && values('Billing Status')===\"Active\"",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -923,8 +773,7 @@
               "name": "EditInactiveBillingDetailsInfo",
               "text": "<div class=\"editInactiveOptionText\">\n\t<span>The current Billing account is Inactive. \n    <br>You need to select a new Billing Start date.\n    <br>You can also maintain or rebuild the Program Fees.\n    <br>Saving this form will create a new Recurring account.</span>\n</div>",
               "visible": "values('Editing Option')===\"EditBillingDetails\" && values('Billing Status')===\"Inactive\"",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "section",
@@ -933,8 +782,7 @@
               "title": "",
               "visible": true,
               "omitWhenHidden": null,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -949,14 +797,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "radio",
                   "choicesResourceName": null,
@@ -983,8 +826,7 @@
           "title": "Program Information",
           "visible": "values('Include Family Members')!==null",
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -999,14 +841,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "radio",
               "choicesResourceName": null,
@@ -1035,9 +872,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Dates",
@@ -1053,8 +888,7 @@
                   "runIf": "values('Payment Frequency')!==null"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "radio",
               "choicesResourceName": null,
@@ -1111,9 +945,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Family Member",
@@ -1139,8 +971,7 @@
                   "bridgedResourceName": "Get Family Member"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Members",
@@ -1156,8 +987,7 @@
               "name": "Discount Dialog",
               "text": "<div id=\"discountDialog\" title=\"Discount Value\">\n  <input class=\"discountPercent\" type='text' value='%' maxlength='6' pattern=\"[0-9]\"/>\n  <button onclick='bundle.applyCurrentDiscount()'>Apply</button>\n</div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "content",
@@ -1165,8 +995,7 @@
               "name": "Family Member Select",
               "text": "<div id=\"selectFamilyMemberMenu\"></div>",
               "visible": "values('Include Family Members')===\"Yes\" && !form('review')  && (values('Editing Option')===\"EditBillingDetails\"  ||values('Editing Option')===\"RescheduleWithDetails\"  )",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -1181,14 +1010,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1206,14 +1030,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1231,14 +1050,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1256,9 +1070,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Get Program",
@@ -1284,8 +1096,7 @@
                   "bridgedResourceName": "Get Program"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": "Program Fees",
@@ -1308,14 +1119,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1333,14 +1139,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1358,9 +1159,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Set Fee as Individual",
@@ -1376,8 +1175,7 @@
                   "runIf": "values('Include Family Members')===\"No\""
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1389,8 +1187,7 @@
               "title": null,
               "visible": false,
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "button",
@@ -1399,8 +1196,7 @@
                   "visible": true,
                   "enabled": true,
                   "renderType": "custom",
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "events": [
                     {
                       "name": "Set Current Member",
@@ -1418,8 +1214,7 @@
                   "visible": "values('Include Family Members')===\"Yes\"",
                   "enabled": true,
                   "renderType": "custom",
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "events": [
                     {
                       "name": "Add Family Member",
@@ -1444,8 +1239,7 @@
                   "visible": true,
                   "enabled": true,
                   "renderType": "custom",
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "events": [
                     {
                       "name": "Delete Selected Member",
@@ -1464,8 +1258,7 @@
               "name": "Members Table",
               "text": "<div id='memberTableDiv' class=\"review\"></div>",
               "visible": "values('Include Family Members')!==null",
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             },
             {
               "type": "field",
@@ -1480,14 +1273,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1505,14 +1293,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1530,14 +1313,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1555,14 +1333,9 @@
               "requiredMessage": "Please ensure you have added appropriate Member Programs.",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1580,9 +1353,7 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Update Taxes",
@@ -1591,8 +1362,7 @@
                   "code": "debugger;\nif (K('field[Fee Total]').value()===null) {\n    K('field[Admin Fee]').value(\"\");\n    K('field[TAX 1]').value(\"\");\n    K('field[TAX 2]').value(\"\");\n    K('field[TAX 3]').value(\"\");\n  \tK('field[Payment Total]').value(\"\");\n} else {\n  var total=0;\n  var subTotal=0;\n  var feeTotal=new Number(K('field[Fee Total]').value());\n  \n\tif (K('space').attributes('Ignore Admin Fee')!==\"YES\" && K('space').attributes('Admin Fee Charge')!==null && K('space').attributes('Admin Fee Charge')!==\"\") {  \n    var adminFee=K('space').attributes('Admin Fee Charge').replace(\"%\",\"\");\n\n    if (adminFee!==\"\" && adminFee!==0) {\n      var value=(Number(feeTotal)*(Number(adminFee)/100));\n      value=new Number(value.toFixed(2));\n      K('field[Admin Fee]').value(value);\n      subTotal=subTotal+value;\n    }\n  }\n  if (bundle.tax1Value!==undefined && bundle.tax1Value!==null){\n    var value=feeTotal*(new Number(bundle.tax1Value));\n    value=new Number(value.toFixed(2));\n    K('field[TAX 1]').value(value);\n    subTotal=subTotal+value;\n  }\n  if (bundle.tax2Value!==undefined && bundle.tax2Value!==null){\n    var value=feeTotal*(new Number(bundle.tax2Value));\n    value=new Number(value.toFixed(2));\n    K('field[TAX 2]').value(value);\n    subTotal=subTotal+value;\n  }\n  if (bundle.tax3Value!==undefined && bundle.tax3Value!==null){\n    var value=feeTotal*(new Number(bundle.tax3Value));\n    value=new Number(value.toFixed(2));\n    K('field[TAX 3]').value(value);\n    subTotal=subTotal+value;\n  }\n  total=feeTotal+subTotal;\n  K('field[Payment Total]').value(total.toFixed(2));\n}"
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1610,14 +1380,9 @@
               "requiredMessage": null,
               "omitWhenHidden": true,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1635,14 +1400,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1660,14 +1420,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1685,14 +1440,9 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1710,14 +1460,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -1729,8 +1474,7 @@
               "title": null,
               "visible": "values('Editing Option')===\"EditBillingDetails\"",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -1745,12 +1489,8 @@
                   "requiredMessage": null,
                   "omitWhenHidden": null,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
+                  "constraints": [],
+                  "events": [],
                   "renderAttributes": {
                     "class": "updateStripe"
                   },
@@ -1771,8 +1511,7 @@
                   "name": "Update Information",
                   "text": "Leave this box checked to apply updates to Stripe billing. If unchecked, updates will only be reflected in GB Members and will not modify actual billing in Stripe.",
                   "visible": "values('Billing Status')===\"Active\"",
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 }
               ]
             },
@@ -1783,8 +1522,7 @@
               "title": null,
               "visible": "values('Update Stripe')==\"Update Stripe\"",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "field",
@@ -1799,9 +1537,7 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
+                  "constraints": [],
                   "events": [
                     {
                       "name": "Set Date Affective",
@@ -1810,8 +1546,7 @@
                       "code": "K('field[Date Affective]').value(moment().format(\"YYYY-MM-DD\"));"
                     }
                   ],
-                  "renderAttributes": {
-                  },
+                  "renderAttributes": {},
                   "dataType": "json",
                   "renderType": "checkbox",
                   "choicesResourceName": null,
@@ -1829,8 +1564,7 @@
                   "name": "Date Affective HTML",
                   "text": "<div class=\"form-group required\" linkedField=\"Date Affective\">  \n  <label class=\"field-label\" for=\"dateaffective\">Date Effective(Select the date when the new payment amount will be applied.) (Next billing cycle dates)</label>\n  <div id=\"dateaffective\"></div>\n</div>",
                   "visible": "!form('review') && values('Immediately').indexOf(\"Immediately\")===-1",
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 },
                 {
                   "type": "field",
@@ -1845,14 +1579,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "date"
                 },
@@ -1869,14 +1598,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "radio",
                   "choicesResourceName": null,
@@ -1898,8 +1622,7 @@
                   "name": "Date Payments Resume HTML",
                   "text": "<div class=\"form-group required\" linkedField=\"Date Payments Resume\">  \n  <label class=\"field-label\" for=\"datepaymentsresume\">Date Payments Resume (Date Previous payment amount will be resumed) (Next billing cycle dates)</label>\n  <div id=\"datepaymentsresume\"></div>\n</div>",
                   "visible": "!form('review') && values('Resume Date Option')==\"Resume Date\"",
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 },
                 {
                   "type": "field",
@@ -1914,14 +1637,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "date"
                 }
@@ -1934,8 +1652,7 @@
               "title": null,
               "visible": "values('Editing Option')===\"RescheduleDateOnly\" || values('Editing Option')===\"RescheduleWithDetails\"",
               "omitWhenHidden": true,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "content",
@@ -1943,8 +1660,7 @@
                   "name": "New Billing Start Date HTML",
                   "text": "<div class=\"form-group required\" linkedField=\"New Billing Start Date\">  \n  <label class=\"field-label\" for=\"newBillingStartDate\">New Billing Start Date (Date which will be next billed on)</label>\n  <div id=\"newBillingStartDate\"></div>\n</div>",
                   "visible": "!form('review')",
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 },
                 {
                   "type": "field",
@@ -1959,14 +1675,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "date"
                 }
@@ -1981,8 +1692,7 @@
           "title": null,
           "visible": false,
           "omitWhenHidden": false,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "field",
@@ -1997,9 +1707,7 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Load Stripe Card Info",
@@ -2009,8 +1717,7 @@
                   "runIf": "values('Payment Options')===\"Set new payment details\""
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "radio",
               "choicesResourceName": null,
@@ -2039,9 +1746,7 @@
               "requiredMessage": null,
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
+              "constraints": [],
               "events": [
                 {
                   "name": "Load Card",
@@ -2054,19 +1759,18 @@
                   "name": "Load Bank Account(PAD)",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": K('space').attributes('Billing Company'),\n    \"paymentType\": \"acss_debit\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n        const { setupIntent, error } = await stripe.confirmAcssDebitSetup(clientSecret, {\n          payment_method: {\n            billing_details: {\n              name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n              email: K('field[Email]').value(),\n            },\n          },\n        });\n\t\t\t\tdebugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n        } else {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent.id);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
+                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": 'Stripe',\n    \"paymentType\": \"acss_debit\",\n    \"currency\": K('space').attributes('Currency'),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n        const { setupIntent, error } = await stripe.confirmAcssDebitSetup(clientSecret, {\n          payment_method: {\n            billing_details: {\n              name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n              email: K('field[Email]').value(),\n            },\n          },\n        });\n\t\t\t\tdebugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n        } else {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent.id);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
                   "runIf": "values('Payment Method')===\"Bank Account PAD\""
                 },
                 {
                   "name": "Load Bank Account (ACH)",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": K('space').attributes('Billing Company'),\n    \"paymentType\": \"us_bank_account\",\n    \"currency\": K('space').attributes('Currency'),\n    \"firstName\": K('field[Student First Name]').value(),\n    \"lastName\": K('field[Student Last Name]').value(),\n    \"email\": K('field[Email]').value(),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    K('field[Billing Customer Reference]').value(response.data.customerId);\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n      \telements.submit();\n        const { setupIntent, error } = await stripe.confirmSetup({\n          elements,\n          clientSecret,\n          confirmParams: {\n            return_url: window.location.href, // ✅ required unless redirect flag is top-level\n            payment_method_data: {\n              billing_details: {\n                name: `${K('field[Student First Name]').value()} ${K('field[Student Last Name]').value()}`,\n                email: K('field[Email]').value(),\n              },\n            },\n          },\n          redirect: 'if_required', // ✅ put redirect flag here (top-level)\n        });\n      debugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n\t\t\t\t} else if (setupIntent.status === \"succeeded\") {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
+                  "code": "debugger;\n$(\"#bankSubmit\").prop(\"disabled\", \"\");\n$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\nconst stripe = Stripe(K('space').attributes('POS Stripe Publishable Key'),{\"stripeAccount\":K('space').attributes('Stripe Account ID')});\nvar getPaymentIntent = {     \n  \"crossDomain\": true,\n  \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/fetchPaymentIntent\",\n  \"method\": \"POST\",\n  \"headers\": {},\n  \"dataType\": \"json\",\n  \"contentType\": \"application/json\",\n  \"data\": JSON.stringify({\n    \"space\": K('space').slug(),\n    \"billingService\": 'Stripe',\n    \"paymentType\": \"us_bank_account\",\n    \"currency\": K('space').attributes('Currency'),\n    \"firstName\": K('field[Student First Name]').value(),\n    \"lastName\": K('field[Student Last Name]').value(),\n    \"email\": K('field[Email]').value(),\n    \"customerId\": K('field[Billing Customer Id]').value()\n  })\n}\n$.ajax(getPaymentIntent).done(function (response) {\n  debugger;\n  console.log(response);\n  if (response.error===100) {\n    var message=response.errorMessage;\n    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n    $(\"#errorValue\").html(message);\n    K('section[Card Error]').show();\n    return;\n  } else {\n    K('section[Card Error]').hide();\n    K('field[Billing Customer Reference]').value(response.data.customerId);\n    clientSecret = response.data.clientSecret;\n  const appearance = {\n    theme: 'stripe',\n  };\n  elements = stripe.elements({ appearance, clientSecret });\n\n  const paymentElementOptions = {\n    layout: \"accordion\",\n    mandateText: \"By providing your bank details, you authorize \"+K('space').attributes('School Name'+\" to debit your nominated account your membership fees.\"),\n    defaultValues: {\n      billingDetails: {\n        name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(), \n        email: K('field[Email]').value(),\n      },\n    },\n    \n  };\n\n  const paymentElement = elements.create(\"payment\", paymentElementOptions);\n  paymentElement.mount(\"#bank-element\");\n    document.querySelector(\"#bankSubmit\").addEventListener(\"click\", async () => {\n        debugger;\n\t\t\t\t$(\"#bankSubmit\").prop(\"disabled\", \"true\");\n      \telements.submit();\n        const { setupIntent, error } = await stripe.confirmSetup({\n          elements,\n          clientSecret,\n          confirmParams: {\n            return_url: window.location.href, // ✅ required unless redirect flag is top-level\n            payment_method_data: {\n              billing_details: {\n                name: `${K('field[Student First Name]').value()} ${K('field[Student Last Name]').value()}`,\n                email: K('field[Email]').value(),\n              },\n            },\n          },\n          redirect: 'if_required', // ✅ put redirect flag here (top-level)\n        });\n      debugger;\n        if (error){\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Confirm Bank Details\")\n\t\t\t    $(\"#bankSubmit\").prop(\"disabled\", \"\");\n          console.error(error.message);\n          K('field[Payment Method Complete]').value(\"\");\t\t\n\t\t\t\t} else if (setupIntent.status === \"succeeded\") {\n\t\t\t\t\t$(\"#bankSubmit\").html(\"Account Verified\")\n          console.log(\"SetupIntent:\", setupIntent);\n          bundle.sourceID=setupIntent.id;\n          K('field[Payment Method Complete]').value(\"COMPLETED\");\t\t\n          if (setupIntent.status === \"requires_microdeposit_verification\") {\n            alert(\"Check your bank account for two small deposits to complete verification.\");\n          }          \n        }\n      });     \n   } \n});        \n",
                   "runIf": "values('Payment Method')===\"Bank Account ACH\""
                 }
               ],
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "dropdown",
               "choicesResourceName": null,
@@ -2099,14 +1803,9 @@
               "requiredMessage": "Please ensure a Payment method has been completed.",
               "omitWhenHidden": false,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -2118,8 +1817,7 @@
               "title": "Credit Card Details",
               "visible": "values('Payment Method')===\"Credit Card\"",
               "omitWhenHidden": false,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "content",
@@ -2127,8 +1825,7 @@
                   "name": "Credit Card Capture",
                   "text": "\n<!--\n  Or create a <label> with a 'for' attribute,\n  referencing the ID of your container.\n-->\n<label for=\"card-element\"></label>\n<div id=\"card-element\"></div>\n",
                   "visible": true,
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 },
                 {
                   "type": "field",
@@ -2143,14 +1840,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -2168,14 +1860,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -2193,14 +1880,9 @@
                   "requiredMessage": null,
                   "omitWhenHidden": false,
                   "pattern": null,
-                  "constraints": [
-
-                  ],
-                  "events": [
-
-                  ],
-                  "renderAttributes": {
-                  },
+                  "constraints": [],
+                  "events": [],
+                  "renderAttributes": {},
                   "dataType": "string",
                   "renderType": "text",
                   "rows": 1
@@ -2214,8 +1896,7 @@
               "title": "Bank Account Details",
               "visible": "values('Payment Method')===\"Bank Account PAD\" || values('Payment Method')===\"Bank Account ACH\" ",
               "omitWhenHidden": false,
-              "renderAttributes": {
-              },
+              "renderAttributes": {},
               "elements": [
                 {
                   "type": "content",
@@ -2223,8 +1904,7 @@
                   "name": "Bank Account Capture",
                   "text": "  <div id=\"bank-element\">\n  </div>\n<button id=\"bankSubmit\" type=\"button\" class=\"btn btn-primary\">\n  Confirm Bank Details\n</button>",
                   "visible": true,
-                  "renderAttributes": {
-                  }
+                  "renderAttributes": {}
                 }
               ]
             }
@@ -2237,8 +1917,7 @@
           "title": null,
           "visible": true,
           "omitWhenHidden": null,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -2246,8 +1925,7 @@
               "name": "Error Details",
               "text": "<p class=\"errorDetails\" id=\"errorValue\"/p>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -2258,8 +1936,7 @@
           "title": null,
           "visible": "values('Include Family Members')===null || values('Payment Options') === \"Set new payment details\"",
           "omitWhenHidden": true,
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "elements": [
             {
               "type": "content",
@@ -2267,8 +1944,7 @@
               "name": "Member Select Space",
               "text": "<div style=\"height:100px\"></div>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -2279,8 +1955,7 @@
           "visible": true,
           "enabled": "Object.keys(K('form').validate()).length===0",
           "renderType": "custom",
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "events": [
             {
               "name": "Submit Reschedule of Active",
@@ -2300,7 +1975,7 @@
               "name": "Submit Inactive Details",
               "type": "Click",
               "action": "Custom",
-              "code": "debugger;\n\nif (Object.keys(K('form').validate()).length>0) {\n  K('form').submitPage();\n} else {\n  K('button[Submit]').disable();\n  if (K('field[Payment Options]').value()===\"Set new payment details\") {  \n    var paymentType=\"\";\n    if (K('field[Payment Method]').value()===\"Credit Card\") {\n      paymentType=\"card\";\n    } else {\n    \tpaymentType=\"acss_debit\";\n    }\n\n    if (paymentType === \"card\") {\n      bundle.stripe\n        .createSource(paymentType===\"card\" ? bundle.cardElement : bundle.ibanElement, {\n        type: paymentType,\n        currency:  K('space').attributes('Currency'),\n        owner: {\n          name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(),\n        },\n      })\n      .then(function(result) {\n        // Handle result.error or result.source\n        if (result.error) {\n          K('button[Submit]').enable();\n          $(\"#errorValue\").html(result.error.message);\n          K('section[Card Error]').show();\n        } else {\n          debugger;\n          console.log(result.source);\n          bundle.sourceID=result.source.id;\n\n          var paymentSettings = {\n            \"crossDomain\": true,\n            \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/savePaymentMethod\",\n            \"method\": \"POST\",\n            \"headers\": {},\n            \"dataType\": \"json\",\n            \"contentType\": \"application/json\",\n            \"data\": JSON.stringify({\n              \"customerId\": K('field[Billing Customer Id]').value(),\n              \"paymentMethod\": \"CREDITCARD\",\n              \"cardToken\": bundle.sourceID,\n              \"space\": K('space').slug(),\n              \"billingService\": K('space').attributes('Billing Company'),\n            })\n          }\n          $.ajax(paymentSettings).done(function (response) {\n            debugger;\n            console.log(response);\n            if (response.error===100) {\n              var message=response.errorMessage;\n              if (response.errorMessage===\"DECLINE\") {\n                message=\"Credit Card not valid (Declined)\";  \n              }\n              K('button[Submit]').enable();\n              $(\"#errorValue\").html(message);\n              K('section[Card Error]').show();\n            } else {\n              K('section[Card Error]').hide();\n              completeRegisterUser();\n            }\n          });                \n\n        }    \n      });\n    }\n  } else if (K('field[Payment Options]').value()===\"Use existing payment details\") {\n      completeRegisterUser();    \n  }\n}\n",
+              "code": "debugger;\n\nif (Object.keys(K('form').validate()).length>0) {\n  K('form').submitPage();\n} else {\n  K('button[Submit]').disable();\n  if (K('field[Payment Options]').value()===\"Set new payment details\") {  \n    var paymentType=\"\";\n    if (K('field[Payment Method]').value()===\"Credit Card\") {\n      paymentType=\"card\";\n    } else {\n    \tpaymentType=\"acss_debit\";\n    }\n\n    if (paymentType === \"card\") {\n      bundle.stripe\n        .createSource(paymentType===\"card\" ? bundle.cardElement : bundle.ibanElement, {\n        type: paymentType,\n        currency:  K('space').attributes('Currency'),\n        owner: {\n          name: K('field[Student First Name]').value()+\" \"+K('field[Student Last Name]').value(),\n          address: {\n            postal_code: K('field[Postcode]').value(),  // <-- add this\n          },    \n        },\n      })\n      .then(function(result) {\n        // Handle result.error or result.source\n        if (result.error) {\n          K('button[Submit]').enable();\n          $(\"#errorValue\").html(result.error.message);\n          K('section[Card Error]').show();\n        } else {\n          debugger;\n          console.log(result.source);\n          bundle.sourceID=result.source.id;\n\n          var paymentSettings = {\n            \"crossDomain\": true,\n            \"url\": K('space').attributes('Kinetic Billing Server URL')+\"/savePaymentMethod\",\n            \"method\": \"POST\",\n            \"headers\": {},\n            \"dataType\": \"json\",\n            \"contentType\": \"application/json\",\n            \"data\": JSON.stringify({\n              \"customerId\": K('field[Billing Customer Id]').value(),\n              \"paymentMethod\": \"CREDITCARD\",\n              \"cardToken\": bundle.sourceID,\n              \"space\": K('space').slug(),\n              \"billingService\": 'Stripe',\n            })\n          }\n          $.ajax(paymentSettings).done(function (response) {\n            debugger;\n            console.log(response);\n            if (response.error===100) {\n              var message=response.errorMessage;\n              if (response.errorMessage===\"DECLINE\") {\n                message=\"Credit Card not valid (Declined)\";  \n              }\n              K('button[Submit]').enable();\n              $(\"#errorValue\").html(message);\n              K('section[Card Error]').show();\n            } else {\n              K('section[Card Error]').hide();\n              completeRegisterUser();\n            }\n          });                \n\n        }    \n      });\n    }\n  } else if (K('field[Payment Options]').value()===\"Use existing payment details\") {\n      completeRegisterUser();    \n  }\n}\n",
               "runIf": "bundle.isEditBillingDetails() && values('Billing Status')===\"Inactive\""
             }
           ]

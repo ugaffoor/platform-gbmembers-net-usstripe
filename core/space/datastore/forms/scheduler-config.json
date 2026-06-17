@@ -13,9 +13,7 @@
       ]
     }
   ],
-  "bridgedResources": [
-
-  ],
+  "bridgedResources": [],
   "customHeadContent": null,
   "description": "",
   "indexDefinitions": [
@@ -150,14 +148,9 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -175,14 +168,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -200,14 +188,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "radio",
           "choicesResourceName": null,
@@ -236,9 +219,7 @@
           "requiredMessage": null,
           "omitWhenHidden": true,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Trigger Duration Multiplier Change",
@@ -247,8 +228,7 @@
               "code": "K('field[Duration Multiplier]').trigger('change');"
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -259,8 +239,7 @@
           "name": "Duration Display",
           "text": "<div class=\"form-group required\">\n  <label class=\"field-label\" for=\"duration-display\">Duration</label>\n  <div class=\"input-group\">\n    <div class=\"input-group-prepend\">\n      <button class=\"btn btn-inverse decrease-duration\" type=\"button\">-</button>\n    </div>\n  \t<input data-element-type=\"field\" id=\"duration-display\" type=\"text\" name=\"Duration\" class=\"form-control\">\n    <div class=\"input-group-append\">\n      <button class=\"btn btn-inverse increase-duration\" type=\"button\">+</button>\n    </div>\n  </div>\n</div>",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "field",
@@ -278,9 +257,7 @@
             "regex": "^\\d+$",
             "message": "Duration must be an integer."
           },
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Update Duration Display",
@@ -289,8 +266,7 @@
               "code": "var form = K('form');\nvar timeIntervalValue = parseInt(K('field[Time Interval]').value()) || 5;\nvar durationField = K('field[Duration Multiplier]');\nif (!durationField.value() || !parseInt(durationField.value())) {\n  durationField.value(1);\n}\n$(form.find('[data-element-name=\"Duration Display\"] input#duration-display')).val(((parseInt(element.value()) || 1) * timeIntervalValue) + ' minutes');"
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -302,8 +278,7 @@
           "visible": true,
           "enabled": true,
           "renderType": "submit-page",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
       "events": [

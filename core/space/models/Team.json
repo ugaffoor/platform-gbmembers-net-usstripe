@@ -33,16 +33,12 @@
   "qualifications": [
     {
       "name": "All Roles",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "All Teams",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     }
   ],

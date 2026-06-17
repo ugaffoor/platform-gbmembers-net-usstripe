@@ -121,16 +121,12 @@
   "qualifications": [
     {
       "name": "Active Leads",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {
       "name": "All",
-      "parameters": [
-
-      ],
+      "parameters": [],
       "resultType": "Multiple"
     },
     {

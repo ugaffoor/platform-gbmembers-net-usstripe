@@ -11,9 +11,7 @@
     {
       "model": "POS Products",
       "name": "Get Product By ID",
-      "order": [
-
-      ],
+      "order": [],
       "parameters": [
         {
           "mapping": "${values('Product ID')}",
@@ -26,12 +24,8 @@
     {
       "model": "POS Products",
       "name": "Get Products",
-      "order": [
-
-      ],
-      "parameters": [
-
-      ],
+      "order": [],
+      "parameters": [],
       "qualification": "Get Products",
       "status": "Active"
     }
@@ -176,9 +170,7 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Get Product Name",
@@ -209,8 +201,7 @@
               "bridgedResourceName": "Get Product By ID"
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "dropdown",
           "choicesResourceName": "Get Products",
@@ -233,14 +224,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -258,14 +244,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -283,14 +264,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -308,9 +284,7 @@
           "requiredMessage": null,
           "omitWhenHidden": false,
           "pattern": null,
-          "constraints": [
-
-          ],
+          "constraints": [],
           "events": [
             {
               "name": "Load sizes",
@@ -319,8 +293,7 @@
               "code": "var sizeOptions=JSON.parse(K('field[Size Options]').value());\nvar options=[];\nsizeOptions.forEach((size, i) => {\n  options[options.length]={'label': size, 'value': size};\n});\n\nK('field[Size]').options(options);\n"
             }
           ],
-          "renderAttributes": {
-          },
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -338,21 +311,14 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "dropdown",
           "choicesResourceName": null,
           "choicesRunIf": null,
-          "choices": [
-
-          ]
+          "choices": []
         },
         {
           "type": "field",
@@ -367,14 +333,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -386,13 +347,10 @@
           "visible": true,
           "enabled": true,
           "renderType": "submit-page",
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         }
       ],
-      "events": [
-
-      ],
+      "events": [],
       "name": "Main",
       "renderType": "submittable",
       "type": "page"

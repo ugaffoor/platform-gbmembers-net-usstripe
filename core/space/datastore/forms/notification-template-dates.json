@@ -7,9 +7,7 @@
       ]
     }
   ],
-  "bridgedResources": [
-
-  ],
+  "bridgedResources": [],
   "customHeadContent": null,
   "description": "Store of date formats for Notifications",
   "indexDefinitions": [
@@ -105,14 +103,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "radio",
           "choicesResourceName": null,
@@ -141,14 +134,9 @@
           "requiredMessage": null,
           "omitWhenHidden": null,
           "pattern": null,
-          "constraints": [
-
-          ],
-          "events": [
-
-          ],
-          "renderAttributes": {
-          },
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
           "dataType": "string",
           "renderType": "text",
           "rows": 1
@@ -159,8 +147,7 @@
           "name": "Name Explanation",
           "text": "The Name of the date format is the name you will be including in your message templates inside the ${\"${format('DateName')}\"} tag. It should likely be something human readable and short but descriptive, like ShortDatewithTime.",
           "visible": true,
-          "renderAttributes": {
-          }
+          "renderAttributes": {}
         },
         {
           "type": "section",
@@ -186,14 +173,9 @@
               "requiredMessage": null,
               "omitWhenHidden": null,
               "pattern": null,
-              "constraints": [
-
-              ],
-              "events": [
-
-              ],
-              "renderAttributes": {
-              },
+              "constraints": [],
+              "events": [],
+              "renderAttributes": {},
               "dataType": "string",
               "renderType": "text",
               "rows": 1
@@ -204,8 +186,7 @@
               "name": "Format Explanation",
               "text": "The date format should be a ruby date format such as %m-%e-%y %H:%M for 03-17-16 15:19. Examples and explanation can be found at <a href=\"http://www.foragoodstrftime.com/\" target=\"_blank\">http://www.foragoodstrftime.com/</a>",
               "visible": true,
-              "renderAttributes": {
-              }
+              "renderAttributes": {}
             }
           ]
         },
@@ -234,9 +215,7 @@
           ]
         }
       ],
-      "events": [
-
-      ],
+      "events": [],
       "name": "Datastore",
       "renderType": "submittable",
       "type": "page"
