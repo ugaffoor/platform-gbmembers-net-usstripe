@@ -1310,7 +1310,7 @@
           "label": "Edit Template",
           "name": "Edit Template",
           "visible": "values('Template Name')!==\"\" && values('Template Name')!==null",
-          "enabled": true,
+          "enabled": "$(K('content[Content View]').element()).html()!==''",
           "renderType": "custom",
           "renderAttributes": {},
           "events": [
@@ -1446,7 +1446,7 @@
           "name": "Load Member Email Template Preview",
           "type": "Load",
           "action": "Custom",
-          "code": "$(K('content[Content View]').element()).html(resource[0]['Email Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "code": "if (resource.length>0){\n\t$(K('content[Content View]').element()).html(resource[0]['Email Content']);\n\tK('field[Template Name]').value(resource[0]['Template Name']);\n}",
           "runIf": "values('Record Type')===\"Member\" && values('Contact Type')===\"Email\" && values('Template Name')!==null",
           "bridgedResourceName": "Get Member Email by Name"
         },
@@ -1454,7 +1454,7 @@
           "name": "Load Lead Email Template Preview",
           "type": "Load",
           "action": "Custom",
-          "code": "$(K('content[Content View]').element()).html(resource[0]['Email Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "code": "if (resource.length>0){\n\t$(K('content[Content View]').element()).html(resource[0]['Email Content']);\n\tK('field[Template Name]').value(resource[0]['Template Name']);\n}",
           "runIf": "values('Record Type')===\"Lead\" && values('Contact Type')===\"Email\" && values('Template Name')!==null",
           "bridgedResourceName": "Get Lead Email by Name"
         },
@@ -1462,7 +1462,7 @@
           "name": "Load Lead Call Template Preview",
           "type": "Load",
           "action": "Custom",
-          "code": "$(K('content[Content View]').element()).html(resource[0]['Script']);\nK('field[Template Name]').value(resource[0]['Script Name']);",
+          "code": "if (resource.length>0){\n\t$(K('content[Content View]').element()).html(resource[0]['Script']);\n\tK('field[Template Name]').value(resource[0]['Script Name']);\n}",
           "runIf": "values('Record Type')===\"Lead\" && values('Contact Type')===\"Call\" && values('Template Name')!==null",
           "bridgedResourceName": "Get Lead Script by Name"
         },
@@ -1470,7 +1470,7 @@
           "name": "Load Member Call Template Preview",
           "type": "Load",
           "action": "Custom",
-          "code": "$(K('content[Content View]').element()).html(resource[0]['Script']);\nK('field[Template Name]').value(resource[0]['Script Name']);",
+          "code": "if (resource.length>0){\n\t$(K('content[Content View]').element()).html(resource[0]['Script']);\n\tK('field[Template Name]').value(resource[0]['Script Name']);\n}",
           "runIf": "values('Record Type')===\"Member\" && values('Contact Type')===\"Call\" && values('Template Name')!==null",
           "bridgedResourceName": "Get Member Script by Name"
         },
@@ -1478,7 +1478,7 @@
           "name": "Load Lead SMS Template Preview",
           "type": "Load",
           "action": "Custom",
-          "code": "debugger;\n$(K('content[Content View]').element()).html(resource[0]['SMS Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "code": "debugger;\nif (resource.length>0){\n\t$(K('content[Content View]').element()).html(resource[0]['SMS Content']);\n\tK('field[Template Name]').value(resource[0]['Template Name']);\n}",
           "runIf": "values('Record Type')===\"Lead\" && values('Contact Type')===\"SMS\" && values('Template Name')!==null",
           "bridgedResourceName": "Get Lead SMS by Name"
         },
@@ -1486,7 +1486,7 @@
           "name": "Load Member SMS Template Preview",
           "type": "Load",
           "action": "Custom",
-          "code": "$(K('content[Content View]').element()).html(resource[0]['SMS Content']);\nK('field[Template Name]').value(resource[0]['Template Name']);",
+          "code": "if (resource.length>0){\n\t$(K('content[Content View]').element()).html(resource[0]['SMS Content']);\n\tK('field[Template Name]').value(resource[0]['Template Name']);\n}",
           "runIf": "values('Record Type')===\"Member\" && values('Contact Type')===\"SMS\" && values('Template Name')!==null",
           "bridgedResourceName": "Get Member SMS by Name"
         }

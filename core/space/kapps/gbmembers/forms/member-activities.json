@@ -148,7 +148,7 @@
     },
     {
       "endpoint": "Submission Access",
-      "name": "Program Managers"
+      "name": "Authenticated Users"
     },
     {
       "endpoint": "Submission Modification",

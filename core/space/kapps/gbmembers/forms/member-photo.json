@@ -3,7 +3,7 @@
   "attributes": [],
   "bridgedResources": [],
   "categorizations": [],
-  "customHeadContent": "<style>\n  .empty-message {\n    display: none !important;\n  }\n</style>",
+  "customHeadContent": "<style>\n  .empty-message {\n    display: none !important;\n  }\n  .fileinput-button {\n\t\tbackground-color: #4d5059;\n    border: none;\n    border-radius: .4rem;\n    color: #fff;\n    font-size: 15px;\n    line-height: 1.75em !important;\n    padding-bottom: 0;\n    padding-top: 0;\n    text-transform: uppercase;    \n  }\n  .fileinput-button:hover {\n      background-color: #b2b2b2 !important;\n      color: #fff !important;\n  }  \n</style>",
   "description": "",
   "name": "Member Photo",
   "notes": null,

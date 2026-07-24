@@ -1647,7 +1647,7 @@
           "type": "button",
           "label": "Save for Member to Complete",
           "name": "Save for Member to Complete",
-          "visible": true,
+          "visible": false,
           "enabled": "values('I promise to pay equal FREQUENCY instalments of')!==null && values('The first instalment is due on')!==null && values('Term Date') !== null",
           "renderType": "save",
           "renderAttributes": {}

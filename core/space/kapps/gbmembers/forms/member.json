@@ -2309,11 +2309,11 @@
     },
     {
       "endpoint": "Submission Access",
-      "name": "Everyone"
+      "name": "Authenticated Users"
     },
     {
       "endpoint": "Submission Modification",
-      "name": "Everyone"
+      "name": "Authenticated Users"
     }
   ],
   "slug": "member",

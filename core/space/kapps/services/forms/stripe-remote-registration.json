@@ -492,7 +492,7 @@
                   "name": "Set Frequency Label",
                   "type": "Change",
                   "action": "Custom",
-                  "code": "value=K('field[I promise to pay equal FREQUENCY instalments of]').name();\nvalue=value.replace(\"FREQUENCY\", K('field[Payment Frequency]').value());\n$(K('field[I promise to pay equal FREQUENCY instalments of]').wrapper()).find(\"label\").html(value);\n",
+                  "code": "value=K('field[I promise to pay equal FREQUENCY instalments of]').name();\nvalue=value.replace(\"FREQUENCY\", K('field[Payment Frequency]').value());\n$(K('field[I promise to pay equal FREQUENCY instalments of]').wrapper()).find(\"label\").html(value);\n\nif (K('field[Payment Frequency]').value()!==null) {\n\t$(\"#paymentType\").html(K.translate(K('field[Payment Frequency]').value()).toLowerCase());\n}",
                   "runIf": ""
                 }
               ],
@@ -1148,7 +1148,7 @@
               "type": "content",
               "renderType": "html",
               "name": "Payline information description",
-              "text": "and subsequent instalments are to be paid each fortnight afterwards until I give notice that I wish to stop payments according to the terms and conditions including cancellation and membership freeze terms below.",
+              "text": "and subsequent instalments are to be paid each  <span id=\"paymentType\">fortnight</span> afterwards until I give notice that I wish to stop payments according to the terms and conditions including cancellation and membership freeze terms below.",
               "visible": true,
               "renderAttributes": {}
             },
