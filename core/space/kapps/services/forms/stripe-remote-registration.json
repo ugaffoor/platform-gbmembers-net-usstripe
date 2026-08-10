@@ -2106,7 +2106,9 @@
           "visible": false,
           "enabled": true,
           "renderType": "custom",
-          "renderAttributes": {},
+          "renderAttributes": {
+            "class": "btn btn-primary"
+          },
           "events": [
             {
               "name": "Submit",

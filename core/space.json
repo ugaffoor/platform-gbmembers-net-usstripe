@@ -235,7 +235,7 @@
     {
       "name": "Member Belt Size",
       "values": [
-        "A0,A1,A1L,A2,A2L,A3,A3L,A4,A5,A5W,A6,A7,Y0,Y1,Y2,Y3,Y4,Y5,Y6"
+        "A0,A1,A1L,A2,A2L,A3,A3L,A4,A5,A5W,A6,A7,F0,F1,F2,F3,F4,F5,F6,Y0,Y1,Y2,Y3,Y4,Y5,Y6"
       ]
     },
     {
@@ -478,6 +478,18 @@
       ]
     },
     {
+      "name": "TAX 1 Label",
+      "values": [
+        "10% GST"
+      ]
+    },
+    {
+      "name": "TAX 1 Value",
+      "values": [
+        "0.1"
+      ]
+    },
+    {
       "name": "Trial Booking Cut Off",
       "values": [
         "1"
@@ -515,9 +527,7 @@
     }
   ],
   "bundlePath": "",
-  "customTranslationContexts": [
-
-  ],
+  "customTranslationContexts": [],
   "defaultDatastoreFormConfirmationPage": null,
   "defaultDatastoreFormDisplayPage": null,
   "defaultLocale": "en-US",
@@ -531,9 +541,7 @@
   "loginPage": null,
   "name": "GB US Stripe Beta",
   "platformComponents": {
-    "agents": [
-
-    ]
+    "agents": []
   },
   "resetPasswordPage": null,
   "securityPolicies": [
@@ -568,7 +576,5 @@
   "trustedFrameDomains": [
     "https://services.gbmembers.net"
   ],
-  "trustedResourceDomains": [
-
-  ]
+  "trustedResourceDomains": []
 }
