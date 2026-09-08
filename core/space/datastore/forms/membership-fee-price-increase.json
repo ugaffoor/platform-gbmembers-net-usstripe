@@ -68,6 +68,13 @@
       "unique": false
     },
     {
+      "name": "values[Do Not Send Email]",
+      "parts": [
+        "values[Do Not Send Email]"
+      ],
+      "unique": false
+    },
+    {
       "name": "values[Email Template ID]",
       "parts": [
         "values[Email Template ID]"
@@ -85,6 +92,13 @@
       "name": "values[Excluded Members]",
       "parts": [
         "values[Excluded Members]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Excluded Options]",
+      "parts": [
+        "values[Excluded Options]"
       ],
       "unique": false
     },
@@ -120,6 +134,13 @@
       "name": "values[Percentage]",
       "parts": [
         "values[Percentage]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[RBA Increase]",
+      "parts": [
+        "values[RBA Increase]"
       ],
       "unique": false
     },
@@ -286,6 +307,26 @@
         },
         {
           "type": "field",
+          "name": "RBA Increase",
+          "label": "RBA Increase",
+          "key": "f14",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
           "name": "Membership Fees Selected",
           "label": "Membership Fees Selected",
           "key": "f7",
@@ -385,9 +426,49 @@
         },
         {
           "type": "field",
+          "name": "Excluded Options",
+          "label": "Excluded Options",
+          "key": "f13",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
           "name": "Excluded Members",
           "label": "Excluded Members",
           "key": "f6",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": true,
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": null,
+          "pattern": null,
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {},
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
+          "name": "Do Not Send Email",
+          "label": "Do Not Send Email",
+          "key": "f12",
           "defaultValue": null,
           "defaultResourceName": null,
           "visible": true,
