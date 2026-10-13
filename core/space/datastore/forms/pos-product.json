@@ -30,7 +30,7 @@
       "status": "Active"
     }
   ],
-  "customHeadContent": null,
+  "customHeadContent": "<style>\n.checkbox.packageProducts {\n    overflow: auto;\n    max-height: 400px;\n}\n.checkbox.packageProducts label {\n    position: relative;\n}  \n  \ninput.productsFilter::placeholder {\n\tcolor: #d3d3d3 !important; \n  opacity: 1;\n}\n</style>",
   "description": "Available product for sale",
   "indexDefinitions": [
     {
@@ -170,6 +170,13 @@
       "name": "values[Name]",
       "parts": [
         "values[Name]"
+      ],
+      "unique": false
+    },
+    {
+      "name": "values[Package Products Filter]",
+      "parts": [
+        "values[Package Products Filter]"
       ],
       "unique": false
     },
@@ -554,6 +561,29 @@
         },
         {
           "type": "field",
+          "name": "Package Products Filter",
+          "label": "Package Products Filter",
+          "key": "f24",
+          "defaultValue": null,
+          "defaultResourceName": null,
+          "visible": "values('Product Type')===\"Package\"",
+          "enabled": true,
+          "required": false,
+          "requiredMessage": null,
+          "omitWhenHidden": true,
+          "pattern": null,
+          "constraints": [],
+          "events": [],
+          "renderAttributes": {
+            "class": "productsFilter",
+            "placeholder": "Enter a product name to filter or enter ShowMe to view selected products"
+          },
+          "dataType": "string",
+          "renderType": "text",
+          "rows": 1
+        },
+        {
+          "type": "field",
           "name": "Package Products",
           "label": "Package Products",
           "key": "f19",
@@ -567,15 +597,14 @@
           "pattern": null,
           "constraints": [],
           "events": [],
-          "renderAttributes": {},
+          "renderAttributes": {
+            "class": "packageProducts"
+          },
           "dataType": "json",
           "renderType": "checkbox",
-          "choicesResourceName": "Get Products",
+          "choicesResourceName": null,
           "choicesRunIf": null,
-          "choices": {
-            "label": "${resources('Get Products:Name')}-${resources('Get Products:Colour')}",
-            "value": "${resources('Get Products:id')}"
-          }
+          "choices": []
         },
         {
           "type": "field",
@@ -1036,11 +1065,17 @@
       ],
       "events": [
         {
+          "name": "Load Package Filter",
+          "type": "Load",
+          "action": "Custom",
+          "code": "/**\n * Hide checkbox options in a Kinetic checkbox field whose label text doesn't match the filter.\n * - Case-insensitive; every space-separated term must match (e.g. \"kids black\" matches\n *   \"Barra Origins Kids Jersey - Black-Black\").\n * - Checked options always stay visible, so a selection never disappears.\n * - An empty filter shows everything again.\n */\nbundle.filterCheckboxOptions = function(fieldName, filterValue) {\n  const wrapper = document.querySelector(\n    `[data-element-type=\"wrapper\"][data-element-name=\"${CSS.escape(fieldName)}\"]`\n  );\n  if (!wrapper) return;\n\n  const terms = (filterValue || '').toLowerCase().trim().split(/\\s+/).filter(Boolean);\n\n  wrapper.querySelectorAll('label[for]').forEach(label => {\n    const input = label.querySelector('input[type=\"checkbox\"]');\n    if (!input) return;\n\n    // Leave alone any options that are already hidden or disabled\n    if (input.getAttribute('hide') === 'true') return;\n\n    const text = label.textContent.toLowerCase();\n    const matches = terms.every(t => text.includes(t));\n\n    label.style.display = matches || input.checked ? '' : 'none';\n  });\n}\nlet filterTimer;  \nsetTimeout(function() {\n  K('field[Package Products Filter]').element()[0].addEventListener('input', e => {\n    clearTimeout(filterTimer);\n    filterTimer = setTimeout(() => bundle.filterCheckboxOptions('Package Products', e.target.value), 150);\n  });  \n},100);",
+          "runIf": ""
+        },
+        {
           "name": "Load Products",
           "type": "Load",
           "action": "Custom",
-          "code": "bundle.config.widgets.selectMultiMenu({\n  element: K(\"form\").find(\"#selectProductsMenu\")[0],\n  options: K('field[Package Products]').options(),\n  onChange: function(option) {\n    debugger;\n    K('field[Package Products]').value(option[0].value);\n/*    setTimeout(function(){\n      $(K(\"form\").find(\"#selectProductsMenu .css-1492t68\")).html(option.label);\n    },100);*/\n  },\n  value: K('field[Package Products]').value(),\n});\n",
-          "runIf": "1===0"
+          "code": "/**\n * Load ALL active pos-product submissions, getting past the 1000-record cap\n * by paging backwards on createdAt.\n * Returns a Promise resolving to an array of submissions.\n */\nbundle.loadAllPosProducts = function() {\n  var url = bundle.apiLocation() + '/datastore/forms/pos-product/submissions';\n  var pageSize = 1000; \n  var all = [];\ndebugger;\n  function fetchPage(pageToken) {\n    var data = {\n      index: 'values[Status]',\n      direction: 'ASC',\n      limit: pageSize,\n      q: 'values[Status]=\"Active\"',\n      include: 'values[Name],values[Colour]'\n    };\n    if (pageToken) data.pageToken = pageToken;\n\n    return $.ajax({ url: url, method: 'GET', dataType: 'json', data: data })\n      .then(function (resp) {\n        all = all.concat(resp.submissions || []);\n        return resp.nextPageToken ? fetchPage(resp.nextPageToken) : all;\n      });\n  }\n\n  return fetchPage(null);\n}\n/**\n * Rebuild the \"Package Products\" checkbox options from the product list.\n * Label = values[Name], Value = submission id. Keeps any current selections.\n */\nbundle.setPackageProductOptions = function(products) {\n  var fieldName = 'Package Products';\n  var $wrapper = $('[data-element-type=\"wrapper\"][data-element-name=\"' + fieldName + '\"]');\n  var selected = K('field[' + fieldName + ']').value() || [];\n\n  products.sort(function (a, b) {\n    return (a.values['Name'] || '').localeCompare(b.values['Name'] || '');\n  });\n\n  $wrapper.find('label[for]').remove();\n\n  var frag = document.createDocumentFragment();\n  products.forEach(function (p) {\n    var inputId = 'pkg-prod-' + p.id;\n    var name = p.values['Name'] || '';\n    var colour = (p.values['Colour'] || '').trim();\n    var label = colour ? name + ' - ' + colour : name;\n\n    var $input = $('<input>', {\n      'data-element-type': 'field',\n      id: inputId,\n      name: fieldName,\n      type: 'checkbox',\n      value: p.id\n    }).prop('checked', selected.indexOf(p.id) > -1);\n\n    $('<label>', { for: inputId })\n      .append($input)\n      .append(document.createTextNode(label))\n      .appendTo(frag);\n  });\n  $wrapper.append(frag);\n}\n\nbundle.loadAllPosProducts()\n  .then(bundle.setPackageProductOptions)\n  .fail(function (xhr) { console.error('Failed to load pos-product records', xhr); });"
         }
       ],
       "name": "Main",
