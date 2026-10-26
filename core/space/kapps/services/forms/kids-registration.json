@@ -290,7 +290,7 @@
             {
               "type": "field",
               "name": "First Name",
-              "label": "First Name",
+              "label": "Participant First Name",
               "key": "f28",
               "defaultValue": null,
               "defaultResourceName": null,
