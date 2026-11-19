@@ -141,6 +141,11 @@
   },
   {
     "allowsMultiple": false,
+    "description": "Default payment period selected for Member/Remote registrations.",
+    "name": "Default Payment Period"
+  },
+  {
+    "allowsMultiple": false,
     "description": "If set to true, users won't be able to request their own accounts. Only system administrators will be able to grant them access.",
     "name": "Disable Self Sign Up"
   },
